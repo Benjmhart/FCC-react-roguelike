@@ -32,7 +32,7 @@
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "lint": "eslint src/components src/actions src/reducers src/styles --ignore-path .gitignore --ignore-pattern internals/scripts || true",
-    "pretty": "prettier --use-tabs --write \"/home/ubuntu/workspace/src/components/*.js\" \"/home/ubuntu/workspace/src/actions/*.js\" \"/home/ubuntu/workspace/src/reducers/*.js\" \"/home/ubuntu/workspace/src/styles/*.js\"",
+    "pretty": "prettier --use-tabs --write \"/home/ubuntu/workspace/src/components/*.js\" \"/home/ubuntu/workspace/src/actions/*.js\" \"./src/reducers/*.js\" \"./src/styles/*.js\"",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "start": "npm-run-all -p watch-css start-js watch_lint watch_pretty",
     "build": "npm-run-all build-css build-js",
