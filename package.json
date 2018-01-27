@@ -12,15 +12,29 @@
     "react-scripts": "1.0.17",
     "redux": "^3.7.2"
   },
+  "watch": {
+    "lint":{
+      "patterns":[ "/home/ubuntu/workspace/src/components/*.js", "/home/ubuntu/workspace/src/actions/*.js", "/home/ubuntu/workspace/src/reducers/*.js", "/home/ubuntu/workspace/src/styles/*.scss"],
+      "extensions": "js,html,scss",
+        "quiet": false
+    },
+    "pretty": {
+      "patterns":[ "/home/ubuntu/workspace/src/components/*.js", "/home/ubuntu/workspace/src/actions/*.js", "/home/ubuntu/workspace/src/reducers/*.js"],
+      "extensions": "js,scss",
+        "quiet": false
+    }
+  },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch_lint": "npm-watch lint",
+    "watch_pretty": "npm-watch pretty",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
-    "lint": "eslint src/components --fix src/actions src/reducers src/styles --ignore-path .gitignore --ignore-pattern internals/scripts || true",
-    "pretty": "prettier --use-tabs \"/home/ubuntu/workspace/src/components/*.js\" \"/home/ubuntu/workspace/src/actions/*.js\" \"/home/ubuntu/workspace/src/reducers/*.js\" \"/home/ubuntu/workspace/src/styles/*.js\"",
+    "lint": "eslint src/components src/actions src/reducers src/styles --ignore-path .gitignore --ignore-pattern internals/scripts || true",
+    "pretty": "prettier --use-tabs --write \"/home/ubuntu/workspace/src/components/*.js\" \"/home/ubuntu/workspace/src/actions/*.js\" \"/home/ubuntu/workspace/src/reducers/*.js\" \"/home/ubuntu/workspace/src/styles/*.js\"",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "start": "npm-run-all -p watch-css start-js lint ",
+    "start": "npm-run-all -p watch-css start-js watch_lint watch_pretty",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "format": "prettier --write '**/*.{js,jsx}'",
@@ -35,6 +49,7 @@
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.6.0",
     "npm-run-all": "^4.1.2",
+    "npm-watch": "^0.3.0",
     "prettier": "^1.9.2",
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0"

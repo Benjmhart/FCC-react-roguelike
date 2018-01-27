@@ -2,9 +2,11 @@
 
 This is built specifically with FreeCodeCamp Sass/React challenges in mind.   allowing you to build out multiple files locally , and then git-clone or deploy the output into cloud9/AWS or glitch
 
-usage:   npm start  - this will start up webpack bundler AND a hot reloading sass compiler.   
+usage:   
 
+npm start  - this will start up webpack bundler AND a hot reloading sass compiler.   
 
+in addition linting and prettier will run on the CLI on save - prettier will save changes
 ____
 
 ## This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
