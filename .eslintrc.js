@@ -2,7 +2,8 @@ module.exports = {
   extends: ["airbnb", "prettier", "prettier/react", "prettier/standard"],
   plugins: ["react", "jsx-a11y", "import", "prettier"],
   env: {
-    es6: true
+    es6: true,
+    browser: true
   },
   parserOptions: {
     sourceType: "module",

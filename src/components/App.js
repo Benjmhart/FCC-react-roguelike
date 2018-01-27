@@ -3,9 +3,9 @@ import "../styles/App.css";
 
 class App extends Component {
   constructor() {
-    super()
+    super();
   }
-  
+
   render() {
     return (
       <div className="App">
