@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ["airbnb", "prettier", "prettier/react", "prettier/standard"],
-  plugins: ["react", "jsx-a11y", "import", "prettier"],
+  extends: ["airbnb", "eslint:recommended", "plugin:react-redux/recommended", "prettier", "prettier/react", "prettier/standard"],
+  plugins: ["react", "jsx-a11y", "prettier", "import", "react-redux" ],
   env: {
     es6: true,
     browser: true
@@ -8,7 +8,8 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      experimentalObjectRestSpread: true
     }
   },
   rules: {
