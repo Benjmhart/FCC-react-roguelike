@@ -3,7 +3,8 @@ module.exports = {
   plugins: ["react", "jsx-a11y", "prettier", "import", "react-redux" ],
   env: {
     es6: true,
-    browser: true
+    browser: true,
+    jest: true
   },
   parserOptions: {
     sourceType: "module",
@@ -15,5 +16,9 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": 0
-  }
+  }, 
+  globals: {
+        "var1": true,
+        "var2": false
+    }
 };
