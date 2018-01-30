@@ -8,21 +8,7 @@ describe("App", () => {
 	it("renders without crashing", () => {
 		shallow(<App />);
 	});
-
-	it("renders and matches our snapshot", () => {
-		const component = renderer.create(<App />);
-		const tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
-	});
+	it("renders titleScreen depending if gamboard does not exist");
+	it("renders the character creator if character prop is blank template")
+	it("renders a GameView Component if gameboard exists");
 });
-/*
-import { shallow, mount, render  } from 'enzyme';
-import { App } from "../../components/App";
-
-describe("<App />", () => {
-	it("renders <App /> component", () => {
-		const component = shallow(<App />);
-		expect(component).toHaveLength(1);
-	});
-});
-*/
