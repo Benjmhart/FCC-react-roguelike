@@ -1,6 +1,13 @@
 //when the game is started, it generates a level,
 
-// map is an object with 2 values,  currentfloor and a map 3D array [FLOORS],[ROWS],[COLUMNS]
+// map has a currentfloor and a 3D array [FLOORS],[ROWS],[COLUMNS]
+//if move successful, moves the hero object to correspond with moving hero coordinates on the character object
+//ongamestart injects the hero object into the array?
+//a cell is always empty after the hero leaves...
+
+// this reducer needs to take a generate floor seed random number function as a dependancy
+//it also needs to take a floor seed and an empty array and pass it to a procedural generator
+// this procedural generator will be a pure function that takes an array and a seed and uses the seed as an instruction to build a floor.
 
 //2nd delivery
 //when the current level increments to a new level, it generates a level

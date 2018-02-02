@@ -1,5 +1,5 @@
 {
-  "name": "react-sass-boilerplate",
+  "name": "react-roguelike",
   "version": "0.1.0",
   "homepage": "http://gitname.github.io/react-gh-pages",
   "private": true,
@@ -42,11 +42,12 @@
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "lint": "eslint src/components src/actions src/reducers src/styles src/helpers src/tests/*/  --ignore-path .gitignore --ignore-pattern internals/scripts || true",
-    "pretty": "prettier --use-tabs --write \"./src/components/*.js\" \"./src/actions/*.js\" \"./src/reducers/*.js\" \"./src/styles/*.js\" \"./src/helpers/*.js\" \"./src/tests/**/*.test.js\"",
+    "pretty": "prettier --write \"./src/components/*.js\" \"./src/actions/*.js\" \"./src/reducers/*.js\" \"./src/styles/*.js\" \"./src/helpers/*.js\" \"./src/tests/**/*.test.js\"",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "start": "npm-run-all -p watch-css start-js watch_lint watch_pretty",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
+    "testy": "react-scripts test --env=jsdom",
+    "test": "testy -- --coverage",
     "format": "prettier --write '**/*.{js,jsx}'",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -74,6 +75,7 @@
     "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0",
     "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.2.0",
     "redux-mock-store": "^1.5.0"
   }
 }
