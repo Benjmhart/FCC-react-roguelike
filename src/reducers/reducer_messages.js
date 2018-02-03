@@ -1,4 +1,3 @@
-export default (action) => {
-	return []
-	
+export default function(state = [], action) {
+  return state;
 }

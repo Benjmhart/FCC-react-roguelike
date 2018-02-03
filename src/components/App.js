@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "../styles/App.css";
 import TitleScreen from "./TitleScreen";
-import GameView  from "./GameView";
+import GameView from "./GameView";
 import CharacterCreator from "./CharacterCreator";
 
-
-export const App = ({ gameBoard, character}) => {
+export const App = ({ gameBoard, character }) => {
   const renderContents = () => {
     if (!gameBoard.currentFloor && !character.isNew) {
       return <TitleScreen />;
@@ -18,11 +17,9 @@ export const App = ({ gameBoard, character}) => {
     if (gameBoard && character.isNew === false) {
       return <GameView />;
     }
-    return <p> component not found</p>
+    return <p> component not found</p>;
   };
-  return (<div className="App">
-  {renderContents()}
-  </div>)
+  return <div className="App">{renderContents()}</div>;
 };
 
 function mapStateToProps(state) {
@@ -38,7 +35,7 @@ App.defaultProps = {
 App.propTypes = {
   gameBoard: PropTypes.shape({
     currentFloor: PropTypes.number,
-    map: PropTypes.array,
+    map: PropTypes.array
   }),
   character: PropTypes.shape({
     isNew: PropTypes.bool,
@@ -49,6 +46,13 @@ App.propTypes = {
     CHA: PropTypes.number,
     LUK: PropTypes.number,
     AVL: PropTypes.number,
+    armor: PropTypes.string,
+    weapon: PropTypes.string,
+    shoes: PropTypes.string,
+    helmet: PropTypes.string,
+    ring: PropTypes.string,
+    HP: PropTypes.number,
+    EXP: PropTypes.number,
     CLASS: PropTypes.string
   })
 };

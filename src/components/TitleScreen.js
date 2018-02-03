@@ -1,16 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import beginCharCreate from "../actions/action_beginCharCreate";
 import loadGame from "../actions/action_loadGame";
 
-export const TitleScreen = ({ savedGame }) => {
+export const TitleScreen = ({ savedGame, beginCharCreate, loadGame }) => {
   const disabledBool = !savedGame.character ? true : false;
   return (
     <div className="title-screen">
       <h1>Dungeon Game</h1>
-      <button className="new-game-button">New Game</button>
-      <button className="saved-game" disabled={disabledBool} >Resume Game</button>
+      <button className="new-game-button" onClick={() => beginCharCreate()}>
+        New Game
+      </button>
+      <button
+        className="resume-game-button"
+        disabled={disabledBool}
+        onClick={savedGame => loadGame(savedGame)}
+      >
+        Resume Game
+      </button>
     </div>
   );
 };
@@ -31,6 +40,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { beginCharCreate, loadGame };
+  return bindActionCreators({ beginCharCreate, loadGame }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TitleScreen);

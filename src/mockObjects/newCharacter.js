@@ -12,6 +12,8 @@ const newCharacter = {
 	shoes: '',
 	helmet: '',
 	ring: '',
+	HP: 0,
+	EXP:0,
 	CLASS:""
 };
 
