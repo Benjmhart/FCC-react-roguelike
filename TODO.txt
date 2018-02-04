@@ -1,9 +1,6 @@
 CURRENT TASK: 
 
-build out class rollouts and equipment lists - give additional capabilities to character reducer
-
-charactercreator component - finish button
-charactercreatorcomponent = styling
+charactercreatorcomponent - styling
 
 build out gameview component
 

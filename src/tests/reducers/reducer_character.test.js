@@ -98,12 +98,59 @@ describe("testing for UPDATE_CHAR action", () => {
     const newState = CharacterReducer(newCharacter, action5)
     expect(newState.CLASS).toBe("barbarian");
   });
+  it("will select armor for rollout to match class selected", ()=>{
+    const action6 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "archaeologist" }
+    }
+      const newstate = CharacterReducer(newCharacter,action6)
+      expect(newstate.armor).toEqual(oldCharacter.armor);
+  })
+  it("will select weapon for rollout to match class selected", ()=>{
+    const action6 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "archaeologist" }
+    }
+      const newstate = CharacterReducer(newCharacter,action6)
+      expect(newstate.weapon).toEqual(oldCharacter.weapon);
+  })
   
-  //will change equipment to default loadouts for each role
-  //will accept the isNew=false object from the finish button
+  it("will select shoes for rollout to match class selected", ()=>{
+    const action6 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "archaeologist" }
+    }
+      const newstate = CharacterReducer(newCharacter,action6)
+      expect(newstate.shoes).toEqual(oldCharacter.shoes);
+  })
+  
+  it("will select helmet for rollout to match class selected", ()=>{
+    const action6 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "archaeologist" }
+    }
+      const newstate = CharacterReducer(newCharacter,action6)
+      expect(newstate.helmet).toEqual(oldCharacter.helmet);
+  })
+  
+  it("will select ring for rollout to match class selected", ()=>{
+    const action6 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "archaeologist" }
+    }
+      const newstate = CharacterReducer(newCharacter,action6)
+      expect(newstate.ring).toEqual(oldCharacter.ring);
+  })
+  it("will accept a payload with isNew:false from the finish button", ()=>{
+    const action7 = {
+      type:UPDATE_CHAR,
+      payload: ({isNew:false})
+    } 
+    const newstate = CharacterReducer(newCharacter,action7);
+    expect(newstate.isNew).toBe(false)
+  })
 });
 
 /*
 it("passes any changes to the character  into state when passed a MOVE_CHARACTER action");
-it("removes the isNew property on the character when passed a FINISH_CHARACTER action")
 */

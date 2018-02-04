@@ -1,3 +1,33 @@
+button {
+  background-color:#000000;
+  -moz-border-radius:18px;
+  -webkit-border-radius:18px;
+  border-radius:10px;
+  border:6px solid #ffffff;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:27px;
+  font-weight:bold;
+  padding:16px 31px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+  margin: 5px;
+  &:hover {
+	  background-color:#595959;
+  }
+  &:active {
+	  position:relative;
+	  top:1px;
+  }
+  &:disabled {
+  	background-color: gray;
+  	border-color: #494949;
+  	color: black;
+	}
+}
+
 .title-screen {
   color: white;
   background-color: black;
@@ -9,29 +39,32 @@
   & h1 {
     margin: 0px;
   }
-  & button {
-	  background-color:#000000;
-	  -moz-border-radius:18px;
-	  -webkit-border-radius:18px;
-	  border-radius:18px;
-	  border:6px solid #ffffff;
-	  display:inline-block;
-	  cursor:pointer;
-	  color:#ffffff;
-	  font-family:Arial;
-	  font-size:27px;
-	  font-weight:bold;
-	  padding:16px 31px;
-	  text-decoration:none;
-	  text-shadow:0px 1px 0px #ffffff;
-	  margin: 5px;
-  }
-  & button:hover {
-	  background-color:#595959;
-  }
-  & button:active {
-	  position:relative;
-	  top:1px;
-  }
   
+}
+
+.character-creator {
+  color: white;
+  background-color: black;
+  height: 100vh;
+  padding: 8vh 20vw 8vh 20vw;
+  text-align: left;
+  display:flex;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  & button{
+  	font-size: 1em;
+  	padding: 0px 5px 0px 5px;
+  }
+  & button .finish {
+  	margin-top:5px;
+  }
+  & select {
+  	background-color: black;
+  	color: white;
+  	border: none;
+  	font-family: 'Cinzel', serif;
+  	font-weight: bold;
+  	font-size: 1.2em;
+  }
 }

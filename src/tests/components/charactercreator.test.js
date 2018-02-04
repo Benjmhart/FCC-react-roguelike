@@ -5,6 +5,7 @@ import { shallow } from "enzyme";
 import newCharacter from "../../mockObjects/newCharacter";
 import oldCharacter from "../../mockObjects/oldCharacter";
 import { CharacterCreator } from "../../components/CharacterCreator";
+import classText from "../../assets/classText";
 
 jest.mock("../../index.js", () => "root");
 const updateCharacter = jest.fn();
@@ -537,10 +538,91 @@ describe("behaviour for the class selector dropdown", () =>{
   })
 })
 describe("behaviour for the finish button", () => {
-  //it("exists with correct classes")
-  //it("is disabled if avl=0 OR if sum of all stats != 30")
-  //it("is disabled if a class is not selected")
-  //it("calls updatecharacter with isNew=false when clicked")
+    const tree = shallow(
+    <CharacterCreator
+      character={newCharacter}
+      updateCharacter={updateCharacter}
+    />)
+  it("exists with correct classes", () => {
+    expect(tree.find('button.finish').length).toBe(1)
+  })
+  it("contains the text: FINISH", () => {
+    expect(tree.find('button.finish').text()).toBe("FINISH");
+  })
+  it("is disabled if avl!=0", () => {
+    const modCharacter = {...newCharacter}  
+    modCharacter.CLASS="archaeologist";
+    const tree2 = shallow(
+    <CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+    expect(tree2.find('button.finish').prop('disabled')).toBe(true);
+  })
+  it("is not disabled if avl=0", () => {
+    const modCharacter = {...newCharacter}  
+    modCharacter.STR=30;
+    modCharacter.AVL=0;
+    modCharacter.CLASS = "archaeologist"
+    const tree2 = shallow(
+    <CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+    expect(tree2.find('button.finish').prop('disabled')).toBe(false);
+  });
+  it("is disabled if a class is not selected", ()=>{
+    const modCharacter = {...newCharacter} 
+    modCharacter.STR=30;
+    modCharacter.AVL=0;
+    const tree2 = shallow(
+    <CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+    expect(tree2.find('button.finish').prop('disabled')).toBe(true);
+  })
+  it("is not disabled if a class is selected and avl= 0", () => {
+    const modCharacter = {...newCharacter} 
+    modCharacter.STR=30;
+    modCharacter.AVL=0;
+    modCharacter.CLASS="archaeologist"
+    const tree2 = shallow(
+    <CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+    expect(tree2.find('button.finish').prop('disabled')).toBe(false);
+  })
+  it("calls updatecharacter with isNew=false when clicked, if not disabled", () => {
+    const modCharacter = {...newCharacter} 
+    modCharacter.STR=30;
+    modCharacter.AVL=0;
+    modCharacter.CLASS="archaeologist"
+    const tree2 = shallow(
+    <CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+    tree2.find('button.finish').simulate('click');
+    expect(updateCharacter).toBeCalledWith({ isNew:false });
+  })
+})
+
+describe("class description area text", () =>{
+  const modCharacter = {...newCharacter}
+  modCharacter.CLASS = "archaeologist"
+  const tree2 = shallow(<CharacterCreator
+      character={modCharacter}
+      updateCharacter={updateCharacter}
+    />)
+  it("has a div tag with a class-desc class", ()=> {
+    expect(tree2.find('div.class-desc').length).toBe(1);
+  })
+  it("contains text matching the outputs of the correct classText", ()=> {
+    expect(tree2.find('div.class-desc').text()).toEqual(classText.archaeologist);
+  });
+  
 })
 /*
 

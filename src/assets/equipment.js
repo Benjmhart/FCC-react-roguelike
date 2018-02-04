@@ -1,5 +1,5 @@
 const equipment = {
-	archaologist: {
+	archaeologist: {
 		armor: [
 			{name:"khaki shirt", mod: {}, armor:1, rarity:0},
 			{name:"sweater vest", mod: {WIS:1}, armor:2, rarity:1},
@@ -19,7 +19,7 @@ const equipment = {
 		shoes: [
 			{name:"oxfords", mod:{}, armor:2, rarity:0},
 			{name:"steeltoe oxfords", mod:{STR:1}, armor:4, rarity:1},
-			{name:"work boots", mod:{STR:3}, armor:5, rarity:2, rarity:2},
+			{name:"work boots", mod:{STR:3}, armor:5, rarity:2},
 			{name:"excavation boots", mod:{STR:3, AGI:4}, armor:6, rarity:3}
 			],
 		helmet: [

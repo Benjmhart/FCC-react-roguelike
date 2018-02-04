@@ -3,6 +3,7 @@ import {
   LOAD_GAME,
   UPDATE_CHAR
 } from "../actions/actionTypes";
+import equipment from "../assets/equipment";
 //need to expand to accomodate update character action
 
 export default function(state = {}, action) {
@@ -15,6 +16,11 @@ export default function(state = {}, action) {
       const newstate = { ...state };
       if (action.payload.CLASS) {
         newstate.CLASS = action.payload.CLASS;
+        newstate.armor = equipment[newstate.CLASS].armor[0];
+        newstate.weapon = equipment[newstate.CLASS].weapon[0];
+        newstate.shoes = equipment[newstate.CLASS].shoes[0];
+        newstate.helmet = equipment[newstate.CLASS].helmet[0];
+        newstate.ring = equipment[newstate.CLASS].ring[0];
         return newstate;
       }
       const keys = Object.keys(action.payload);
@@ -28,7 +34,7 @@ export default function(state = {}, action) {
         newstate.PER +
         newstate.CHA +
         newstate.LUK;
-      if (sum >= 30 && state.isNew === true) {
+      if (sum > 30 && state.isNew === true) {
         return state;
       }
       newstate.AVL = 30 - sum;
