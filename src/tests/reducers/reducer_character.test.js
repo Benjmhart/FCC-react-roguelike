@@ -60,8 +60,47 @@ describe("testing for UPDATE_CHAR action", () => {
   it("can receive an UPDATE_CHAR action and return an updated character with changed AVL", () => {
     expect(newstate.AVL).toBe(29);
   });
-  //cannot return a negative stat
-  //cannot have a total stats greater than 30 if the character isNew=true
+  it("cannot return a negative stat", () => {
+    const action2 = {
+      type: UPDATE_CHAR,
+      payload: { STR: -1 }
+    };
+    const newstate2 = CharacterReducer(newCharacter, action2)
+    expect(newstate2.STR).toBe(0);
+  });
+  it("cannot have a total stats greater than 30 if the character isNew=true", () => {
+    const action3 = {
+      type: UPDATE_CHAR,
+      payload: { STR: 6 }
+    };
+    const modCharacter = {...newCharacter}
+    modCharacter.STR=5;
+    modCharacter.AGI=25;
+    const newstate3 = CharacterReducer(modCharacter, action3);
+    expect(newstate3.STR).toBe(5);
+  });
+  it("can have total stats greater than 30 if the character isNew=false", () => {
+    const action4 = {
+      type: UPDATE_CHAR,
+      payload: { STR: 6 }
+    };
+    const modCharacter = {...oldCharacter}
+    modCharacter.STR=5;
+    modCharacter.AGI=25;
+    const newstate4 = CharacterReducer(modCharacter, action4)
+    expect(newstate4.STR).toBe(6);
+  })
+  it("will pass CLASS changes without changing stats", () =>{
+    const action5 = {
+      type: UPDATE_CHAR,
+      payload: { CLASS: "barbarian" }
+    }
+    const newState = CharacterReducer(newCharacter, action5)
+    expect(newState.CLASS).toBe("barbarian");
+  });
+  
+  //will change equipment to default loadouts for each role
+  //will accept the isNew=false object from the finish button
 });
 
 /*

@@ -1,4 +1,12 @@
-//when the game is started, it generates a level,
+/*
+when the character is completed it generates the first floor
+accepts the UPDATE_CHARACTER action if and only if the payload has isnew=false to trigger 
+the initial level thereafter, accepts the CHAR_MOVE action add runs all enemy moves, 
+adjusts the heros coordinates, and generates a level iff and only if the MOVE-TO part of 
+the CHAR_MOVE payload is a STAIRDOWN(also changes current floor), if it is a STAIR-UP it .
+only changes current floor.
+*/
+
 
 // map has a currentfloor and a 3D array [FLOORS],[ROWS],[COLUMNS]
 //if move successful, moves the hero object to correspond with moving hero coordinates on the character object

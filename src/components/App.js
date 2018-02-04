@@ -46,12 +46,13 @@ App.propTypes = {
     CHA: PropTypes.number,
     LUK: PropTypes.number,
     AVL: PropTypes.number,
-    armor: PropTypes.string,
-    weapon: PropTypes.string,
-    shoes: PropTypes.string,
-    helmet: PropTypes.string,
-    ring: PropTypes.string,
+    armor: PropTypes.object,
+    weapon: PropTypes.object,
+    shoes: PropTypes.object,
+    helmet: PropTypes.object,
+    ring: PropTypes.object,
     HP: PropTypes.number,
+    HPMAX: PropTypes.number,
     EXP: PropTypes.number,
     CLASS: PropTypes.string
   })

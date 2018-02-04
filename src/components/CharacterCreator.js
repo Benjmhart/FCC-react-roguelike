@@ -41,7 +41,7 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
           -
         </button>
       </div>
-      
+
       <div className="wisdom-form">
         <p className="wis">Wisdom: {character.WIS}</p>
         <button
@@ -76,7 +76,7 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
           -
         </button>
       </div>
-      
+
       <div className="charisma-form">
         <p className="cha">Charisma: {character.CHA}</p>
         <button
@@ -111,6 +111,27 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
           -
         </button>
       </div>
+      <select
+        className="class-selector"
+        value={character.CLASS}
+        onChange={e => updateCharacter({ CLASS: e.target.value })}
+      >
+        <option className="archaeologist" value="archaeologist">
+          Archaeologist
+        </option>
+        <option className="barbarian" value="barbarian">
+          Barbarian
+        </option>
+        <option className="knight" value="knight">
+          Knight
+        </option>
+        <option className="tourist" value="tourist">
+          Tourist
+        </option>
+        <option className="god" value="god">
+          God
+        </option>
+      </select>
     </div>
   );
 };

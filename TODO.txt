@@ -1,0 +1,10 @@
+CURRENT TASK: 
+
+build out class rollouts and equipment lists - give additional capabilities to character reducer
+
+charactercreator component - finish button
+charactercreatorcomponent = styling
+
+build out gameview component
+
+-address issue with Prettier/eslint crashing on app.test.js?

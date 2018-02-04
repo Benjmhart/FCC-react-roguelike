@@ -486,17 +486,64 @@ describe("disable rules for LUK buttons - NEGATIVE TESTS", () => {
     expect(tree.find(".statbtn.luk.decrease").prop("disabled")).toBe(false);
   });
 });
+
+describe("behaviour for the class selector dropdown", () =>{
+  const tree = shallow(
+    <CharacterCreator
+      character={newCharacter}
+      updateCharacter={updateCharacter}
+    />
+  );
+  it("is a selector with correct className",() => {
+    expect(tree.find('select.class-selector').length).toBe(1);
+  });
+  it("has an option for Archaeologist", () => {
+    expect(tree.find('select.class-selector').find('option.archaeologist').prop("value")).toBe("archaeologist")
+  })
+  it("has an archaeologist option that says 'Archaeologist",()=> {
+    expect(tree.find('select.class-selector').find('option.archaeologist').text()).toBe("Archaeologist")
+  })
+  it("has an option for Barbarian", () => {
+    expect(tree.find('select.class-selector').find('option.barbarian').prop("value")).toBe("barbarian")
+  })
+  it("has an Barbarian option that says 'Barbarian",()=> {
+    expect(tree.find('select.class-selector').find('option.barbarian').text()).toBe("Barbarian")
+  })
+  it("has an option for Knight", () => {
+    expect(tree.find('select.class-selector').find('option.knight').prop("value")).toBe("knight")
+  })
+  it("has an Knight option that says 'Knight",()=> {
+    expect(tree.find('select.class-selector').find('option.knight').text()).toBe("Knight")
+  })
+  it("has an option for Tourist", () => {
+    expect(tree.find('select.class-selector').find('option.tourist').prop("value")).toBe("tourist")
+  })
+  it("has an Tourist option that says 'Tourist",()=> {
+    expect(tree.find('select.class-selector').find('option.tourist').text()).toBe("Tourist")
+  })
+  it("has an option for God", () => {
+    expect(tree.find('select.class-selector').find('option.god').prop("value")).toBe("god")
+  })
+  it("has an God option that says 'God",()=> {
+    expect(tree.find('select.class-selector').find('option.god').text()).toBe("God")
+  })
+  it("calls the updatecharacter function with correct arguments when changed", () =>{
+    const event = {target:{value:"barbarian"}};
+    tree.find('select.class-selector').simulate('change', event);
+    expect(updateCharacter).toBeCalledWith({ CLASS: "barbarian" });
+  })
+  it("has value equal to the class of the character", () => {
+    expect(tree.find('select.class-selector').prop('value')).toBe(newCharacter.CLASS);
+  })
+})
+describe("behaviour for the finish button", () => {
+  //it("exists with correct classes")
+  //it("is disabled if avl=0 OR if sum of all stats != 30")
+  //it("is disabled if a class is not selected")
+  //it("calls updatecharacter with isNew=false when clicked")
+})
 /*
 
-
-		
-		// expect(tree.find('label.agi').length).toBe(1);
-		// expect(tree.find('label.wis').length).toBe(1);
-		// expect(tree.find('label.int').length).toBe(1);
-		// expect(tree.find('label.per').length).toBe(1);
-		// expect(tree.find('label.cha').length).toBe(1);
-		// expect(tree.find('label.luk').length).toBe(1);
-		// expect(tree.find('p.avl').length).toBe(1);
 		// expect(tree.find('button.finish').length).toBe(1);
 	it(
 		"displays CharacterStats List items with forms connected to stats on the state.character.stats object "

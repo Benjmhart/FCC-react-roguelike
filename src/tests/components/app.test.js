@@ -1,3 +1,4 @@
+/* eslint-disable prettier*/
 /*global expect jest*/
 import React from "react";
 import { shallow } from "enzyme";

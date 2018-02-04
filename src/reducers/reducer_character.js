@@ -13,6 +13,10 @@ export default function(state = {}, action) {
       return action.payload.character;
     case UPDATE_CHAR: {
       const newstate = { ...state };
+      if (action.payload.CLASS) {
+        newstate.CLASS = action.payload.CLASS;
+        return newstate;
+      }
       const keys = Object.keys(action.payload);
       keys.forEach((key, index) => {
         newstate[key] = action.payload[key] >= 0 ? action.payload[key] : 0;
@@ -24,6 +28,9 @@ export default function(state = {}, action) {
         newstate.PER +
         newstate.CHA +
         newstate.LUK;
+      if (sum >= 30 && state.isNew === true) {
+        return state;
+      }
       newstate.AVL = 30 - sum;
       return newstate;
     }

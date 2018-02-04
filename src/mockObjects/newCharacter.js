@@ -7,12 +7,13 @@ const newCharacter = {
 	CHA:0,
 	LUK:0,
 	AVL:30,
-	armor: '',
-	weapon: '',
-	shoes: '',
-	helmet: '',
-	ring: '',
+	armor: {},
+	weapon: {},
+	shoes: {},
+	helmet: {},
+	ring: {},
 	HP: 0,
+	HPMAX:0,
 	EXP:0,
 	CLASS:""
 };

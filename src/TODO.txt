@@ -1,3 +1,0 @@
-CURRENT TASK: 
-
-integrate the UPDATE_CHAR action into the character creator component, then implement all stats other than state

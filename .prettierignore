@@ -9,6 +9,9 @@
 # production
 /build
 
+#tests - causing crashes
+/tests/components
+
 # misc
 .DS_Store
 .env.local
