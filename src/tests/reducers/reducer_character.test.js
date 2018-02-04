@@ -60,6 +60,8 @@ describe("testing for UPDATE_CHAR action", () => {
   it("can receive an UPDATE_CHAR action and return an updated character with changed AVL", () => {
     expect(newstate.AVL).toBe(29);
   });
+  //cannot return a negative stat
+  //cannot have a total stats greater than 30 if the character isNew=true
 });
 
 /*

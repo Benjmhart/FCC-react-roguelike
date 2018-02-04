@@ -15,9 +15,8 @@ export default function(state = {}, action) {
       const newstate = { ...state };
       const keys = Object.keys(action.payload);
       keys.forEach((key, index) => {
-        newstate[key] = action.payload[key];
+        newstate[key] = action.payload[key] >= 0 ? action.payload[key] : 0;
       });
-      console.log(newstate);
       const sum =
         newstate.STR +
         newstate.AGI +
@@ -26,7 +25,6 @@ export default function(state = {}, action) {
         newstate.CHA +
         newstate.LUK;
       newstate.AVL = 30 - sum;
-      console.log(newstate);
       return newstate;
     }
     default:
