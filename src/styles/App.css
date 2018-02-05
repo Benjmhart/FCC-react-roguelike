@@ -28,7 +28,7 @@ button {
   color: white;
   background-color: black;
   text-align: center;
-  height: 100vh;
+  height: 34vh;
   font-family: tangerine, cursive;
   padding: 33vh;
   font-size: 5vh; }
@@ -38,13 +38,15 @@ button {
 .character-creator {
   color: white;
   background-color: black;
-  height: 100vh;
+  height: 84vh;
   padding: 8vh 20vw 8vh 20vw;
   text-align: left;
   display: flex;
   font-family: 'Cinzel', serif;
   font-weight: bold;
   font-size: 1.2em; }
+  .character-creator p {
+    margin: 0px; }
   .character-creator button {
     font-size: 1em;
     padding: 0px 5px 0px 5px; }
@@ -57,3 +59,23 @@ button {
     font-family: 'Cinzel', serif;
     font-weight: bold;
     font-size: 1.2em; }
+  .character-creator .class-desc {
+    padding-left: 10px; }
+
+@media (max-width: 760px) {
+  .character-creator {
+    font-size: 0.8em; } }
+
+@media (max-width: 650px) {
+  .title-screen {
+    height: 70vh;
+    padding: 15vh 5vw 15vh 5vw;
+    font-size: 24px; }
+    .title-screen button {
+      padding: 8px 16px;
+      font-size: 17px; } }
+
+@media (max-width: 455px) {
+  .character-creator {
+    padding: 4vh 5vw 4vh 5vw;
+    font-size: 0.6em; } }

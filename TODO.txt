@@ -1,7 +1,16 @@
 CURRENT TASK: 
 
-charactercreatorcomponent - styling
+
+build out empty level generator
 
 build out gameview component
+build out map and map item components
+
+build out basic movement actions
+
+build out HUD
+
+---FIRST DELIVERY
+
 
 -address issue with Prettier/eslint crashing on app.test.js?

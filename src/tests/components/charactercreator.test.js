@@ -623,8 +623,6 @@ describe("class description area text", () =>{
     expect(tree2.find('h2.class-header').text()).toEqual(modCharacter.CLASS);
   });
   it("contains text matching the outputs of the correct classText", ()=> {
-    console.log(modCharacter);
-    console.log(tree2.find('.class-text').debug())
     expect(tree2.find('p.class-text').text()).toEqual(classText.archaeologist);
   });
   it("contains an area for equipment loadout if a class is chosen", () => {
@@ -651,18 +649,7 @@ describe("class description area text", () =>{
   it("contains a p tag with ring", ()=>{
     expect(tree2.find('p.equipment-ring').text()).toEqual(`Ring: ${modCharacter.ring.name}`)
   })
-  
+  it("contains a p tag showing available points", () => {
+    expect(tree2.find('p.available').text()).toEqual(`Available: ${modCharacter.AVL}`)
+  })
 })
-/*
-
-		// expect(tree.find('button.finish').length).toBe(1);
-	it(
-		"displays CharacterStats List items with forms connected to stats on the state.character.stats object "
-	);
-	it("allows the user to choose a class that changes equipment rollouts");
-	it("does not allow the user to use fewer stat points than availlable");
-	it("does not allow the user to use more than available stats");
-	it(
-		"calls a start game action when the user completes their character properly"
-	);
-*/

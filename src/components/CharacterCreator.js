@@ -29,6 +29,7 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
   return (
     <div className="character-creator">
       <div className="stat-forms">
+      <p className="available">Available: {character.AVL}</p>
         <div className="strength-form">
           <p className="str">Strength: {character.STR}</p>
           <button
@@ -134,7 +135,6 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
           </button>
         </div>
         <div className="selector-form">
-          <p>Choose your Class: </p>
           <select
             className="class-selector"
             value={character.CLASS}
