@@ -15,7 +15,7 @@ const oldCharacter = {
 	HP:0,
 	HPMAX:0,
 	EXP:0,
-	CLASS:"achaeologist"
+	CLASS:"archaeologist"
 };
 
 export default oldCharacter;

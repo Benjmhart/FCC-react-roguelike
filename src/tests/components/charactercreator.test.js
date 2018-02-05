@@ -610,18 +610,47 @@ describe("behaviour for the finish button", () => {
 })
 
 describe("class description area text", () =>{
-  const modCharacter = {...newCharacter}
-  modCharacter.CLASS = "archaeologist"
+  const modCharacter = {...oldCharacter}
+  modCharacter.isNew = true;
   const tree2 = shallow(<CharacterCreator
       character={modCharacter}
       updateCharacter={updateCharacter}
     />)
-  it("has a div tag with a class-desc class", ()=> {
+  it("has a div tag with a class-desc class, if a class is chosen", ()=> {
     expect(tree2.find('div.class-desc').length).toBe(1);
   })
-  it("contains text matching the outputs of the correct classText", ()=> {
-    expect(tree2.find('div.class-desc').text()).toEqual(classText.archaeologist);
+  it("contains an h2 matching the name of the class", ()=> {
+    expect(tree2.find('h2.class-header').text()).toEqual(modCharacter.CLASS);
   });
+  it("contains text matching the outputs of the correct classText", ()=> {
+    console.log(modCharacter);
+    console.log(tree2.find('.class-text').debug())
+    expect(tree2.find('p.class-text').text()).toEqual(classText.archaeologist);
+  });
+  it("contains an area for equipment loadout if a class is chosen", () => {
+    expect(tree2.find('div.equipment').length).toBe(1);
+  })
+  it("contains an h2 for equipment", ()=> {
+    expect(tree2.find('h2.equipment-header').text()).toBe("Equipment Loadout");
+  })
+  it("contains a p tag with armor", ()=>{
+    expect(tree2.find('p.equipment-armor').text()).toEqual(`Armor: ${modCharacter.armor.name}`)
+  })
+  
+  it("contains a p tag with weapon", ()=>{
+    expect(tree2.find('p.equipment-weapon').text()).toEqual(`Weapon: ${modCharacter.weapon.name}`)
+  })
+  it("contains a p tag with shoes", ()=>{
+    expect(tree2.find('p.equipment-shoes').text()).toEqual(`Shoes: ${modCharacter.shoes.name}`)
+  })
+  
+  it("contains a p tag with head", ()=>{
+    expect(tree2.find('p.equipment-helmet').text()).toEqual(`Head: ${modCharacter.helmet.name}`)
+  })
+  
+  it("contains a p tag with ring", ()=>{
+    expect(tree2.find('p.equipment-ring').text()).toEqual(`Ring: ${modCharacter.ring.name}`)
+  })
   
 })
 /*
