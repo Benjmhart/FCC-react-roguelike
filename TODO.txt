@@ -1,8 +1,6 @@
 CURRENT TASK: 
 
 
-build out empty level generator
-
 build out gameview component
 build out map and map item components
 
@@ -12,5 +10,10 @@ build out HUD
 
 ---FIRST DELIVERY
 
+(thing to chew on,  how will I prevent movement of several enemies into the same place on 
+the same turn,   or an enemy and a character who are two spaces apart)
 
+LOW PRIORITY TASKS
 -address issue with Prettier/eslint crashing on app.test.js?
+-add snapshot testing for components, objects, etc.   get test coverage.
+-make a reusable component for the stats in CharacterCreator

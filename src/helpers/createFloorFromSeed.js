@@ -22,3 +22,28 @@ STEPS
 */
 
 //return 2d array
+import { wall, hero, emptySpace } from "../assets/mapObjects";
+
+export const floorSize=100;
+export const startingPoint=50; // hero will start at x=startingpoint, y=startingpoint
+
+const createFloorFromSeed = () => {
+	const oneDimension = new Array(floorSize)
+	const oneDimensionFilled = oneDimension.fill(emptySpace)
+	const twoDimension = oneDimension.fill([...oneDimensionFilled])
+	twoDimension[startingPoint][startingPoint] = hero;
+	const emptyFloor = twoDimension.map((row, x) => {
+		return row.map((cell, y)=> {
+			if(x===0 || x ===floorSize-1 || y===0 || y===floorSize-1) {
+				return wall
+			}
+			if (cell===hero){return hero}
+			return emptySpace;
+		})
+	})
+	//console.log(emptyFloor)
+	return emptyFloor;
+}
+
+
+export default createFloorFromSeed;

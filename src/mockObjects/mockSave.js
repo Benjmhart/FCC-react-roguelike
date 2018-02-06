@@ -3,7 +3,7 @@ import oldCharacter from './oldCharacter';
 
 const mockSave = {
 	character: oldCharacter,
-	map: mapObject3x3,
+	dungeon: mapObject3x3,
 	messages: ["you took a nap"]
 }
 
