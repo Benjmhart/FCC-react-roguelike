@@ -2,8 +2,6 @@
 import { UPDATE_CHAR } from "./actionTypes";
 
 export default function(object) {
-  console.log('updateCharacter running with payload')
-  console.log(object);
   return {
     type: UPDATE_CHAR,
     payload: { ...object }

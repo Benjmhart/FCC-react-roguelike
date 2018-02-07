@@ -7,12 +7,12 @@ import classText from "../assets/classText";
 
 export const CharacterCreator = ({ character, updateCharacter }) => {
   const classDesc = () => {
-    if (character.CLASS){
+    if (character.CLASS) {
       return (
         <div className="class-desc">
           <h2 className="class-header">{character.CLASS}</h2>
           <p className="class-text">{classText[character.CLASS]}</p>
-          <div className="equipment"> 
+          <div className="equipment">
             <h2 className="equipment-header">Equipment Loadout</h2>
             <p className="equipment-armor">Armor: {character.armor.name}</p>
             <p className="equipment-weapon">Weapon: {character.weapon.name}</p>
@@ -20,16 +20,15 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
             <p className="equipment-helmet">Head: {character.helmet.name}</p>
             <p className="equipment-ring">Ring: {character.ring.name}</p>
           </div>
-          
         </div>
-      )
+      );
     }
-    return <div></div>
-  }
+    return <div />;
+  };
   return (
     <div className="character-creator">
       <div className="stat-forms">
-      <p className="available">Available: {character.AVL}</p>
+        <p className="available">Available: {character.AVL}</p>
         <div className="strength-form">
           <p className="str">Strength: {character.STR}</p>
           <button
@@ -140,7 +139,9 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
             value={character.CLASS}
             onChange={e => updateCharacter({ CLASS: e.target.value })}
           >
-            <option className="no-class" value="">choose a class</option>
+            <option className="no-class" value="">
+              choose a class
+            </option>
             <option className="archaeologist" value="archaeologist">
               Archaeologist
             </option>
@@ -169,7 +170,6 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
         </button>
       </div>
       {classDesc()}
-      
     </div>
   );
 };

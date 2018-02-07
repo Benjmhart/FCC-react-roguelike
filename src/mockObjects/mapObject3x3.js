@@ -1,5 +1,5 @@
 const mapObject3x3 = {
-	currentFloor: 1,
+	currentFloor: 0,
 	//accessed FXY - floor, row, column
 	map: [
 			[

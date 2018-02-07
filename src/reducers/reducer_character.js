@@ -24,7 +24,7 @@ export default function(state = {}, action) {
         return newstate;
       }
       const keys = Object.keys(action.payload);
-      keys.forEach((key, index) => {
+      keys.forEach(key => {
         newstate[key] = action.payload[key] >= 0 ? action.payload[key] : 0;
       });
       const sum =

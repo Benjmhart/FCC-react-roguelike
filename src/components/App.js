@@ -8,10 +8,10 @@ import CharacterCreator from "./CharacterCreator";
 
 export const App = ({ gameBoard, character }) => {
   const renderContents = () => {
-    if (!gameBoard.currentFloor && !character.isNew) {
+    if (!("currentFloor" in gameBoard) && !character.isNew) {
       return <TitleScreen />;
     }
-    if (!gameBoard.currentFloor && character.isNew) {
+    if (!("currentFloor" in gameBoard) && character.isNew) {
       return <CharacterCreator />;
     }
     if (gameBoard && character.isNew === false) {

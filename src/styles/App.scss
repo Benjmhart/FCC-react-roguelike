@@ -74,6 +74,17 @@ button {
     padding-left:10px;
   }
 }
+
+.map-component {
+  height: 80vh;
+  width: 100vw;
+  background-color: pink;
+}
+.hud-component{
+  height: 20vh;
+  width: 100vw;
+  background-color: blue;
+}
 @media (max-width: 760px) {
   .character-creator {
     font-size:0.8em;

@@ -1,12 +1,9 @@
 CURRENT TASK: 
 
 
-build out gameview component
-build out map and map item components
-
+build out map and map item components - current approach,  whole floor render;
 build out basic movement actions
-
-build out HUD
+build out HUD/hud subcomponents
 
 ---FIRST DELIVERY
 
@@ -16,4 +13,8 @@ the same turn,   or an enemy and a character who are two spaces apart)
 LOW PRIORITY TASKS
 -address issue with Prettier/eslint crashing on app.test.js?
 -add snapshot testing for components, objects, etc.   get test coverage.
--make a reusable component for the stats in CharacterCreator
+- map options in class selector to actual classes in equipment object, making it easier to
+	add classes(character creator component)
+-inventory management system with drag and drop
+-make a reusable component for the stats in CharacterCreator/ componentize all of character creator
+-build a view system that renders only part of the floor and keeps the hero in the center
