@@ -19,7 +19,21 @@ describe("createFloorFromSeed basic functions", () => {
 		expect(createFloorFromSeed()[floorSize-1][floorSize-1]).toEqual(wall)
 	})
 	it("builds a 2D array and places the hero at a starting point", () => {
-		expect(createFloorFromSeed()[startingPoint][startingPoint]).toEqual(hero);
-	})
+		const arr2D = createFloorFromSeed();
+		const totalheroes = arr2D.reduce((result, row, x) => {
+			const rowresult = row.reduce((subresult, cell, y) => {
+				if(cell.contains==="hero") {
+					subresult.push([x, y])
+					return subresult
+				}
+				return subresult;
+			}, [])
+			if(rowresult.length > 0) {
+				result.push(rowresult);
+				return result
+			}
+			return result
+		}, [])
+	});
 	//add snapshot tests of a particular seed
 })

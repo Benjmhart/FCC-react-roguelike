@@ -1,7 +1,11 @@
-/*global expect*/
+/*global expect jest*/
 import React from "react";
 import { shallow } from "enzyme";
 import GameView from "../../components/GameView";
+
+jest.mock("../../components/Map", () => "Map");
+
+jest.mock("../../components/HUD", () => "HUD");
 
 describe("GameView", () => {
 	it("renders without crashing", () => {

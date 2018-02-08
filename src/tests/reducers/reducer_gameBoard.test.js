@@ -28,6 +28,7 @@ only changes current floor.
 import GameBoardReducer from "../../reducers/reducer_gameBoard";
 import { UPDATE_CHAR } from "../../actions/actionTypes";
 import { wall } from "../../assets/mapObjects";
+
 const empty = {};
 const createFloorFromSeed = jest.fn();
 const action = {type: UPDATE_CHAR, payload:{ isNew: false }}
