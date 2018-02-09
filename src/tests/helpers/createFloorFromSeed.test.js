@@ -34,6 +34,7 @@ describe("createFloorFromSeed basic functions", () => {
 			}
 			return result
 		}, [])
+		expect(totalheroes.length).toBe(1);
 	});
 	//add snapshot tests of a particular seed
 })

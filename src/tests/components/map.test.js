@@ -16,30 +16,36 @@ import mapObject3x3 from "../../mockObjects/mapObject3x3";
 jest.mock("../../index.js", () => "root");
 
 const makeViewfunc = jest.fn();
+const getHerofunc = jest.fn();
 
 const testWindowSize = {
-	w:100,
-	h:100
+	w:1000,
+	h:1000
 }
-const heroCoords = {
-	x:1,
-	y:1,
-}
+const heroCoords = [1, 1]
 
 describe("basic Map behaviours with mocked view generator function", () =>{
 	it("renders without crashing", ()=>{
-		shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} makeView={makeViewfunc}/>)
+		shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3}/>)
 		makeViewfunc.mockClear()
 	})
-	it()
-	const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} makeView={makeViewfunc}/>);
+	const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} />);
 	it("renders a div with classname map-component", () => {
 		expect(tree.find('div.map-component').length).toBe(1);
 	})
 	it("calls a function to create a view array with correct arguments", () => {
+		const tree2 = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} makeView={makeViewfunc} />)
 		expect(makeViewfunc).toBeCalledWith(testWindowSize, heroCoords);
 	})
 	
+})
+describe("Map Behaviour with mocked getHero", () => {
+	const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} getHero={getHerofunc}/>);
+	
+	it("calls  gethero with the correct arguments", () => {
+		const floor = mapObject3x3.dungeon[mapObject3x3.currentFloor]
+		expect(getHerofunc).toBeCalledWith(floor);
+	})
 })
 describe("Map behaviours with non mocked view generator function", () => {
 	const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} />)

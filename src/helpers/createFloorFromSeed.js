@@ -27,6 +27,28 @@ import { wall, hero, emptySpace } from "../assets/mapObjects";
 export const floorSize = 100;
 export const startingPoint = 50; // hero will start at x=startingpoint, y=startingpoint
 
+/*
+procedural generation strategy:
+Once the initial empty level is generated it needs to start up a recursive function which takes an array(map) a second array of numbers (seed) and the current index pair x and y
+
+That function will itself call a recursive function to walk until it hits the hero or a wall using the instructions  from the seed array(each time returning itself with seed[i-1] until it hits zero
+
+Once it tries to Call an index on the seed array that is undefined,  the function places a stairs down object. And returns. 
+
+If this is the final floor,  place the boss
+
+Laying out rooms? 
+Use modulus of first item to pick the size,   modulus of 2nd item to pick the x dimension modulus of the 3rd to pick the y dimension. 
+Reduce an array to a small array of the room to check if the space is available,  if the space is not available, do not place the room. 
+
+Placing monsters
+
+Iterate over the array in a map function,   if the coordinates have modulus of a certain number off the seed,  place an enemy there. 
+*/
+
+
+
+
 const createFloorFromSeed = () => {
   const oneDimension = new Array(floorSize);
   const oneDimensionFilled = oneDimension.fill(emptySpace);
