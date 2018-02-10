@@ -83,8 +83,24 @@ button {
 .hud-component{
   height: 20vh;
   width: 100vw;
-  background-color: blue;
+  background-color: goldenrod;
 }
+
+.map-item.disabled{
+  background-color: black;
+}
+
+.map-item.wall{
+  background-color: grey;
+}
+.map-item.none{
+  background-color: chocolate;
+  
+}
+.map-item.hero{
+  background-color: mediumblue;
+}
+
 @media (max-width: 760px) {
   .character-creator {
     font-size:0.8em;

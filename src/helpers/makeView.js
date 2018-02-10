@@ -1,4 +1,5 @@
 export default function (screenSizeObj, heroCoordsArr) {
+	
 	const [herox, heroy] = heroCoordsArr;
 	const { h, w } = screenSizeObj;
 	
@@ -6,21 +7,21 @@ export default function (screenSizeObj, heroCoordsArr) {
 	const vw = w;
 	
 	const smallerSize = vh < vw ? vh : vw;
-	const pixelSize = Math.floor(smallerSize / 40);
+	const pixelSize = Math.floor(smallerSize / 25);
 	
 	
-	console.log(`attempting to create array with vh: ${vh} and vw: ${vw} and pixelSize ${pixelSize}`)
+	//console.log(`attempting to create array with vh: ${vh} and vw: ${vw} and pixelSize ${pixelSize}`)
 	
-	const XLengthUnadjusted = vh / pixelSize
-	const YLengthUnadjusted = vw / pixelSize
+	const XLengthUnadjusted = Math.round(vh / pixelSize)
+	const YLengthUnadjusted = Math.round(vw / pixelSize)
 	
-	console.log(`attempting to create array with XLength: ${XLengthUnadjusted} and YLength: ${YLengthUnadjusted}`)
+	//console.log(`attempting to create array with XLength: ${XLengthUnadjusted} and YLength: ${YLengthUnadjusted}`)
 	
 	const XLength = (XLengthUnadjusted % 2 === 1) ? XLengthUnadjusted : XLengthUnadjusted - 1;
 	const YLength = (YLengthUnadjusted % 2 === 1) ? YLengthUnadjusted : YLengthUnadjusted - 1;
 	
-	const centerX = Math.ceil(XLength / 2);
-	const centerY = Math.ceil(YLength / 2);
+	const centerX = Math.floor(XLength / 2);
+	const centerY = Math.floor(YLength / 2);
 	
 	const XAdder  = ((centerX)* -1) + herox;
 	const YAdder = ((centerY)* -1) + heroy;

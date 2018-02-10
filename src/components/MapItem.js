@@ -5,6 +5,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MapItem = () => {
-	return <div />
+const MapItem = ({disbool, contents}) => {
+	const disabled = disbool? "disabled" : ''
+	const cellContents = contents ? contents.contains: '' 
+	return <div className={`map-item ${disabled} ${cellContents}`} />
 }
+
+export default MapItem

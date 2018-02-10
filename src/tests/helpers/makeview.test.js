@@ -50,17 +50,17 @@ describe("basic makeView operations", () => {
 	})
 	it("returns an array with herox,heroy values in the center", () => {
 		const forseen = {x:1, y:1}
-		const midX = Math.ceil(xlength / 2)
-		const midY = Math.ceil(ylength / 2)
+		const midX = Math.floor(xlength / 2)
+		const midY = Math.floor(ylength / 2)
 		expect(arr[midX][midY]).toEqual(forseen);
 	})
 	it("returns an array with correct coordinates as the values on its outer edges. case X", () => {
-		const equalmakerX =((Math.ceil(xlength / 2))* -1) + heroCoords[0]
+		const equalmakerX =((Math.floor(xlength / 2))* -1) + heroCoords[0]
 		expect(arr[0][0].x).toEqual(equalmakerX)
 	})
 	
-	it("returns an array with correct coordinates as the values on its outer edges. case X", () => {
-		const equalmakerY =((Math.ceil(ylength / 2))* -1) + heroCoords[1]
+	it("returns an array with correct coordinates as the values on its outer edges. case Y", () => {
+		const equalmakerY =((Math.floor(ylength / 2))* -1) + heroCoords[1]
 		expect(arr[0][0].y).toEqual(equalmakerY)
 	})
 	/*

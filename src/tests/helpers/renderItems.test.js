@@ -2,17 +2,13 @@
 import { shallow } from 'enzyme'
 import renderItems from "../../helpers/renderItems"
 import mapObject3x3 from "../../mockObjects/mapObject3x3"
+import { wall, hero, empty } from "../../assets/mapObjects"
+import exampleArr from "../../mockObjects/viewArr"
 
 jest.mock("../../index.js", () => "root");
 jest.mock("../../components/MapItem.js", () => "MapItem");
 
-const exampleArr= [
-	[{x:-1, y:-1}, {x:-1, y: 0}, {x:-1, y: 1}, {x:-1, y:2}, {x:-1, y:3}],
-	[{x: 0, y:-1}, {x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y:2}, {x: 0, y:3}],
-	[{x: 1, y:-1}, {x: 1, y: 0}, {x: 1, y: 1}, {x: 1, y:2}, {x: 1, y:3}],
-	[{x: 2, y:-1}, {x: 2, y: 0}, {x: 2, y: 1}, {x: 2, y:2}, {x: 2, y:3}],
-	[{x: 3, y:-1}, {x: 3, y: 0}, {x: 3, y: 1}, {x: 3, y:2}, {x: 3, y:3}]
-]
+
 
 const floor = mapObject3x3.dungeon[mapObject3x3.currentFloor];
 
@@ -31,72 +27,91 @@ const floor = mapObject3x3.dungeon[mapObject3x3.currentFloor];
 describe("basic functions of renderItems", () => {
 	
 	it("renders 25 total mapItem components", () => {
-		expect(result.length).toBe(25);
+		const result = renderItems(exampleArr, floor, 0)
+		const totalItems = result.reduce((total, row) => {
+			const rowTotal = row.reduce((subtotal, cell) => {
+				return subtotal +1
+			}, 0)
+			return total+rowTotal;
+		}, 0)
+		expect(totalItems).toBe(25);
 	})
 	it("given visibility 0, it renders 24 disabled mapItem components", () => {
-		const result = renderItems(exampleArr, floor, 3, 3, 0)
+		const result = renderItems(exampleArr, floor, 0)
 		const totalDisabled = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
-				if(shallow(cell).prop('disbool')===true){return subtotal +1}
+				const tree = shallow(cell)
+				if(tree.prop('disbool')===true){return subtotal +1}
 				return subtotal
 			}, 0)
-			return rowTotal;
+			return rowTotal+total;
 		}, 0)
 		expect(totalDisabled).toBe(24)
 	})
 	it("given visiblity 1, it renders 20 disabled mapItem components", ()=>{
-		const result = renderItems(exampleArr, floor, 3, 3, 1)
+		const result = renderItems(exampleArr, floor, 1)
 		const totalDisabled = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
 				if(shallow(cell).prop('disbool')===true){return subtotal +1}
 				return subtotal
 			}, 0)
-			return rowTotal;
+			return rowTotal+total;
 		}, 0)
 		expect(totalDisabled).toBe(20)
 	})
 	it("given visibility 2, it renders 16 disabled mapItem components", () => {
-		const result = renderItems(exampleArr, floor, 3, 3, 2)
+		const result = renderItems(exampleArr, floor,  2)
 		const totalDisabled = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
 				if(shallow(cell).prop('disbool')===true){return subtotal +1}
 				return subtotal
 			}, 0)
-			return rowTotal;
+			return rowTotal+total;
 		}, 0)
 		expect(totalDisabled).toBe(16)
 	})
 	it("given visibility 0 && fogofwar=false, it renders 16 disabled mapItem components", () => {
-		const result = renderItems(exampleArr, floor, 3, 3, 0, false)
+		const result = renderItems(exampleArr, floor, 0, false)
 		const totalDisabled = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
 				if(shallow(cell).prop('disbool')===true){return subtotal +1}
 				return subtotal
 			}, 0)
-			return rowTotal;
+			return rowTotal+total;
 		}, 0)
 		expect(totalDisabled).toBe(16)
 	})
 	it("renders one hero component at result[2][2]", () => {
-		const premonition = [2,2]
-		const result = renderItems(exampleArr, floor, 3, 3, 0)
+		const premonition = [[[2,2]]]
+		const result = renderItems(exampleArr, floor, 0)
 		const totalherocoords = result.reduce((total, row, x) => {
 			const rowTotal = row.reduce((subtotal, cell, y) => {
-				if(shallow(cell).prop('hero')===true){return subtotal.push([x,y])}
+				const tree = shallow(cell)
+				if(tree.prop('contents')){
+					if(tree.prop('contents').contains==="hero"){
+						subtotal.push([x,y])
+						return subtotal;
+					}
+				}
 				return subtotal
 			}, [])
-			return rowTotal;
+			if(rowTotal.length > 0){total.push(rowTotal);}
+			
+			return total
 		}, [])
 		expect(totalherocoords).toEqual(premonition)
 	})
 	it("renders 8 wall components, given unimpared visibility", () => {
-		const result = renderItems(exampleArr, floor, 3, 3, 0, false)
+		const result = renderItems(exampleArr, floor, 0, false)
 		const totalWalls = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
-				if(shallow(cell).prop('wall')===true){return subtotal +1}
+				const tree = shallow(cell)
+				if(tree.prop('contents')){
+					if(tree.prop('contents').contains==="wall"){return subtotal +1}
+				}
 				return subtotal
 			}, 0)
-			return rowTotal;
+			return rowTotal+total;
 		}, 0)
 		expect(totalWalls).toBe(8)
 	});
