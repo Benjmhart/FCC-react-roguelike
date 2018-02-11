@@ -84,6 +84,10 @@ button {
 .map-item.hero {
   background-color: mediumblue; }
 
+.map-item p {
+  margin: 0px;
+  text-align: center; }
+
 @media (max-width: 760px) {
   .character-creator {
     font-size: 0.8em; } }

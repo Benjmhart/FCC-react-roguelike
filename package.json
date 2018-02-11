@@ -4,6 +4,7 @@
   "homepage": "http://gitname.github.io/react-gh-pages",
   "private": true,
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "node-sass-chokidar": "0.0.3",
     "npm": "^5.6.0",

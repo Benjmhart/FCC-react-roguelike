@@ -149,6 +149,27 @@ describe("testing for UPDATE_CHAR action", () => {
     const newstate = CharacterReducer(newCharacter,action7);
     expect(newstate.isNew).toBe(false)
   })
+  it("will calculate truestats for when the isNew:false action is received as well", () => {
+    const action7 = {
+      type:UPDATE_CHAR,
+      payload: ({isNew:false})
+    } 
+    const modcharacternew = {...oldCharacter}
+    modcharacternew.isNew=true
+    const modcharacter = {...oldCharacter}
+    modcharacter.trueSTR=5
+	  modcharacter.trueAGI=5
+	  modcharacter.trueWIS=6
+	  modcharacter.truePER=6
+	  modcharacter.trueCHA=5
+	  modcharacter.trueLUK=5
+	  modcharacter.totalArmor=2
+	  modcharacter.HP=16
+	  modcharacter.HPMAX=16
+	  modcharacter.LVL=1
+	  const newstate = CharacterReducer(modcharacternew, action7)
+	  expect(newstate).toEqual(modcharacter)
+  })
 });
 
 /*

@@ -86,19 +86,23 @@ button {
   background-color: goldenrod;
 }
 
-.map-item.disabled{
-  background-color: black;
-}
-
-.map-item.wall{
-  background-color: grey;
-}
-.map-item.none{
-  background-color: chocolate;
-  
-}
-.map-item.hero{
-  background-color: mediumblue;
+.map-item{
+  &.disabled{
+    background-color: black;
+  }
+  &.wall{
+    background-color: grey;
+  }
+  &.none{
+    background-color: chocolate;
+  }
+  &.hero{
+    background-color: mediumblue;
+  }
+  & p {
+  margin: 0px;
+  text-align: center;
+  }
 }
 
 @media (max-width: 760px) {

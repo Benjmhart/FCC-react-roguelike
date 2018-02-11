@@ -4,6 +4,7 @@ import {
   UPDATE_CHAR
 } from "../actions/actionTypes";
 import equipment from "../assets/equipment";
+import trueStats from "../helpers/trueStats"
 //need to expand to accomodate update character action
 
 export default function(state = {}, action) {
@@ -14,6 +15,7 @@ export default function(state = {}, action) {
       return action.payload.character;
     case UPDATE_CHAR: {
       const newstate = { ...state };
+      
       if (action.payload.CLASS) {
         newstate.CLASS = action.payload.CLASS;
         newstate.armor = equipment[newstate.CLASS].armor[0];
@@ -23,10 +25,17 @@ export default function(state = {}, action) {
         newstate.ring = equipment[newstate.CLASS].ring[0];
         return newstate;
       }
+      //character is finalized in creator, create truestats
+      if(action.payload.isNew===false){
+          const charWithTrueStats = trueStats(newstate);
+          return charWithTrueStats;
+      }
+      //assigns stat during charactercreation
       const keys = Object.keys(action.payload);
       keys.forEach(key => {
         newstate[key] = action.payload[key] >= 0 ? action.payload[key] : 0;
       });
+      //verifies nobody is cheating character creation
       const sum =
         newstate.STR +
         newstate.AGI +

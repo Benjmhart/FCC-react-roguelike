@@ -28,3 +28,11 @@ describe("gets the right classes with a variety of props", () => {
 		expect(shallow(<MapItem contents={emptySpace} />).find('.map-item.none').length).toBe(1);
 	})
 })
+
+describe("font awesome glyphs", () => {
+	it("shows a hero glyph if supplied contents.contains=hero", () => {
+		
+		expect(shallow(<MapItem contents={hero} />).find('i.fa.fa-user').length).toBe(1);
+	})
+	//it("shows enemy glyphs...")
+})

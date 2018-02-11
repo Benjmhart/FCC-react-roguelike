@@ -43,11 +43,11 @@ const equipment = {
 			{name:"victorious war skin", mod: {STR:5, AGI:5}, armor:10, rarity:4}
 			],
 		weapon: [
-			{name:"hatchet", attackMin:3, attackMax:7, mod:{}, rarity:0},
-			{name:"large axe", attackMin:5, attackMax:10, mod:{STR:1}, rarity:1},
-			{name:"battle axe", attackMin:6, attackMax:14, mod:{STR:4}, rarity:2},
-			{name:"war axe", attackMin:12, attackMax:24, mod:{STR:8}, rarity:3},
-			{name:"bloody war axe", attackMin:14, attackMax:28, mod:{STR:10}, rarity:4}
+			{name:"hatchet", attackMin:3, attackMax:7, mod:{}, ability:"beserk", rarity:0},
+			{name:"large axe", attackMin:5, attackMax:10, mod:{STR:1}, ability:"beserk", rarity:1},
+			{name:"battle axe", attackMin:6, attackMax:14, mod:{STR:4}, ability:"beserk", rarity:2},
+			{name:"war axe", attackMin:12, attackMax:24, mod:{STR:8}, ability:"beserk", rarity:3},
+			{name:"bloody war axe", attackMin:14, attackMax:28, mod:{STR:10}, ability:"beserk", rarity:4}
 			],
 		shoes: [
 			{name:"worn leather sandals", mod:{}, armor:1, rarity:0},
@@ -77,11 +77,11 @@ const equipment = {
 			{name:"diamond plate mail", mod: {}, armor:18, rarity:4}
 			],
 		weapon: [
-			{name:"dull wood sword", attackMin:3, attackMax:7, mod:{}, rarity:0},
-			{name:"bronze sword", attackMin:4, attackMax:9, mod:{}, rarity:1},
-			{name:"iron sword", attackMin:6, attackMax:12, mod:{STR:2}, rarity:2},
-			{name:"steel sword", attackMin:9, attackMax:29, mod:{STR:3}, rarity:3},
-			{name:"diamond sword", attackMin:12, attackMax:40, mod:{STR:5}, rarity:4}
+			{name:"dull wood sword", attackMin:3, attackMax:7, mod:{}, ability:"slice", rarity:0},
+			{name:"bronze sword", attackMin:4, attackMax:9, mod:{}, ability:"slice", rarity:1},
+			{name:"iron sword", attackMin:6, attackMax:12, mod:{STR:2}, ability:"slice", rarity:2},
+			{name:"steel sword", attackMin:9, attackMax:29, mod:{STR:3}, ability:"slice", rarity:3},
+			{name:"diamond sword", attackMin:12, attackMax:40, mod:{STR:5}, ability:"slice", rarity:4}
 			],
 		shoes: [
 			{name:"bronze greaves", mod:{}, armor:3, rarity:0},
@@ -111,10 +111,10 @@ const equipment = {
 			{name:"I♥NY shirt", mod: {AGI:10, CHA:5}, armor:4, rarity:3}
 			],
 		weapon: [
-			{name:"point-and-shoot", attackMin:1, attackMax:3, mod:{CHA:1}, rarity:0},
-			{name:"generic DSLR", attackMin:3, attackMax:5, mod:{CHA:3, AGI:2}, rarity:1},
-			{name:"Canon EOS", attackMin:5, attackMax:7, mod:{CHA:6, AGI:5}, rarity:2},
-			{name:"Nikon D750", attackMin:7, attackMax:10, mod:{CHA:10, AGI:10}, rarity:3}
+			{name:"point-and-shoot", attackMin:1, attackMax:3, mod:{CHA:1}, ability:"flash", rarity:0},
+			{name:"generic DSLR", attackMin:3, attackMax:5, mod:{CHA:3, AGI:2}, ability:"flash", rarity:1},
+			{name:"Canon EOS", attackMin:5, attackMax:7, mod:{CHA:6, AGI:5}, ability:"flash", rarity:2},
+			{name:"Nikon D750", attackMin:7, attackMax:10, mod:{CHA:10, AGI:10}, ability:"flash", rarity:3}
 			],
 		shoes: [
 			{name:"Adidas Consortium", mod:{AGI:2, LUK: 3}, armor:1, rarity:0},
@@ -140,9 +140,9 @@ const equipment = {
 			{name:"strong adamantium mail", mod: {STR:10, AGI:10, WIS:10, PER:10, CHA: 10, LUK:10}, armor:40, rarity:2}
 			],
 		weapon: [
-			{name:"golden trident", attackMin:10, attackMax:14, mod:{STR:4, AGI:4}, rarity:0},
-			{name:"enchanted warhammer", attackMin:15, attackMax:30, mod:{STR:8, AGI:8}, rarity:1},
-			{name:"throw lightning", attackMin:25, attackMax:45, mod:{STR:12, AGI:12}, rarity:2}
+			{name:"golden trident", attackMin:10, attackMax:14, mod:{STR:4, AGI:4}, ability:"smite", rarity:0},
+			{name:"enchanted warhammer", attackMin:15, attackMax:30, mod:{STR:8, AGI:8}, ability:"smite", rarity:1},
+			{name:"throw lightning", attackMin:25, attackMax:45, mod:{STR:12, AGI:12}, ability:"smite", rarity:2}
 			],
 		shoes: [
 			{name:"winged sandals", mod:{AGI:5, LUK: 5}, armor:10, rarity:0},

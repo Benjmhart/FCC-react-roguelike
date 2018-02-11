@@ -26,12 +26,14 @@ only changes current floor.
 //
 
 import GameBoardReducer from "../../reducers/reducer_gameBoard";
-import { UPDATE_CHAR } from "../../actions/actionTypes";
-import { wall } from "../../assets/mapObjects";
+import { UPDATE_CHAR, CHAR_MOVE } from "../../actions/actionTypes";
+import { wall, hero, emptySpace } from "../../assets/mapObjects";
+import mapObject3x3 from "../../mockObjects/mapObject3x3";
 
 const empty = {};
 const createFloorFromSeed = jest.fn();
 const action = {type: UPDATE_CHAR, payload:{ isNew: false }}
+
 
 describe("initial functions", ()=>{
 	it("returns basic state when passed unrelated actions", () => {
@@ -47,5 +49,46 @@ describe("initial functions", ()=>{
 	});
 	it("returns a map property on the gameBoard Object, which contains a 3d array with a wall object in the corner when passed  update_Char with isNew=false", () =>{
 		expect(GameBoardReducer(empty, action).dungeon[0][0][0]).toEqual(wall);
+	})
+})
+describe("Character move functionality - cases: wall, emptySpace", () => {
+	const actionFail= {
+		type: CHAR_MOVE,
+		payload: {
+			success:false,
+			prevHeroCoords: [1,1],
+			newHeroCoords: [1,1],
+			destinationContents: wall,
+			combat:false,
+			combatDetails: {},
+			attemptedDirection: "North"
+		}
+	}
+	
+	const actionSucceed = {
+		type: CHAR_MOVE,
+		payload: {
+			success: true,
+			prevHeroCoords: [2,2],
+			newHeroCoords: [1,2],
+			destinationContents: emptySpace,
+			combat: false,
+			combatDetails: {},
+			attemptedDirection: "North"
+		}
+	}
+	it("returns state with hero unmoved if payload.success=false", () => {
+		const newdungeon = GameBoardReducer(mapObject3x3, actionFail)
+		expect(newdungeon.dungeon[0][1][1]).toEqual(hero)
+	});
+	const prevState = {...mapObject3x3}
+		prevState.currentFloor = 1;
+		const newdungeon = GameBoardReducer(prevState, actionSucceed)
+	it("puts the hero in new coordinates if payload.success=true", () => {
+		
+		expect(newdungeon.dungeon[1][1][2]).toEqual(hero)
+	});
+	it("empties out old coordinates if payload.success=true", () => {
+		expect(newdungeon.dungeon[1][2][2]).toEqual(emptySpace)
 	})
 })
