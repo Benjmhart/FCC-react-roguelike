@@ -167,6 +167,7 @@ describe("testing for UPDATE_CHAR action", () => {
 	  modcharacter.HP=16
 	  modcharacter.HPMAX=16
 	  modcharacter.LVL=1
+	  modcharacter.nextLVL=80
 	  const newstate = CharacterReducer(modcharacternew, action7)
 	  expect(newstate).toEqual(modcharacter)
   })

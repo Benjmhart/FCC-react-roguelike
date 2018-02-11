@@ -1,3 +1,5 @@
+const nextLVLMultiplier = 80
+
 export default function (character/*, changeEvent*/) {
 	//first make truestats equal natural stats
 	const outputCharacter  = {...character}
@@ -39,5 +41,6 @@ export default function (character/*, changeEvent*/) {
 		outputCharacter.HP = outputCharacter.HPMAX
 		outputCharacter.isNew=false;
 	}
+	outputCharacter.nextLVL= nextLVLMultiplier * outputCharacter.LVL
 	return outputCharacter;
 }

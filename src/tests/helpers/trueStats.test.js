@@ -16,6 +16,7 @@ const olderCharacter = {...oldCharacter}
 	olderCharacter.totalArmor=2
 	olderCharacter.HP=16
 	olderCharacter.HPMAX=16
+	olderCharacter.nextLVL=80
 describe("initial receive finished character & get stats from equipment", () => {
 	it("updates stats properly based on initial equipment loadout", () => {
 		expect(trueStats(youngCharacter)).toEqual(olderCharacter)
