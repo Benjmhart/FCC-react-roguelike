@@ -604,8 +604,9 @@ describe("behaviour for the finish button", () => {
       character={modCharacter}
       updateCharacter={updateCharacter}
     />)
+    updateCharacter.mockClear();
     tree2.find('button.finish').simulate('click');
-    expect(updateCharacter).toBeCalledWith({ isNew:false });
+    expect(updateCharacter).toBeCalledWith({ isNew:false, "perception": 0 });
   })
 })
 

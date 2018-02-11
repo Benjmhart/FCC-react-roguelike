@@ -3,11 +3,15 @@ import shrinkArray from "../helpers/shrinkArray";
 
 export default function(state = [], action) {
 	switch(action.type) {
-		case UPDATE_CHAR: 
-			return [
+		case UPDATE_CHAR: {
+			const responseArr = [
 				"Welcome to the dungeon!", 
-				"Click the map and use arrows keys to move",
-				"Can't see anything? maybe perception is important"]
+				"Click the map and use arrows keys to move"]
+			if(action.payload.perception < 2) {
+				responseArr.push("Can't see anything? maybe perception is important")
+			}
+			return responseArr
+		}
 		case CHAR_MOVE: {
 			const pl = action.payload
 			const newState = [...state]

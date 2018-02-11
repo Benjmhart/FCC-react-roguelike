@@ -162,7 +162,7 @@ export const CharacterCreator = ({ character, updateCharacter }) => {
         <button
           className="finish"
           onClick={() => {
-            updateCharacter({ isNew: false });
+            updateCharacter({ isNew: false, perception: character.PER });
           }}
           disabled={character.AVL !== 0 || character.CLASS === ""}
         >

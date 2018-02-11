@@ -84,6 +84,11 @@ button {
   height: 20vh;
   width: 100vw;
   background-color: goldenrod;
+  display:"flex";
+  .left-hud-container{
+    display: "flex";
+    flex-direction: column;
+  }
 }
 
 .map-item{
@@ -103,6 +108,14 @@ button {
   margin: 0px;
   text-align: center;
   }
+}
+
+.bar-full{
+  height:20px;
+  width:100px;
+}
+.bar-actual{
+  height:100%;
 }
 
 @media (max-width: 760px) {

@@ -14,14 +14,19 @@ describe("basic actions for Default, UPDATE_CHAR and CHAR_MOVE (no combat or abi
 		expect(MessagesReducer(empty, action)).toEqual(empty);
 	});
 	it("returns initial messages when it receives UPDATE_CHAR", () => {
-		const action = {type: UPDATE_CHAR}
+		const action = {type: UPDATE_CHAR, payload:{}}
 		const result = [
 			"Welcome to the dungeon!", 
-			"Click the map and use arrows keys to move",
-			"Can't see anything? maybe perception is important"
+			"Click the map and use arrows keys to move"
 		]
 		expect(MessagesReducer(empty, action)).toEqual(result);
 	});
+	it("returns an extra message if perception is < 2", () =>{
+		const resultStr = "Can't see anything? maybe perception is important"
+		const action = {type: UPDATE_CHAR, payload: {isNew:false, perception: 1}}
+		const outcome = MessagesReducer(empty, action)
+		expect(outcome[outcome.length - 1]).toBe(resultStr)
+	})
 	it("returns a wall bump message if action shows a wall bump", () => {
 		const action = {
 			type: CHAR_MOVE,
