@@ -10,9 +10,10 @@ export const HUD = ({ character }) => {
   return <div className="hud-component" >
 	<div className="left-hud-container">
 		<div className="display-bars-container">
-			<DisplayBar min={character.HP} max={character.HPMAX} color="red" />
-			<DisplayBar min={character.EXP} max={character.nextLVL} color="purple" /> 
+			<DisplayBar min={character.HP} max={character.HPMAX} color="red" label="HP"/>
+			<DisplayBar min={character.EXP} max={character.nextLVL} color="purple" label="EXP"/> 
 		</div>
+		<h5>Stats</h5>
 		<div className="stat-display-container" >
 			<StatDisplay label="STR" stat={character.STR} trueStat={character.trueSTR} />
 			<StatDisplay label="AGI" stat={character.AGI} trueStat={character.trueAGI} />
@@ -20,10 +21,11 @@ export const HUD = ({ character }) => {
 			<StatDisplay label="PER" stat={character.PER} trueStat={character.truePER} />
 			<StatDisplay label="CHA" stat={character.CHA} trueStat={character.trueCHA} />
 			<StatDisplay label="LUK" stat={character.LUK} trueStat={character.trueLUK} />
-			<StatDisplay label="Armor" stat={character.totalArmor} />
+			<StatDisplay label="Armor" trueStat={character.totalArmor} />
 		</div>
 	</div>
 	<div className="mid-hud-container" >
+		<h5>Equipment</h5>
 		<InvDisplay type={character.armor} label="Armor" />
 		<InvDisplay type={character.weapon} label="Weapon" />
 		<InvDisplay type={character.helmet} label="Head" />

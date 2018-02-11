@@ -36,7 +36,7 @@ export default function (character/*, changeEvent*/) {
 		outputCharacter.truePER +
 		outputCharacter.trueCHA + 
 		outputCharacter.trueLUK;
-	outputCharacter.HPMAX = sum * 0.5 * outputCharacter.LVL;
+	outputCharacter.HPMAX = Math.ceil(sum * 0.5 * outputCharacter.LVL);
 	if(outputCharacter.isNew===true){
 		outputCharacter.HP = outputCharacter.HPMAX
 		outputCharacter.isNew=false;

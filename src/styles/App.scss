@@ -84,10 +84,62 @@ button {
   height: 20vh;
   width: 100vw;
   background-color: goldenrod;
-  display:"flex";
+  display:flex;
+  
+  p {
+    margin: 0px;
+  }
+  h5{
+    margin:0px;
+  }
   .left-hud-container{
-    display: "flex";
+    padding: 1vw;
+    display: flex;
     flex-direction: column;
+    width: 25vw;
+  }
+  .mid-hud-container {
+    width: 20vw;
+    padding: 1vw;
+    p{
+      margin:4px;
+      padding-left: 10px;
+    }
+  }
+  .msg-container{
+    padding: 1vw;
+    width:100%;
+    p {
+      font-size:12px;
+    }
+  }
+}
+.display-bar{
+  display: inline-flex;
+  p {
+    display:inline;
+    margin: 0px; 
+    margin-left:1vw;
+    font-size:10px;
+  }
+  
+   .bar-full{
+    height:20px;
+    width:10vw;
+    border-radius: 25px;
+  }
+   .bar-actual{
+    border-radius: 25px;
+    height:100%;
+  }
+}
+.stat-display-container {
+  display:grid;
+  margin-top: 10px;
+  margin-left: 1vw;
+  grid-template-columns: repeat(2, minmax(1px, 1fr)); 
+  p {
+    margin: 0px;  
   }
 }
 
@@ -110,13 +162,6 @@ button {
   }
 }
 
-.bar-full{
-  height:20px;
-  width:100px;
-}
-.bar-actual{
-  height:100%;
-}
 
 @media (max-width: 760px) {
   .character-creator {

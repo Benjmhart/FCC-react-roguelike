@@ -70,7 +70,51 @@ button {
 .hud-component {
   height: 20vh;
   width: 100vw;
-  background-color: goldenrod; }
+  background-color: goldenrod;
+  display: flex; }
+  .hud-component p {
+    margin: 0px; }
+  .hud-component h5 {
+    margin: 0px; }
+  .hud-component .left-hud-container {
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    width: 25vw; }
+  .hud-component .mid-hud-container {
+    width: 20vw;
+    padding: 1vw; }
+    .hud-component .mid-hud-container p {
+      margin: 4px;
+      padding-left: 10px; }
+  .hud-component .msg-container {
+    padding: 1vw;
+    width: 100%; }
+    .hud-component .msg-container p {
+      font-size: 12px; }
+
+.display-bar {
+  display: inline-flex; }
+  .display-bar p {
+    display: inline;
+    margin: 0px;
+    margin-left: 1vw;
+    font-size: 10px; }
+  .display-bar .bar-full {
+    height: 20px;
+    width: 10vw;
+    border-radius: 25px; }
+  .display-bar .bar-actual {
+    border-radius: 25px;
+    height: 100%; }
+
+.stat-display-container {
+  display: grid;
+  margin-top: 10px;
+  margin-left: 1vw;
+  grid-template-columns: repeat(2, minmax(1px, 1fr)); }
+  .stat-display-container p {
+    margin: 0px; }
 
 .map-item.disabled {
   background-color: black; }

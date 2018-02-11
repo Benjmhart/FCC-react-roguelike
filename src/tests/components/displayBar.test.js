@@ -10,10 +10,10 @@ const full = {
 
 describe("basic DisplayBar functions", () => {
 	it("renders without crashing", () => {
-		shallow(<DisplayBar min={full.min} max={full.max} color="blue"/>)
+		shallow(<DisplayBar min={full.min} max={full.max} color="blue" label="PP"/>)
 	})
-	const tree = shallow(<DisplayBar min={full.min} max={full.max} color="blue" /> )
-	const tree2 = shallow(<DisplayBar min={full.min / 2} max={full.max} color="blue" />)
+	const tree = shallow(<DisplayBar min={full.min} max={full.max} color="blue" label="PP"/> )
+	const tree2 = shallow(<DisplayBar min={full.min / 2} max={full.max} color="blue" label="PP"/>)
 	it("renders a div with class display-bar", () => {
 		expect(tree.find("div.display-bar").length).toBe(1)
 	})
@@ -30,7 +30,7 @@ describe("basic DisplayBar functions", () => {
 		
 	})
 	it("renders a p tag with class display-bar-text 'min/max' as text", () => {
-		expect(tree.find('p.display-bar-text').text()).toBe("80/80")
-		expect(tree2.find('p.display-bar-text').text()).toBe("40/80")
+		expect(tree.find('p.display-bar-text').text()).toBe("PP: 80/80")
+		expect(tree2.find('p.display-bar-text').text()).toBe("PP: 40/80")
 	})
 })
