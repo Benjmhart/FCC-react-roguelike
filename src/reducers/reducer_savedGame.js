@@ -1,3 +1,10 @@
+import { PRE_LOAD } from "../actions/actionTypes";
+
 export default function(state = {}, action) {
-  return state;
+	switch (action.type){
+		case PRE_LOAD:
+			return action.payload
+		default:
+			return state;
+	}
 }

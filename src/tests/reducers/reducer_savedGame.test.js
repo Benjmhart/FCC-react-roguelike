@@ -1,10 +1,18 @@
-//on init, loads save,
-//on character death, deletes save
-/*
-import SavedGameReducer from "../../reducers/reducer_savedGame";
+/*global expect*/
+import { PRE_LOAD } from "../../actions/actionTypes";
+import SavedGameReducer from "../../reducers/reducer_savedGame"
 
-describe("Saved Game Reducer", () => {
-	it("loads browser storage on init");
-	it("deposits browser storage into SavedGame State");
-});
-*/
+describe("preloade functionality", () => {
+	it("preloads a game", ()=>{
+		const action = {
+			type: PRE_LOAD,
+			payload: {
+				character: "test1",
+				gameBoard: "test2",
+				messages: "test3"
+			}
+		}
+		const empty = {}
+		expect(SavedGameReducer(empty, action)).toEqual(action.payload);
+	})
+})

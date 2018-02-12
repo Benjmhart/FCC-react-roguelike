@@ -16,7 +16,7 @@ export const TitleScreen = ({ savedGame, beginCharCreate, loadGame }) => {
       <button
         className="resume-game-button"
         disabled={disabledBool}
-        onClick={savedGame => loadGame(savedGame)}
+        onClick={() => loadGame(savedGame)}
       >
         Resume Game
       </button>

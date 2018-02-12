@@ -38,7 +38,8 @@ export const Map = ({screenSize, gameBoard, fogofwar, character, makeView, getHe
 Map.defaultProps = {
 	makeView: makeViewHelper,
 	getHero: getHeroCoords,
-	renderItem: renderItems
+	renderItem: renderItems,
+	charMove: charMove
 }
 
 Map.propTypes = {
@@ -55,7 +56,7 @@ Map.propTypes = {
 	makeView: PropTypes.func,
 	getHero: PropTypes.func,
 	renderItem: PropTypes.func,
-	charMove: PropTypes.func.isRequired
+	charMove: PropTypes.func
 }
 function mapStateToProps(state) {
 	const { screenSize, gameBoard, fogofwar, character } = state;

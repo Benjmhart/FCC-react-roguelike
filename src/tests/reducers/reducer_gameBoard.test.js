@@ -26,29 +26,29 @@ only changes current floor.
 //
 
 import GameBoardReducer from "../../reducers/reducer_gameBoard";
-import { UPDATE_CHAR, CHAR_MOVE } from "../../actions/actionTypes";
+import { UPDATE_CHAR, CHAR_MOVE, LOAD_GAME } from "../../actions/actionTypes";
 import { wall, hero, emptySpace } from "../../assets/mapObjects";
 import mapObject3x3 from "../../mockObjects/mapObject3x3";
-
+import createFloorReal from "../../helpers/createFloorFromSeed"
 const empty = {};
 const createFloorFromSeed = jest.fn();
 const action = {type: UPDATE_CHAR, payload:{ isNew: false }}
-
+const localStorfunc=jest.fn()
 
 describe("initial functions", ()=>{
 	it("returns basic state when passed unrelated actions", () => {
 		const sillyaction = {type:"UNRELATED", payload:"BLAH BLAH"}
-		expect(GameBoardReducer(empty, sillyaction)).toEqual(empty);
+		expect(GameBoardReducer(empty, sillyaction, createFloorReal, localStorfunc)).toEqual(empty);
 	})
 	it("calls the createFloorFromSeed function with the correct arguments when passed update_Char with isnew=false", () => {
-		GameBoardReducer(empty, action, createFloorFromSeed)
+		GameBoardReducer(empty, action, createFloorFromSeed, localStorfunc)
 		expect(createFloorFromSeed).toHaveBeenCalledTimes(1);
 	})
 	it('returns a basic gameBoard object when passed an update_char action with isNew=false in payload', ()=> {
-		expect(GameBoardReducer(empty, action).currentFloor).toBe(0);
+		expect(GameBoardReducer(empty, action, createFloorReal, localStorfunc).currentFloor).toBe(0);
 	});
 	it("returns a map property on the gameBoard Object, which contains a 3d array with a wall object in the corner when passed  update_Char with isNew=false", () =>{
-		expect(GameBoardReducer(empty, action).dungeon[0][0][0]).toEqual(wall);
+		expect(GameBoardReducer(empty, action, createFloorReal, localStorfunc).dungeon[0][0][0]).toEqual(wall);
 	})
 })
 describe("Character move functionality - cases: wall, emptySpace", () => {
@@ -78,17 +78,51 @@ describe("Character move functionality - cases: wall, emptySpace", () => {
 		}
 	}
 	it("returns state with hero unmoved if payload.success=false", () => {
-		const newdungeon = GameBoardReducer(mapObject3x3, actionFail)
+		const newdungeon = GameBoardReducer(mapObject3x3, actionFail, createFloorReal, localStorfunc)
 		expect(newdungeon.dungeon[0][1][1]).toEqual(hero)
 	});
 	const prevState = {...mapObject3x3}
 		prevState.currentFloor = 1;
-		const newdungeon = GameBoardReducer(prevState, actionSucceed)
+		const newdungeon = GameBoardReducer(prevState, actionSucceed, createFloorReal, localStorfunc)
 	it("puts the hero in new coordinates if payload.success=true", () => {
 		
 		expect(newdungeon.dungeon[1][1][2]).toEqual(hero)
 	});
 	it("empties out old coordinates if payload.success=true", () => {
 		expect(newdungeon.dungeon[1][2][2]).toEqual(emptySpace)
+	})
+})
+
+describe("localSave functionality", () => {
+	it("will perform localSave on CHAR_MOVE", ()=>{
+		const actionFail= {
+			type: CHAR_MOVE,
+			payload: {
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: wall,
+				combat:false,
+				combatDetails: {},
+				attemptedDirection: "North"
+			}
+		}
+		localStorfunc.mockClear()
+		GameBoardReducer(mapObject3x3, actionFail, createFloorReal, localStorfunc)
+		expect(localStorfunc).toHaveBeenCalled()
+	})
+})
+
+describe("LoadGame functionality", () => {
+	it("loads a game", ()=> {
+		const action= {
+			type:LOAD_GAME,
+			payload: {
+				character: "test1",
+				messages: "test2",
+				gameBoard: mapObject3x3
+			}
+		}
+		expect(GameBoardReducer({}, action)).toEqual(mapObject3x3);
 	})
 })

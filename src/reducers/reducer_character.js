@@ -1,13 +1,16 @@
 import {
   CREATE_CHARACTER,
   LOAD_GAME,
-  UPDATE_CHAR
+  UPDATE_CHAR,
+  CHAR_MOVE
 } from "../actions/actionTypes";
 import equipment from "../assets/equipment";
-import trueStats from "../helpers/trueStats"
+import trueStats from "../helpers/trueStats";
+import removeAndSetLocalStorage from "../helpers/removeAndSetLocalStorage";
 //need to expand to accomodate update character action
 
-export default function(state = {}, action) {
+export default function(state = {}, action, localStore = removeAndSetLocalStorage) {
+  
   switch (action.type) {
     case CREATE_CHARACTER:
       return action.payload;
@@ -28,6 +31,7 @@ export default function(state = {}, action) {
       //character is finalized in creator, create truestats
       if(action.payload.isNew===false){
           const charWithTrueStats = trueStats(newstate);
+          localStore(charWithTrueStats, "character")
           return charWithTrueStats;
       }
       //assigns stat during charactercreation
@@ -49,6 +53,10 @@ export default function(state = {}, action) {
       newstate.AVL = 30 - sum;
       return newstate;
     }
+    case CHAR_MOVE:
+      //update character with combat outcomes
+      localStore(state, "character");
+      return state;
     default:
       return state;
   }

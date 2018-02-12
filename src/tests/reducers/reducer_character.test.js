@@ -9,12 +9,15 @@ import CharacterReducer from "../../reducers/reducer_character";
 import {
   CREATE_CHARACTER,
   LOAD_GAME,
-  UPDATE_CHAR
+  UPDATE_CHAR, 
+  CHAR_MOVE
 } from "../../actions/actionTypes";
 import newCharacter from "../../mockObjects/newCharacter";
 import oldCharacter from "../../mockObjects/oldCharacter";
 
+
 jest.mock("../../index.js", () => "root");
+const localStorefunc = jest.fn();
 
 describe("character reducer tests for initial state, LOAD_GAME and CREATE_CHARACTER actions", () => {
   it("returns an empty object when passed a nonrelevant action", () => {
@@ -146,7 +149,7 @@ describe("testing for UPDATE_CHAR action", () => {
       type:UPDATE_CHAR,
       payload: ({isNew:false})
     } 
-    const newstate = CharacterReducer(newCharacter,action7);
+    const newstate = CharacterReducer(newCharacter,action7,localStorefunc);
     expect(newstate.isNew).toBe(false)
   })
   it("will calculate truestats for when the isNew:false action is received as well", () => {
@@ -168,11 +171,36 @@ describe("testing for UPDATE_CHAR action", () => {
 	  modcharacter.HPMAX=16
 	  modcharacter.LVL=1
 	  modcharacter.nextLVL=80
-	  const newstate = CharacterReducer(modcharacternew, action7)
+	  const newstate = CharacterReducer(modcharacternew, action7, localStorefunc)
 	  expect(newstate).toEqual(modcharacter)
+    localStorefunc.mockClear();
+	  
   })
 });
-
+describe("localStorage function", () =>{
+  it("removes previous localStorage and writes new localStorage on every CHAR_MOVE", ()=> {
+    
+    const empty = {};
+    const action = {
+      type: CHAR_MOVE,
+      
+    };
+    CharacterReducer(empty, action, localStorefunc)
+    expect(localStorefunc).toHaveBeenCalled();
+    localStorefunc.mockClear();
+  })
+  it("removes previous localStorage and writes new localStorage on every UPDATE_CHAR", ()=> {
+    
+    const prevState = oldCharacter;
+    const action = {
+      type: UPDATE_CHAR,
+      payload: { isNew:false, test: "localStorage-updatecharacter"}
+    };
+    CharacterReducer(prevState, action, localStorefunc)
+    expect(localStorefunc).toHaveBeenCalled();
+    localStorefunc.mockClear();
+  })
+})
 /*
 it("passes any changes to the character  into state when passed a MOVE_CHARACTER action");
 */

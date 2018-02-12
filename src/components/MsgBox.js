@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 export const MsgBox = ({ messages }) => {
 	const renderMsgs = () =>{
-		const content = messages.map((msg) => {
-			return (<p className="msg-item">{msg}</p>)
+		const content = messages.map((msg, i) => {
+			return (<p className="msg-item" key={`msg ${msg} ${i}`}>{msg}</p>)
 		})
 		return content
 	}

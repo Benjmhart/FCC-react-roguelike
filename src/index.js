@@ -7,16 +7,17 @@ import registerServiceWorker from './registerServiceWorker';
 import reducers from "./reducers";
 import App from './components/App';
 import setSize from './actions/action_setSize'
+import preLoad from "./actions/action_preLoad"
 
  const store = createStore(
    reducers, /* preloadedState, */
    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
  );
-
+// sets saved game and window size
 window.addEventListener("load", () => {store.dispatch(setSize(window.innerWidth, window.innerHeight))});
 window.addEventListener("resize", () => {store.dispatch(setSize(window.innerWidth, window.innerHeight))});
-//onload store.dispatch(action(arg))
-//2 actions,   one to get the window size and one to get the savedgame from local storage
+window.addEventListener("load", () => {store.dispatch(preLoad())})
+
 
 
 ReactDOM.render(
