@@ -18,7 +18,7 @@ export const Map = ({screenSize, gameBoard, fogofwar, character, makeView, getHe
 	const viewArr = heroCoordsArr ? makeView(screenSize, heroCoordsArr) : undefined;
 
 	//call renderItem with viewArr, floor, character.PER and fogofwar	
-	renderItem(viewArr, floor, character.truePER, fogofwar)
+	renderItem(viewArr, floor, fogofwar)
 
 	//declares a styling object based on lengths of view array  to apply to the grid container
 
@@ -30,8 +30,8 @@ export const Map = ({screenSize, gameBoard, fogofwar, character, makeView, getHe
       gridTemplateColumns: `repeat(${ylength}, minmax(10px, 1fr))`
 	}
 	
-  return <div className="map-component" style={style} tabIndex="0" onKeyDown={e => {charMove(e.nativeEvent.keyCode, floor, heroCoordsArr, character.weapon.ability)}} >
-  {renderItem(viewArr, floor, character.truePER, fogofwar)}
+  return <div className="map-component" style={style} tabIndex="0" onKeyDown={e => {charMove(e.nativeEvent.keyCode, floor, heroCoordsArr, character)}} >
+  {renderItem(viewArr, floor, fogofwar)}
   </div>;
 };
 

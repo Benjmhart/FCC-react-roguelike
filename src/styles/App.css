@@ -72,6 +72,14 @@ button {
   width: 100vw;
   background-color: goldenrod;
   display: flex; }
+  .hud-component button.fogbtn {
+    font-size: 13px;
+    border-width: 2px;
+    font-weight: normal;
+    width: 50px;
+    padding: 2px;
+    margin: 1px;
+    margin-left: 5px; }
   .hud-component p {
     margin: 0px; }
   .hud-component h5 {
@@ -80,7 +88,7 @@ button {
     padding: 1vw;
     display: flex;
     flex-direction: column;
-    width: 25vw; }
+    width: 40vw; }
   .hud-component .mid-hud-container {
     width: 20vw;
     padding: 1vw; }
@@ -110,7 +118,7 @@ button {
 
 .stat-display-container {
   display: grid;
-  margin-top: 10px;
+  margin-top: 3px;
   margin-left: 1vw;
   grid-template-columns: repeat(2, minmax(1px, 1fr)); }
   .stat-display-container p {
@@ -120,10 +128,16 @@ button {
   background-color: black; }
 
 .map-item.wall {
+  background-color: darkgrey; }
+
+.map-item.wall.not-visible {
   background-color: grey; }
 
 .map-item.none {
   background-color: chocolate; }
+
+.map-item.none.not-visible {
+  background-color: SaddleBrown; }
 
 .map-item.hero {
   background-color: chocolate;

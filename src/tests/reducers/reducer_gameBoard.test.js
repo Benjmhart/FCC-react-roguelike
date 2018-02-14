@@ -29,12 +29,14 @@ import GameBoardReducer from "../../reducers/reducer_gameBoard";
 import { UPDATE_CHAR, CHAR_MOVE, LOAD_GAME } from "../../actions/actionTypes";
 import { wall, hero, emptySpace } from "../../assets/mapObjects";
 import mapObject3x3 from "../../mockObjects/mapObject3x3";
+import mapObjectVisible from "../../mockObjects/mapObjectVisible"
 import createFloorReal from "../../helpers/createFloorFromSeed"
+import charWithStats from "../../mockObjects/charWithStats"
 const empty = {};
 const createFloorFromSeed = jest.fn();
-const action = {type: UPDATE_CHAR, payload:{ isNew: false }}
+const action = {type: UPDATE_CHAR, payload:{ isNew: false, perception:4 }}
 const localStorfunc=jest.fn()
-
+createFloorFromSeed.mockReturnValueOnce(mapObject3x3.dungeon[mapObject3x3.currentFloor])
 describe("initial functions", ()=>{
 	it("returns basic state when passed unrelated actions", () => {
 		const sillyaction = {type:"UNRELATED", payload:"BLAH BLAH"}
@@ -52,6 +54,7 @@ describe("initial functions", ()=>{
 	})
 })
 describe("Character move functionality - cases: wall, emptySpace", () => {
+	const checkVisfunc = jest.fn()
 	const actionFail= {
 		type: CHAR_MOVE,
 		payload: {
@@ -61,7 +64,8 @@ describe("Character move functionality - cases: wall, emptySpace", () => {
 			destinationContents: wall,
 			combat:false,
 			combatDetails: {},
-			attemptedDirection: "North"
+			attemptedDirection: "North",
+			character: {...charWithStats}
 		}
 	}
 	
@@ -74,22 +78,23 @@ describe("Character move functionality - cases: wall, emptySpace", () => {
 			destinationContents: emptySpace,
 			combat: false,
 			combatDetails: {},
-			attemptedDirection: "North"
+			attemptedDirection: "North",
+			character: {...charWithStats}
 		}
 	}
 	it("returns state with hero unmoved if payload.success=false", () => {
 		const newdungeon = GameBoardReducer(mapObject3x3, actionFail, createFloorReal, localStorfunc)
-		expect(newdungeon.dungeon[0][1][1]).toEqual(hero)
+		expect(newdungeon.dungeon[0][1][1]).toEqual({...hero})
 	});
 	const prevState = {...mapObject3x3}
 		prevState.currentFloor = 1;
 		const newdungeon = GameBoardReducer(prevState, actionSucceed, createFloorReal, localStorfunc)
 	it("puts the hero in new coordinates if payload.success=true", () => {
 		
-		expect(newdungeon.dungeon[1][1][2]).toEqual(hero)
+		expect(newdungeon.dungeon[1][1][2]).toEqual({...hero, visible:true})
 	});
 	it("empties out old coordinates if payload.success=true", () => {
-		expect(newdungeon.dungeon[1][2][2]).toEqual(emptySpace)
+		expect(newdungeon.dungeon[1][2][2]).toEqual({...emptySpace, visible:true})
 	})
 })
 

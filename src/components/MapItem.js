@@ -7,19 +7,31 @@ import PropTypes from "prop-types";
 import { emptySpace } from "../assets/mapObjects"
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 
-const MapItem = ({disbool, contents}) => {
+const MapItem = ({disbool, contents, fogofwar}) => {
 	const disabled = disbool? "disabled" : ''
+	const alsoDisabled = (!contents.visible && !contents.explored) ? "disabled" : ''
 	
 	//if you are going to refactor to remove the disbool requirement below,  make sure you know what you are doing.
-	const cellContents = (contents && !disbool) ? contents.contains: '' 
+	const cellContents = (contents && !disbool) ? contents.contains : '' 
 	//use contents to create glyphs for hero
 	const fontAwesome = {};
 	
+	//glyphcase for hero
 	if(cellContents==="hero"){
 		fontAwesome.glyph = <i className="fa fa-user"></i>
 	}
+	//glyph case for stairs
+	//glyph case for enemies
 	
-	return <div className={`map-item ${disabled} ${cellContents}`} >
+	const notVis = (fogofwar===true && contents.visible===false && contents.explored===true) ? 'not-visible' : ''
+	
+	const classnames = []
+	if(disabled){classnames.push(disabled)}
+	if(fogofwar && alsoDisabled){classnames.push(alsoDisabled)}
+	if(cellContents){classnames.push(cellContents)}
+	if(fogofwar && notVis){classnames.push(notVis)}
+	
+	return <div className={`map-item ${classnames.join(' ')}`} >
 	<p>
 	{fontAwesome.glyph}
 	</p>
@@ -28,12 +40,14 @@ const MapItem = ({disbool, contents}) => {
 
 MapItem.defaultProps = {
 	disbool: false,
-	contents: {...emptySpace }
+	contents: {...emptySpace },
+	fogofwar: true
 }
 
 MapItem.propTypes = {
 	disbool: PropTypes.bool,
-	contents: PropTypes.object
+	contents: PropTypes.object,
+	fogofwar: PropTypes.bool
 }
 
 export default MapItem

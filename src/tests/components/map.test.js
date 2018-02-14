@@ -77,49 +77,49 @@ describe("event listener function calls keycode and floor", () => {
 	it("fires the charMove action with argument 37 when the left key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 37}});
-		expect(charMovefunc).toBeCalledWith(37, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(37, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 65 when the A key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 65}});
-		expect(charMovefunc).toBeCalledWith(65, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(65, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 39 when the right key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 39}});
-		expect(charMovefunc).toBeCalledWith(39, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(39, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 68 when the D key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 68}});
-		expect(charMovefunc).toBeCalledWith(68, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(68, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 38 when the UP key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 38}});
-		expect(charMovefunc).toBeCalledWith(38, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(38, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 87 when the W key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 87}});
-		expect(charMovefunc).toBeCalledWith(87, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(87, floor, heroCoords, oldChar);
 		charMovefunc.mockClear()
 	})
 	it("fires the charMove action with argument 40 when the DOWN key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 40}});
-		expect(charMovefunc).toBeCalledWith(40, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(40, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 	it("fires the charMove action with argument 83 when the S key is pressed", () => {
 		const tree = shallow(<Map screenSize={testWindowSize} gameBoard={mapObject3x3} character={oldChar} fogofwar={fogofwar} charMove={charMovefunc} />)
 		tree.simulate('keyDown', {nativeEvent:{keyCode: 65}});
-		expect(charMovefunc).toBeCalledWith(65, floor, heroCoords, "dig");
+		expect(charMovefunc).toBeCalledWith(65, floor, heroCoords, oldChar);
 		jest.clearAllMocks()
 	})
 })

@@ -1,5 +1,7 @@
+const arraymax=7
+
 function shrinkArray(arr) {
-	if(arr.length <= 10){return arr}
+	if(arr.length <= arraymax){return arr}
 	const newArr = [...arr]
 	newArr.shift()
 	return shrinkArray(newArr)

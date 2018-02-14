@@ -56,12 +56,12 @@ const createFloorFromSeed = () => {
   const emptyFloor = twoDimension.map((row, x) => {
     return row.map((cell, y) => {
       if (x === 0 || x === floorSize - 1 || y === 0 || y === floorSize - 1) {
-        return wall;
+        return {...wall};
       }
       if(x===startingPoint && y===startingPoint) {
-        return hero;
+        return {...hero};
       }
-      return emptySpace;
+      return {...emptySpace};
     });
   });
   

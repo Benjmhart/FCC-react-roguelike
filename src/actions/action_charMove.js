@@ -2,7 +2,7 @@
 //does all the action for any move attempt including combat or hitting a wall,  also carries an array of messages
 import { CHAR_MOVE } from "./actionTypes"
 
-export default function(keycode, floor, heroCoordsArr, weaponAbility) {
+export default function(keycode, floor, heroCoordsArr, character) {
 	const action = { type: CHAR_MOVE, payload: {} }
 	const pl = action.payload
 	if(keycode === 37 || keycode === 65){pl.attemptedDirection = "West"}
@@ -22,5 +22,6 @@ export default function(keycode, floor, heroCoordsArr, weaponAbility) {
 	if(pl.success && pl.attemptedDirection === "North"){pl.newHeroCoords =  [heroCoordsArr[0] - 1, heroCoordsArr[1]]}
 	if(pl.success && pl.attemptedDirection === "South"){pl.newHeroCoords =  [heroCoordsArr[0] + 1, heroCoordsArr[1]]}
 	pl.prevHeroCoords = heroCoordsArr
+	pl.character = character
 	return action;
 }

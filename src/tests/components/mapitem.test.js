@@ -27,6 +27,11 @@ describe("gets the right classes with a variety of props", () => {
 	it("produces a none div if passed a none", () => {
 		expect(shallow(<MapItem contents={emptySpace} />).find('.map-item.none').length).toBe(1);
 	})
+	it("will give explored, invisible items the class not-visible", ()=>{
+		const cell = {...emptySpace, visible:false, explored:true}
+		const tree2 = 
+		expect(shallow(<MapItem contents={cell} />).find('.map-item.none.not-visible').length).toBe(1);
+	})
 })
 
 describe("font awesome glyphs", () => {
@@ -35,4 +40,6 @@ describe("font awesome glyphs", () => {
 		expect(shallow(<MapItem contents={hero} />).find('i.fa.fa-user').length).toBe(1);
 	})
 	//it("shows enemy glyphs...")
+	//does not show enemy glyphs if the object is explored but not visible
+	//shoes stairway glyphs
 })

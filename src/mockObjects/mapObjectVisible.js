@@ -1,7 +1,7 @@
-const wall = { contains: "wall" }
-const hero = { contains: "hero" }
-const none = { contains: "none" }
-const mapObject3x3 = {
+const wall = { contains: "wall", visible:true }
+const hero = { contains: "hero", visible:true }
+const none = { contains: "none", visible:true }
+const mapObjectVisible = {
 	currentFloor: 0,
 	//accessed FXY - floor, row, column
 	
@@ -21,4 +21,4 @@ const mapObject3x3 = {
 		]
 	}
 		
-export default mapObject3x3
+export default mapObjectVisible

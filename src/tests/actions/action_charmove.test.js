@@ -8,6 +8,7 @@ import charMove from "../../actions/action_charMove"
 import { CHAR_MOVE } from "../../actions/actionTypes"
 import mapObject3x3 from "../../mockObjects/mapObject3x3"
 import { wall, emptySpace } from "../../assets/mapObjects"
+import oldChar from "../../mockObjects/oldCharacter"
 
 const arrowLeft = 37
 const keyA = 65
@@ -29,6 +30,7 @@ describe("NSEW (both keys), TO WALL", () => {
 		payload: {
 			newHeroCoords:heroCoordsfloor1,
 			prevHeroCoords:heroCoordsfloor1,
+			character: oldChar,
 			success: false,
 			combat: false,
 			destinationContents: wall,
@@ -37,40 +39,40 @@ describe("NSEW (both keys), TO WALL", () => {
 	}
 	it("will return the correct action when attempt to walk LEFT into a wall (arrow Key)",() => {
 		action.payload.attemptedDirection="West"
-		const result = charMove(arrowLeft, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(arrowLeft, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk LEFT into a wall (A Key)",() => {
-		const result = charMove(keyA, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(keyA, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk RIGHT into a wall (arrow Key)",() => {
 		action.payload.attemptedDirection="East"
-		const result = charMove(arrowRight, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(arrowRight, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk RIGHT into a wall (D Key)",() => {
-		const result = charMove(keyD, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(keyD, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk UP into a wall (arrow Key)",() => {
 		action.payload.attemptedDirection="North"
-		const result = charMove(arrowUp, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(arrowUp, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	
 	it("will return the correct action when attempt to walk UP into a wall (W Key)",() => {
-		const result = charMove(keyW, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(keyW, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	
 	it("will return the correct action when attempt to walk DOWN into a wall (arrow Key)",() => {
 		action.payload.attemptedDirection="South"
-		const result = charMove(arrowDown, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(arrowDown, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk DOWN into a wall (S Key)",() => {
-		const result = charMove(keyS, floor1, heroCoordsfloor1, "dig")
+		const result = charMove(keyS, floor1, heroCoordsfloor1, oldChar)
 		expect(result).toEqual(action)
 	})
 })
@@ -81,6 +83,7 @@ describe("NSEW (both keys), TO WALL", () => {
 		type:CHAR_MOVE,
 		payload: {
 			prevHeroCoords:heroCoordsfloor2,
+			character: oldChar,
 			success: true,
 			combat: false,
 			destinationContents: emptySpace,
@@ -90,43 +93,43 @@ describe("NSEW (both keys), TO WALL", () => {
 	it("will return the correct action when attempt to walk LEFT into EMPTY (arrow Key)",() => {
 		action.payload.attemptedDirection="West"
 		action.payload.newHeroCoords=[2,1]
-		const result = charMove(arrowLeft, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(arrowLeft, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk LEFT into EMPTY (A Key)",() => {
-		const result = charMove(keyA, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(keyA, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk RIGHT into EMPTY (arrow Key)",() => {
 		action.payload.attemptedDirection="East"
 		action.payload.newHeroCoords=[2,3]
-		const result = charMove(arrowRight, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(arrowRight, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk RIGHT into EMPTY (D Key)",() => {
-		const result = charMove(keyD, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(keyD, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk UP into EMPTY (arrow Key)",() => {
 		action.payload.attemptedDirection="North"
 		action.payload.newHeroCoords=[1,2]
-		const result = charMove(arrowUp, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(arrowUp, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	
 	it("will return the correct action when attempt to walk UP into EMPTY (W Key)",() => {
-		const result = charMove(keyW, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(keyW, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	
 	it("will return the correct action when attempt to walk DOWN into EMPTY (arrow Key)",() => {
 		action.payload.attemptedDirection="South"
 		action.payload.newHeroCoords=[3,2]
-		const result = charMove(arrowDown, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(arrowDown, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	it("will return the correct action when attempt to walk DOWN into EMPTY (S Key)",() => {
-		const result = charMove(keyS, floor2, heroCoordsfloor2, "dig")
+		const result = charMove(keyS, floor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 })

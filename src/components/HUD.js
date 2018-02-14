@@ -1,19 +1,22 @@
 import React from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 import PropTypes from "prop-types";
 import StatDisplay from "./StatDisplay";
 import InvDisplay from "./InvDisplay";
 import DisplayBar from "./DisplayBar"
 import MsgBox from "./MsgBox";
+import toggleFog from "../actions/action_toggleFog";
 
-export const HUD = ({ character }) => {
+export const HUD = ({ character, fogofwar, toggleFog }) => {
+	const fog =  fogofwar ? 'fog on': 'fog off'
   return <div className="hud-component" >
 	<div className="left-hud-container">
 		<div className="display-bars-container">
 			<DisplayBar min={character.HP} max={character.HPMAX} color="red" label="HP"/>
 			<DisplayBar min={character.EXP} max={character.nextLVL} color="purple" label="EXP"/> 
+			<button className="fogbtn" onClick={() => toggleFog()}>{fog}</button>
 		</div>
-		<h5>Stats</h5>
 		<div className="stat-display-container" >
 			<StatDisplay label="STR" stat={character.STR} trueStat={character.trueSTR} />
 			<StatDisplay label="AGI" stat={character.AGI} trueStat={character.trueAGI} />
@@ -36,12 +39,21 @@ export const HUD = ({ character }) => {
 	
   </div>;
 };
+
+HUD.defaultProps = {
+	fogofwar: true,
+	toggleFog: toggleFog
+}
 HUD.propTypes = {
-	character: PropTypes.object.isRequired
+	character: PropTypes.object.isRequired,
+	fogofwar: PropTypes.bool,
+	toggleFog: PropTypes.func
 }
 function mapStateToProps(state) {
-	const { character } = state;
-	return { character }
+	const { character, fogofwar } = state;
+	return { character, fogofwar }
  }
- 
-export default connect(mapStateToProps)(HUD);
+ function mapDispatchToProps(dispatch){
+ 	return bindActionCreators({ toggleFog }, dispatch)
+ }
+export default connect(mapStateToProps, mapDispatchToProps)(HUD);

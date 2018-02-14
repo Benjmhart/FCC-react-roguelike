@@ -1,10 +1,36 @@
 CURRENT TASK: 
 
 
-build out map and map item components - current approach,  whole floor render;
-build out basic movement actions
-build out HUD/hud subcomponents
 
+
+CURRENT
+-seed generation
+- floor generation
+   - room loop
+   - randomwalkas
+- apply oddshelper
+- enemy assets
+- enemy spawning
+- enemy glyphs
+- enemy movement
+- combat
+ - death
+ - hp loss
+ - enemy death / exp gain
+ - item drop (health item, stat item, equipment upgrades)
+ - levelling system
+- stairs/floors
+- bossfight/victory
+- class abilities
+ - dig
+ - beserk
+ - flash
+ - slice
+ - smite
+- HUD responsiveness (hide stats and equipment, make bars thinner & longer across the top
+- touch/click transparent DIVs / move keypress events to gameview component 
+- master variables file (rates/sizes/odds etc)
+- linting and cleanup
 ---FIRST DELIVERY
 
 (thing to chew on,  how will I prevent movement of several enemies into the same place on 
@@ -13,8 +39,6 @@ the same turn,   or an enemy and a character who are two spaces apart)
 LOW PRIORITY TASKS
 -address issue with Prettier/eslint crashing on app.test.js?
 -add snapshot testing for components, objects, etc.   get test coverage.
-- map options in class selector to actual classes in equipment object, making it easier to
-	add classes(character creator component)
+
 -inventory management system with drag and drop
 -make a reusable component for the stats in CharacterCreator/ componentize all of character creator
--build a view system that renders only part of the floor and keeps the hero in the center

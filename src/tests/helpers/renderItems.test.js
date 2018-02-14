@@ -2,16 +2,18 @@
 import { shallow } from 'enzyme'
 import renderItems from "../../helpers/renderItems"
 import mapObject3x3 from "../../mockObjects/mapObject3x3"
+import mapObjectVisible from "../../mockObjects/mapObjectVisible"
 import { wall, hero, empty } from "../../assets/mapObjects"
 import exampleArr from "../../mockObjects/viewArr"
+
 
 jest.mock("../../index.js", () => "root");
 jest.mock("../../components/MapItem.js", () => "MapItem");
 
-
-
+//needs to resolve errors by changing the mock being passed to renderItems to accomodate new system
+//(add a new mapobject mock)
 const floor = mapObject3x3.dungeon[mapObject3x3.currentFloor];
-
+const floorVis = mapObjectVisible.dungeon[mapObjectVisible.currentFloor];
 /*
 	takes viewArr, floor, maxX, maxY, perception
 	runs a map on the view array, if either of the coordinates are less than zero, or 
@@ -36,8 +38,8 @@ describe("basic functions of renderItems", () => {
 		}, 0)
 		expect(totalItems).toBe(25);
 	})
-	it("given visibility 0, it renders 24 disabled mapItem components", () => {
-		const result = renderItems(exampleArr, floor, 0)
+	it("given maximum visibility, it renders 16 disabled mapItem components", () => {
+		const result = renderItems(exampleArr, floorVis, 0)
 		const totalDisabled = result.reduce((total, row) => {
 			const rowTotal = row.reduce((subtotal, cell) => {
 				const tree = shallow(cell)
@@ -46,8 +48,12 @@ describe("basic functions of renderItems", () => {
 			}, 0)
 			return rowTotal+total;
 		}, 0)
-		expect(totalDisabled).toBe(24)
+		expect(totalDisabled).toBe(16)
 	})
+	
+	/* 
+	not actually testing functionality in isolation now due to the  fact that visibility calculations are now made elsewhere
+	
 	it("given visiblity 1, it renders 20 disabled mapItem components", ()=>{
 		const result = renderItems(exampleArr, floor, 1)
 		const totalDisabled = result.reduce((total, row) => {
@@ -59,6 +65,7 @@ describe("basic functions of renderItems", () => {
 		}, 0)
 		expect(totalDisabled).toBe(20)
 	})
+	
 	it("given visibility 2, it renders 16 disabled mapItem components", () => {
 		const result = renderItems(exampleArr, floor,  2)
 		const totalDisabled = result.reduce((total, row) => {
@@ -70,6 +77,7 @@ describe("basic functions of renderItems", () => {
 		}, 0)
 		expect(totalDisabled).toBe(16)
 	})
+	*/
 	it("given visibility 0 && fogofwar=false, it renders 16 disabled mapItem components", () => {
 		const result = renderItems(exampleArr, floor, 0, false)
 		const totalDisabled = result.reduce((total, row) => {
@@ -83,7 +91,7 @@ describe("basic functions of renderItems", () => {
 	})
 	it("renders one hero component at result[2][2]", () => {
 		const premonition = [[[2,2]]]
-		const result = renderItems(exampleArr, floor, 0)
+		const result = renderItems(exampleArr, floorVis, 0)
 		const totalherocoords = result.reduce((total, row, x) => {
 			const rowTotal = row.reduce((subtotal, cell, y) => {
 				const tree = shallow(cell)
@@ -116,13 +124,3 @@ describe("basic functions of renderItems", () => {
 		expect(totalWalls).toBe(8)
 	});
 })
-	/*
-	
-	
-	
-	
-	
-	
-	
-	
-	*/
