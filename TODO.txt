@@ -4,15 +4,11 @@ CURRENT TASK:
 
 
 CURRENT
--seed generation
-- floor generation
-   - room loop
-   - randomwalkas
-- apply oddshelper
 - enemy assets
 - enemy spawning
 - enemy glyphs
 - enemy movement
+- apply oddshelper
 - combat
  - death
  - hp loss
@@ -28,7 +24,7 @@ CURRENT
  - slice
  - smite
 - HUD responsiveness (hide stats and equipment, make bars thinner & longer across the top
-- touch/click transparent DIVs / move keypress events to gameview component 
+- touch/click transparent DIVs / move keypress events to gameview component  - below 780 px wide
 - master variables file (rates/sizes/odds etc)
 - linting and cleanup
 ---FIRST DELIVERY

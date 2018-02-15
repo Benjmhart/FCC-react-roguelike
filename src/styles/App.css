@@ -88,12 +88,13 @@ button {
     padding: 1vw;
     display: flex;
     flex-direction: column;
-    width: 40vw; }
+    width: 50vw; }
   .hud-component .mid-hud-container {
     width: 20vw;
-    padding: 1vw; }
+    padding: 1vw;
+    font-size: 10px; }
     .hud-component .mid-hud-container p {
-      margin: 4px;
+      margin: 2px;
       padding-left: 10px; }
   .hud-component .msg-container {
     padding: 1vw;
@@ -122,7 +123,8 @@ button {
   margin-left: 1vw;
   grid-template-columns: repeat(2, minmax(1px, 1fr)); }
   .stat-display-container p {
-    margin: 0px; }
+    margin: 0px;
+    font-size: 10px; }
 
 .map-item.disabled {
   background-color: black; }
@@ -142,6 +144,12 @@ button {
 .map-item.hero {
   background-color: chocolate;
   color: mediumblue; }
+
+.map-item.dirtWall {
+  background-color: burlywood; }
+
+.map-item.dirtWall.not-visible {
+  background-color: peru; }
 
 .map-item p {
   margin: 0px;

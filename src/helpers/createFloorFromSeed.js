@@ -22,7 +22,10 @@ STEPS
 */
 
 //return 2d array
-import { wall, hero, emptySpace } from "../assets/mapObjects";
+import { wall, hero, emptySpace, dirtWall } from "../assets/mapObjects";
+import generateSeed from "./generateSeed"
+import roomGen from "./roomGen"
+import randomWalk from "./randomWalk"
 
 export const floorSize = 100;
 export const startingPoint = 50; // hero will start at x=startingpoint, y=startingpoint
@@ -61,11 +64,24 @@ const createFloorFromSeed = () => {
       if(x===startingPoint && y===startingPoint) {
         return {...hero};
       }
-      return {...emptySpace};
+      return {...dirtWall};
     });
   });
   
-  return emptyFloor;
+  // call generateSeed
+  const seed = generateSeed(100);
+  const seed2 = generateSeed(150)
+  //call roomGen
+	const floorWithRooms = roomGen(emptyFloor, seed);
+	//call randomwalk
+	const s = Math.floor(emptyFloor.length / 2)
+	const floorWithHallways = randomWalk(floorWithRooms, seed2, [s,s])
+  //insert hero in case anything overwrote them
+  floorWithHallways[s][s] = {...hero}
+
+  return floorWithHallways;
 };
 
+	
+	
 export default createFloorFromSeed;

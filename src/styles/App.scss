@@ -104,13 +104,15 @@ button {
     padding: 1vw;
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 50vw;
+    
   }
   .mid-hud-container {
     width: 20vw;
     padding: 1vw;
+    font-size: 10px;
     p{
-      margin:4px;
+      margin:2px;
       padding-left: 10px;
     }
   }
@@ -148,6 +150,7 @@ button {
   grid-template-columns: repeat(2, minmax(1px, 1fr)); 
   p {
     margin: 0px;  
+    font-size:10px;
   }
 }
 
@@ -170,6 +173,12 @@ button {
   &.hero{
     background-color: chocolate;
     color: mediumblue;
+  }
+  &.dirtWall{
+    background-color: burlywood;
+  }
+  &.dirtWall.not-visible{
+    background-color: peru;
   }
   & p {
   margin: 0px;

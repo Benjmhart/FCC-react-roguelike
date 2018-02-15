@@ -3,6 +3,14 @@
 import { CHAR_MOVE } from "./actionTypes"
 
 export default function(keycode, floor, heroCoordsArr, character) {
+	if(	keycode !== 37 && 
+		keycode !== 39 && 
+		keycode !== 38 &&
+		keycode !== 40 &&
+		keycode !== 65 &&
+		keycode !== 68 &&
+		keycode !== 87 &&
+		keycode !== 83 ){return {type:"NO_ACTION"}}
 	const action = { type: CHAR_MOVE, payload: {} }
 	const pl = action.payload
 	if(keycode === 37 || keycode === 65){pl.attemptedDirection = "West"}
@@ -15,6 +23,7 @@ export default function(keycode, floor, heroCoordsArr, character) {
 	if(pl.attemptedDirection === "South"){pl.destinationContents = floor[heroCoordsArr[0] + 1][heroCoordsArr[1]]}
 	if(!pl.attemptedDirection){return}
 	if(pl.destinationContents.contains === "wall"){pl.success = false; pl.combat = false; pl.combatDetails = {}}
+	if(pl.destinationContents.contains === "dirtWall"){pl.success = false; pl.combat = false; pl.combatDetails = {}}
 	if(pl.destinationContents.contains === "none"){pl.success = true; pl.combat = false; pl.combatDetails = {}}
 	if(!pl.success){pl.newHeroCoords=heroCoordsArr}
 	if(pl.success && pl.attemptedDirection === "West"){pl.newHeroCoords =  [heroCoordsArr[0], heroCoordsArr[1] - 1 ]}
