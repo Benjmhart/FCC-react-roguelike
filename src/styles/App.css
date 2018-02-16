@@ -151,6 +151,9 @@ button {
 .map-item.dirtWall.not-visible {
   background-color: peru; }
 
+.map-item.enemy {
+  background-color: red; }
+
 .map-item p {
   margin: 0px;
   text-align: center; }

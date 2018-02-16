@@ -180,6 +180,9 @@ button {
   &.dirtWall.not-visible{
     background-color: peru;
   }
+  &.enemy {
+    background-color:red;
+  }
   & p {
   margin: 0px;
   text-align: center;

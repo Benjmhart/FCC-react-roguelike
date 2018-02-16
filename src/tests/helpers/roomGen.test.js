@@ -10,7 +10,7 @@ const dirtFloor = mapObject3x3.dungeon[1].map(row => row.map(cell => {
     if(cell.contains==="none"){return dirtWall}
     return cell
 }));
-const seed = generateSeed()
+const seed = generateSeed(10)
 describe("basic safety options for generator", () => {
     it("does not destroy walls", () => {
         const resultFloor = roomGen(dirtFloor, seed)

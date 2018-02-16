@@ -12,7 +12,6 @@ function randomWalk(floor, seed, [Xstart, Ystart], direction) {
             [Xstart, Ystart - 1],
             [Xstart, Ystart + 1]];
     const newDirection = direction ? direction : seed[0] % 4
-    if(!direction) {console.log(newDirection)}
     const destination = destOptions[newDirection]
     const [destX, destY] = destination;
     //path for the end of one walk

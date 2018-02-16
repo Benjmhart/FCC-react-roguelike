@@ -4,7 +4,6 @@ CURRENT TASK:
 
 
 CURRENT
-- enemy assets
 - enemy spawning
 - enemy glyphs
 - enemy movement
@@ -15,6 +14,7 @@ CURRENT
  - enemy death / exp gain
  - item drop (health item, stat item, equipment upgrades)
  - levelling system
+- hover for info about enemy
 - stairs/floors
 - bossfight/victory
 - class abilities
@@ -35,6 +35,8 @@ the same turn,   or an enemy and a character who are two spaces apart)
 LOW PRIORITY TASKS
 -address issue with Prettier/eslint crashing on app.test.js?
 -add snapshot testing for components, objects, etc.   get test coverage.
+
+- why are our rooms so rectangular and so often on the bottom part of the map?
 
 -inventory management system with drag and drop
 -make a reusable component for the stats in CharacterCreator/ componentize all of character creator

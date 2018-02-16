@@ -1,7 +1,7 @@
-
-
-export const enemies = [
-	{	name: "Rat",
+const enemies = [
+	
+	{	contains: "enemy",
+		name: "Rat",
 		STR: 0.5,
 		AGI: 10,
 		WIS: 0,
@@ -11,9 +11,11 @@ export const enemies = [
 		atkMin:1,
 		atkMax:4,
 		armor: 0,
-		HP: 10
+		HP: 10,
+		EXP:20
 	}, 
-	{	name: "Goblin",
+	{	contains: "enemy",
+		name: "Goblin",
 		STR: 2,
 		AGI: 4,
 		WIS: 2,
@@ -23,9 +25,11 @@ export const enemies = [
 		atkMin:3,
 		atkMax:6,
 		armor: 2,
-		HP: 20
+		HP: 20,
+		EXP:40
 	},
-	{	name: "Gremlin",
+	{	contains: "enemy",
+		name: "Gremlin",
 		STR: 3,
 		AGI: 2,
 		WIS: 3,
@@ -35,9 +39,11 @@ export const enemies = [
 		atkMin:5,
 		atkMax:6,
 		armor: 4,
-		HP: 25
+		HP: 25,
+		EXP:70
 	},
-	{	name: "Villain",
+	{	contains: "enemy",
+		name: "Villain",
 		STR: 4,
 		AGI: 2,
 		WIS: 2,
@@ -47,9 +53,11 @@ export const enemies = [
 		atkMin:5,
 		atkMax:8,
 		armor: 5,
-		HP: 35
+		HP: 35,
+		EXP:100
 	},
-	{	name: "OwlBear",
+	{	contains: "enemy",
+		name: "OwlBear",
 		STR: 6,
 		AGI: 1,
 		WIS: 0,
@@ -59,9 +67,11 @@ export const enemies = [
 		atkMin:7,
 		atkMax:10,
 		armor: 0,
-		HP: 35
+		HP: 35,
+		EXP:120
 	},
-	{	name: "Chimera",
+	{	contains: "enemy",
+		name: "Chimera",
 		STR: 10,
 		AGI: 5,
 		WIS: 2,
@@ -71,9 +81,11 @@ export const enemies = [
 		atkMin:10,
 		atkMax:15,
 		armor: 0,
-		HP: 50
+		HP: 50,
+		EXP:140
 	},
-	{	name: "Golem",
+	{	contains: "enemy",
+		name: "Golem",
 		STR: 12,
 		AGI: 1, 
 		WIS: 7,
@@ -83,10 +95,12 @@ export const enemies = [
 		atkMin:11,
 		atkMax:15,
 		armor: 10,
-		HP: 70
+		HP: 70,
+		EXP:160
 	},
 	
-	{	name: "Centipede",
+	{	contains: "enemy",
+		name: "Centipede",
 		STR: 8,
 		AGI: 1,
 		WIS: 5,
@@ -96,9 +110,11 @@ export const enemies = [
 		atkMin:8,
 		atkMax:20,
 		armor: 4,
-		HP: 75
+		HP: 75,
+		EXP:170
 	}, 
-	{	name: "Drake",
+	{	contains: "enemy",
+		name: "Drake",
 		STR: 15,
 		AGI: 8,
 		WIS: 0,
@@ -108,10 +124,12 @@ export const enemies = [
 		atkMin:25,
 		atkMax:50,
 		armor: 10,
-		HP: 100
+		HP: 100,
+		EXP:200
 	},
 	
-	{	name: "Dragon",
+	{	contains: "enemy",
+		name: "Dragon",
 		STR: 20,
 		AGI: 20,
 		WIS: 25,
@@ -121,8 +139,11 @@ export const enemies = [
 		atkMin:75,
 		atkMax:100,
 		armor: 10,
-		HP: 200
+		HP: 200,
+		EXP:250
 	}
 	
 	
 ]
+
+export default enemies

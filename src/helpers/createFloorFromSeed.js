@@ -26,9 +26,9 @@ import { wall, hero, emptySpace, dirtWall } from "../assets/mapObjects";
 import generateSeed from "./generateSeed"
 import roomGen from "./roomGen"
 import randomWalk from "./randomWalk"
-
+import spawnEnemies from "./spawnEnemies"
 export const floorSize = 100;
-export const startingPoint = 50; // hero will start at x=startingpoint, y=startingpoint
+export const startingPoint = 50; //hero will start at x=startingpoint, y=startingpoint
 
 /*
 procedural generation strategy:
@@ -52,7 +52,7 @@ Iterate over the array in a map function,   if the coordinates have modulus of a
 
 
 
-const createFloorFromSeed = () => {
+const createFloorFromSeed = (floornum) => {
   const oneDimension = new Array(floorSize);
   const oneDimensionFilled = oneDimension.fill(emptySpace);
   const twoDimension = oneDimension.fill([...oneDimensionFilled]);
@@ -76,10 +76,14 @@ const createFloorFromSeed = () => {
 	//call randomwalk
 	const s = Math.floor(emptyFloor.length / 2)
 	const floorWithHallways = randomWalk(floorWithRooms, seed2, [s,s])
+	const enemyAmount = Math.floor(Math.random() * 30) + 20;
+	console.log("passing floor to spawnEnemies")
+	const floorWithEnemies = spawnEnemies(floorWithHallways, enemyAmount, floornum)
   //insert hero in case anything overwrote them
-  floorWithHallways[s][s] = {...hero}
+  console.log(floorWithEnemies)
+  floorWithEnemies[s][s] = {...hero}
 
-  return floorWithHallways;
+  return floorWithEnemies;
 };
 
 	

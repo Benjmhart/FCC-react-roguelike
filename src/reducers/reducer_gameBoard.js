@@ -14,8 +14,7 @@ export default function(state = {}, action, createFloor = createFloorFromSeed, l
           currentFloor: 0,
           dungeon: []
         };
-        /*get seed function goes here and then is passed to createFloor*/
-        const floor = createFloor();
+        const floor = createFloor(newState.currentFloor);
         newState.dungeon.push(floor);
         //helper function to change visibility and set explored flags
         const newStateWithVisible = checkVis(startingpoint, newState, action.payload.perception) 
