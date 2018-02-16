@@ -2,7 +2,7 @@
 import enemies from "../assets/enemies"
 
 function spawnEnemies(floor, num, floornumber) {
-	if(num <= 0){console.log(floor)
+	if(num <= 0){
 		return floor}
 	const emptycoordsArr = floor.reduce((result, row, x)=> {
 		const subArr = row.reduce ((result2, cell, y) =>{
@@ -25,7 +25,6 @@ function spawnEnemies(floor, num, floornumber) {
 	if Floornumber = max floor && number = 1  {PLACE BOSS} - pick an enemy,  put king in its name, double its stats, and mark it boss: true
 	else place stairsc
 	*/
-	console.log(num)
 	const newnum = num - 1
 	return spawnEnemies(floor, newnum, floornumber);
 	

@@ -4,10 +4,10 @@ CURRENT TASK:
 
 
 CURRENT
-- enemy spawning
 - enemy glyphs
-- enemy movement
+- enemy movement (minmax toward hero coordinates at all times?)
 - apply oddshelper
+- updates to movement functionality for failed movement if trying to walk into an enemy
 - combat
  - death
  - hp loss
@@ -24,10 +24,11 @@ CURRENT
  - slice
  - smite
 - HUD responsiveness (hide stats and equipment, make bars thinner & longer across the top
-- touch/click transparent DIVs / move keypress events to gameview component  - below 780 px wide
+        - below 780 px wide
+- touch/click transparent DIVs / move keypress events to gameview or APP component  
 - master variables file (rates/sizes/odds etc)
 - linting and cleanup
----FIRST DELIVERY
+---FINAL DELIVERY
 
 (thing to chew on,  how will I prevent movement of several enemies into the same place on 
 the same turn,   or an enemy and a character who are two spaces apart)

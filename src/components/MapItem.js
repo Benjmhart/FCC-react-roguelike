@@ -20,6 +20,16 @@ const MapItem = ({disbool, contents, fogofwar}) => {
 	if(cellContents==="hero"){
 		fontAwesome.glyph = <i className="fa fa-user"></i>
 	}
+	if(cellContents ==="enemy" && contents.name ==="Rat"){fontAwesome.glyph ="🐀"}
+	if(cellContents ==="enemy" && contents.name ==="Goblin"){fontAwesome.glyph ="🦇"}
+	if(cellContents ==="enemy" && contents.name ==="Gremlin"){fontAwesome.glyph ="😈"}
+	if(cellContents ==="enemy" && contents.name ==="Villain"){fontAwesome.glyph ="🤵"}
+	if(cellContents ==="enemy" && contents.name ==="OwlBear"){fontAwesome.glyph ="🐗"}
+	if(cellContents ==="enemy" && contents.name ==="Chimera"){fontAwesome.glyph ="🦁"}
+	if(cellContents ==="enemy" && contents.name ==="Golem"){fontAwesome.glyph="🕴"}
+	if(cellContents ==="enemy" && contents.name ==="Centipede"){fontAwesome.glyph ="🐛"}
+	if(cellContents ==="enemy" && contents.name ==="Drake"){fontAwesome.glyph ="🐉"}
+	if(cellContents ==="enemy" && contents.name ==="Dragon"){fontAwesome.glyph ="🐲"}
 	//glyph case for stairs
 	//glyph case for enemies
 	

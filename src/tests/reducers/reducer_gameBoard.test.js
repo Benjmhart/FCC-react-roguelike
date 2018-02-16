@@ -91,10 +91,10 @@ describe("Character move functionality - cases: wall, emptySpace", () => {
 		const newdungeon = GameBoardReducer(prevState, actionSucceed, createFloorReal, localStorfunc)
 	it("puts the hero in new coordinates if payload.success=true", () => {
 		
-		expect(newdungeon.dungeon[1][1][2]).toEqual({...hero, visible:true})
+		expect(newdungeon.dungeon[1][1][2]).toEqual({...hero, visible:true, explored:true})
 	});
 	it("empties out old coordinates if payload.success=true", () => {
-		expect(newdungeon.dungeon[1][2][2]).toEqual({...emptySpace, visible:true})
+		expect(newdungeon.dungeon[1][2][2]).toEqual({...emptySpace, visible:true, explored:true})
 	})
 })
 

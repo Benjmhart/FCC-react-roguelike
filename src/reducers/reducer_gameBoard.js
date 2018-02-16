@@ -3,6 +3,7 @@ import { UPDATE_CHAR, CHAR_MOVE, LOAD_GAME } from "../actions/actionTypes";
 import { hero, emptySpace } from "../assets/mapObjects";
 import removeAndSetLocalStorage from "../helpers/removeAndSetLocalStorage";
 import checkVisible from "../helpers/checkVisible"
+import enemiesMove from "../helpers/enemiesMove"
 
 const startingpoint = [50,50];
 
@@ -27,8 +28,10 @@ export default function(state = {}, action, createFloor = createFloorFromSeed, l
     case CHAR_MOVE: {
       //this will eventually handle creature movement & combat
       if(action.payload.success === false){
-        localStor(state, "gameBoard")
-        return state}
+        const newState = {...state}
+        newState.dungeon[newState.currentFloor] = enemiesMove(newState.dungeon[newState.currentFloor], action.payload.prevHeroCoords)
+        localStor(newState, "gameBoard")
+        return newState}
       //handle stairs here - NEVER move character directly onto stairs (potentially overwrite stairs)
       const newCoords = action.payload.newHeroCoords;
       const oldCoords = action.payload.prevHeroCoords;
@@ -36,7 +39,7 @@ export default function(state = {}, action, createFloor = createFloorFromSeed, l
       newState.dungeon[newState.currentFloor][oldCoords[0]][oldCoords[1]] = {...emptySpace};
       newState.dungeon[newState.currentFloor][newCoords[0]][newCoords[1]] = {...hero};
       //helper function to change visibility and set explored flags
-      
+      newState.dungeon[newState.currentFloor] = enemiesMove(newState.dungeon[newState.currentFloor], newCoords)
       const newStateWithVisible = checkVis(newCoords, newState, action.payload.character.truePER) 
       localStor(newStateWithVisible, "gameBoard")
       return newStateWithVisible

@@ -5,10 +5,13 @@ export default function([cx,cy], mapObject, perception) {
 			const diffx = x-cx;
 			const diffy = y-cy;
 			const diff = Math.sqrt(diffx*diffx + diffy*diffy)
-			if(diff < perception){return {...cell, visible:true}}
+			if(diff < perception){return {...cell, visible:true, explored: true}}
 			else if(cell.visible===true){
 				return {...cell, visible:false, explored:true}
 				
+			}
+			if(cell.explored===true && !('visible' in cell)){
+				cell.visible = false;
 			}
 			return cell
 		})

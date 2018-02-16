@@ -152,7 +152,13 @@ button {
   background-color: peru; }
 
 .map-item.enemy {
-  background-color: red; }
+  background-color: chocolate;
+  color: red; }
+
+.map-item.enemy.not-visible {
+  background-color: saddlebrown; }
+  .map-item.enemy.not-visible p {
+    display: none; }
 
 .map-item p {
   margin: 0px;

@@ -181,7 +181,12 @@ button {
     background-color: peru;
   }
   &.enemy {
-    background-color:red;
+    background-color: chocolate;
+    color:red;
+  }
+  &.enemy.not-visible {
+    background-color: saddlebrown;
+    & p{display:none;}
   }
   & p {
   margin: 0px;

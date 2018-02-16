@@ -77,10 +77,8 @@ const createFloorFromSeed = (floornum) => {
 	const s = Math.floor(emptyFloor.length / 2)
 	const floorWithHallways = randomWalk(floorWithRooms, seed2, [s,s])
 	const enemyAmount = Math.floor(Math.random() * 30) + 20;
-	console.log("passing floor to spawnEnemies")
 	const floorWithEnemies = spawnEnemies(floorWithHallways, enemyAmount, floornum)
   //insert hero in case anything overwrote them
-  console.log(floorWithEnemies)
   floorWithEnemies[s][s] = {...hero}
 
   return floorWithEnemies;
