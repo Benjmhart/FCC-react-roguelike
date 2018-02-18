@@ -1,6 +1,7 @@
 //does all the action for any move attempt including combat or hitting a wall,  also carries an array of messages
 //does all the action for any move attempt including combat or hitting a wall,  also carries an array of messages
 import { CHAR_MOVE } from "./actionTypes";
+import processCombat from "../helpers/processCombat"
 
 export default function(keycode, floor, heroCoordsArr, character) {
   if (
@@ -67,11 +68,11 @@ export default function(keycode, floor, heroCoordsArr, character) {
   if (!pl.success) {
     pl.newHeroCoords = heroCoordsArr;
   }
-  //if success is false and any neighbor enemies,  receive damage & set combat to true
-  //helper function to populate damage received?
-  //if destination contains enemy, deal damage to target
-  //helper function to populate damage dealt
-  //assess for death, if hero death,  end the game, if enemy death, give exp and drops
+  //combat occurs
+  if(pl.success===false){
+    pl.combatDetails = processCombat(character, heroCoordsArr, pl.attemptedDirection, floor)
+  }
+  if(pl.combatDetails.received){pl.combat = true}
 
   if (pl.success && pl.attemptedDirection === "West") {
     pl.newHeroCoords = [heroCoordsArr[0], heroCoordsArr[1] - 1];

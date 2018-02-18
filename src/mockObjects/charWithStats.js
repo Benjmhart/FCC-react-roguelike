@@ -22,6 +22,7 @@ const charWithStats = {
 	totalArmor:2,
 	HP:16,
 	HPMAX:16,
+	EXP: 0,
 	nextLVL:80,
 	CLASS:"archaeologist"
 };

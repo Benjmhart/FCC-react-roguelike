@@ -37,9 +37,12 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 	const targets = []
 	
 	if(character.weapon.ability !== "beserk"){
-		targets.push({coords: destinationCoords, enemyCellObject:{...floor[destinationCoords[0]][destinationCoords[1]]}})
-	} else{neighbors.forEach(neighbor => targets.push(neighbor))}
+		if(floor[destinationCoords[0]][destinationCoords[1]].contains==="enemy"){
+			targets.push({coords: destinationCoords, enemyCellObject:{...(floor[destinationCoords[0]][destinationCoords[1]])}})
+		}
+	} else{neighbors.forEach(neighbor => {if(neighbor.contains==="enemy"){targets.push(neighbor)}})}
 	const dealt = targets.map( target => {
+		
 		const {STR, AGI, WIS, PER, CHA, LUK, atkMin, atkMax, armor} = target.enemyCellObject;
 		const dealtItem = {}
 		dealtItem.target = {...target}
@@ -49,6 +52,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		dealtItem.minDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMin + (0.8*trueSTR) + (0.4*trueAGI)) : 0
 		dealtItem.maxDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMax + (0.8*trueSTR) + (0.4*trueAGI)) : 0
 		dealtItem.damage = applyOddsWithinRange(dealtItem.minDamage, dealtItem.maxDamage) - armor;
+		
 		if(dealtItem.crit){dealtItem.damage *= 2}
 		if(dealtItem.target.enemyCellObject.HP <= dealtItem.damage){
 			dealtItem.kill = true
@@ -60,10 +64,10 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 				dealtItem.getEquipment = applyOddsBool(20)
 				if(dealtItem.getEquipment){
 					const equipTypes = ["weapon", "armor", "ring", "shoes", "helmet"]
-					const equipChoice = applyOddsWithinArray(equipTypes)
-					const equipDrop = equipment[character.CLASS][equipChoice][character[equipChoice].rarity + 1]
+					dealtItem.equipDropType = applyOddsWithinArray(equipTypes)
+					const equipDrop = equipment[character.CLASS][dealtItem.equipDropType][character[dealtItem.equipDropType].rarity + 1]
 					dealtItem.equipmentDrop = {}
-					dealtItem.equipmentDrop[equipChoice] = equipDrop
+					dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop
 				}
 				else{ 
 					dealtItem.healthDrop = applyOddsWithinArray([healthItems])
@@ -72,7 +76,31 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		}
 		return dealtItem
 	})
-	return { received, dealt }
+	const responseObject = { received, dealt}
+	//if hero died,  add a death boolean
+	const totalDamage = received.reduce((total, item) => {
+		return total + item.damage
+	}, 0)
+	responseObject.death = (character.HP <= totalDamage) ? true : false 
+	//if one of the targets was a boss and it died, add a win boolean
+	responseObject.win =  dealt.reduce((bool, item) => {
+		if(item.target.enemyCellObject.boss && item.kill){return true}
+		return bool;
+	}, false)
+	//process levelup
+	responseObject.totalEXPGain = dealt.reduce((total, item) => {
+		if(item.kill){return total+ item.target.enemyCellObject.EXP}
+		return total
+	}, 0)
+	if(responseObject.totalEXPGain + character.EXP >= character.nextLVL){
+		responseObject.LVLup = true
+		responseObject.LVLmod={}
+		const statOptions = ["STR","AGI","WIS","PER","CHA", "LUK"]
+		const statToChange = applyOddsWithinArray(statOptions)
+		responseObject.LVLmod[statToChange] = 2
+	}
+	if(received.length === 0 && dealt.length===0){return {}}
+	return responseObject
 }
 
 

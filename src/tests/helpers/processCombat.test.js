@@ -38,7 +38,7 @@ describe("basic combat functions", () => {
 	applyOddsBoolfunc.mockReturnValueOnce(true)//will the drop be equipment?
 	applyOddsWithinArrayfunc.mockReturnValueOnce("weapon")//what kind of drop will it be??
 	
-	const result2 = processCombat(charWithStats, heroCoords, direction, combatFloor,applyOddsBoolfunc, applyOddsWithinRangefunc, applyOddsWithinArrayfunc)
+	const result2 = processCombat(charWithStats, heroCoords, direction, combatFloor, applyOddsBoolfunc, applyOddsWithinRangefunc, applyOddsWithinArrayfunc)
 	it("deals damage to target", () => {
 		expect(result.dealt.length === 1).toBe(true)
 	})
