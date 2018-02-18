@@ -1,27 +1,29 @@
-import React from 'react';
-import { connect } from "react-redux"
+import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 export const MsgBox = ({ messages }) => {
-	const renderMsgs = () =>{
-		const content = messages.map((msg, i) => {
-			return (<p className="msg-item" key={`msg ${msg} ${i}`}>{msg}</p>)
-		})
-		return content
-	}
-	return (<div className="msg-container">
-		{renderMsgs()}
-	</div>)
-}
+  const renderMsgs = () => {
+    const content = messages.map((msg, i) => {
+      return (
+        <p className="msg-item" key={`msg ${msg} ${i}`}>
+          {msg}
+        </p>
+      );
+    });
+    return content;
+  };
+  return <div className="msg-container">{renderMsgs()}</div>;
+};
 //proptypes
 MsgBox.propTypes = {
-	messages: PropTypes.array.isRequired
-}
+  messages: PropTypes.array.isRequired
+};
 
 //connect
 function mapStateToProps(state) {
-	const { messages } = state;
-	return { messages }	
+  const { messages } = state;
+  return { messages };
 }
 
 export default connect(mapStateToProps)(MsgBox);

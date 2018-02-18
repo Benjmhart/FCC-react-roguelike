@@ -23,10 +23,11 @@ STEPS
 
 //return 2d array
 import { wall, hero, emptySpace, dirtWall } from "../assets/mapObjects";
-import generateSeed from "./generateSeed"
-import roomGen from "./roomGen"
-import randomWalk from "./randomWalk"
-import spawnEnemies from "./spawnEnemies"
+import generateSeed from "./generateSeed";
+import roomGen from "./roomGen";
+import randomWalk from "./randomWalk";
+import spawnEnemies from "./spawnEnemies";
+
 export const floorSize = 100;
 export const startingPoint = 50; //hero will start at x=startingpoint, y=startingpoint
 
@@ -49,41 +50,40 @@ Placing monsters
 Iterate over the array in a map function,   if the coordinates have modulus of a certain number off the seed,  place an enemy there. 
 */
 
-
-
-
-const createFloorFromSeed = (floornum) => {
+const createFloorFromSeed = floornum => {
   const oneDimension = new Array(floorSize);
   const oneDimensionFilled = oneDimension.fill(emptySpace);
   const twoDimension = oneDimension.fill([...oneDimensionFilled]);
   const emptyFloor = twoDimension.map((row, x) => {
     return row.map((cell, y) => {
       if (x === 0 || x === floorSize - 1 || y === 0 || y === floorSize - 1) {
-        return {...wall};
+        return { ...wall };
       }
-      if(x===startingPoint && y===startingPoint) {
-        return {...hero};
+      if (x === startingPoint && y === startingPoint) {
+        return { ...hero };
       }
-      return {...dirtWall};
+      return { ...dirtWall };
     });
   });
-  
+
   // call generateSeed
   const seed = generateSeed(100);
-  const seed2 = generateSeed(150)
+  const seed2 = generateSeed(150);
   //call roomGen
-	const floorWithRooms = roomGen(emptyFloor, seed);
-	//call randomwalk
-	const s = Math.floor(emptyFloor.length / 2)
-	const floorWithHallways = randomWalk(floorWithRooms, seed2, [s,s])
-	const enemyAmount = Math.floor(Math.random() * 30) + 20;
-	const floorWithEnemies = spawnEnemies(floorWithHallways, enemyAmount, floornum)
+  const floorWithRooms = roomGen(emptyFloor, seed);
+  //call randomwalk
+  const s = Math.floor(emptyFloor.length / 2);
+  const floorWithHallways = randomWalk(floorWithRooms, seed2, [s, s]);
+  const enemyAmount = Math.floor(Math.random() * 30) + 20;
+  const floorWithEnemies = spawnEnemies(
+    floorWithHallways,
+    enemyAmount,
+    floornum
+  );
   //insert hero in case anything overwrote them
-  floorWithEnemies[s][s] = {...hero}
+  floorWithEnemies[s][s] = { ...hero };
 
   return floorWithEnemies;
 };
 
-	
-	
 export default createFloorFromSeed;

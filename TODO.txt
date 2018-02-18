@@ -4,10 +4,6 @@ CURRENT TASK:
 
 
 CURRENT
-- enemy glyphs
-- enemy movement (minmax toward hero coordinates at all times?)
-- apply oddshelper
-- updates to movement functionality for failed movement if trying to walk into an enemy
 - combat
  - death
  - hp loss
@@ -18,11 +14,11 @@ CURRENT
 - stairs/floors
 - bossfight/victory
 - class abilities
- - dig
- - beserk
- - flash
- - slice
- - smite
+ - dig - can move through dirtwall
+ - beserk- damage all nearby enemies with attack
+ - flash - do extra damage by charisma
+ - slice - ignore armor
+ - smite - do massive damage by wisdom
 - HUD responsiveness (hide stats and equipment, make bars thinner & longer across the top
         - below 780 px wide
 - touch/click transparent DIVs / move keypress events to gameview or APP component  

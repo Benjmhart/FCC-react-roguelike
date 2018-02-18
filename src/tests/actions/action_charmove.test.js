@@ -9,6 +9,8 @@ import { CHAR_MOVE } from "../../actions/actionTypes"
 import mapObject3x3 from "../../mockObjects/mapObject3x3"
 import { wall, emptySpace } from "../../assets/mapObjects"
 import oldChar from "../../mockObjects/oldCharacter"
+import charWithStats from "../../mockObjects/charWithStats"
+import enemies from "../../assets/enemies"
 
 const arrowLeft = 37
 const keyA = 65
@@ -22,6 +24,7 @@ const floor1 = mapObject3x3.dungeon[mapObject3x3.currentFloor]
 const heroCoordsfloor1 = [1,1]
 const floor2 = mapObject3x3.dungeon[1]
 const heroCoordsfloor2 = [2,2]
+const cleanFloor2 = [...floor2]
 
 describe("NSEW (both keys), TO WALL", () => {
 	//note if using below action as template to code from, include attemptedDirection
@@ -113,12 +116,16 @@ describe("NSEW (both keys), TO WALL", () => {
 	it("will return the correct action when attempt to walk UP into EMPTY (arrow Key)",() => {
 		action.payload.attemptedDirection="North"
 		action.payload.newHeroCoords=[1,2]
-		const result = charMove(arrowUp, floor2, heroCoordsfloor2, oldChar)
+		// fixing initial conditions for test due to object pollution I can't identify
+		cleanFloor2[1][1] = { contains:"none"}
+		cleanFloor2[1][2] = { contains: "none"}
+		cleanFloor2[2][2] = { contains:"hero"}
+		const result = charMove(arrowUp, cleanFloor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	
 	it("will return the correct action when attempt to walk UP into EMPTY (W Key)",() => {
-		const result = charMove(keyW, floor2, heroCoordsfloor2, oldChar)
+		const result = charMove(keyW, cleanFloor2, heroCoordsfloor2, oldChar)
 		expect(result).toEqual(action)
 	})
 	
@@ -133,7 +140,33 @@ describe("NSEW (both keys), TO WALL", () => {
 		expect(result).toEqual(action)
 	})
 })
-//NSEW (both keys), TO DIRT (dig/without dig)
-//NSEW (both keys), to ENEMY (combat) - will require mocking functions that create random multipliers
-//NSEW (both keys), to STAIRSDOWN
-//NSEW (both keys), to STAIRSUP
+
+describe("combat tests", () => {
+	const combatFloor = [...floor2]
+	const enemysquare = {...enemies[1], contains:"enemy"}
+	combatFloor[2][2] = {...emptySpace}
+	combatFloor[1][2] = {contains:"hero"}
+	combatFloor[1][1] = {...enemysquare}
+	const heroCoordsCombat = [1,2]
+	//player moves into wall
+	const action1 = charMove(keyW, combatFloor, heroCoordsCombat, charWithStats)
+	//player moves into enemy
+	const action2 = charMove(keyA, combatFloor, heroCoordsCombat, charWithStats)
+	it("has combat marked true if player fails to move and is next to enemy", () => {
+		expect(action1.payload.combat).toBe(true)
+	})
+	it("has combat marked true if player attempts to move into an enemy", () => {
+		expect(action2.payload.combat).toBe(true)
+	})
+	it("has combatDetails output received if player attempts to move into an enemy", () => {
+		expect(action2.payload.combatDetails.received.length > 0).toBe(true)
+	})
+	it("has combatDetails output dealt if player attempts to move into an enemy", () => {
+		expect(action2.payload.combatDetails.dealt.length > 0).toBe(true)
+	})
+	it("has combatDetails output received if player attempts to move into a wall with an enemy nearby", () => {
+		expect(action1.payload.combatDetails.received.length > 0).toBe(true)
+	})
+})
+//move to stairs
+//move to dirtwall with DIG action

@@ -9,8 +9,11 @@ import trueStats from "../helpers/trueStats";
 import removeAndSetLocalStorage from "../helpers/removeAndSetLocalStorage";
 //need to expand to accomodate update character action
 
-export default function(state = {}, action, localStore = removeAndSetLocalStorage) {
-  
+export default function(
+  state = {},
+  action,
+  localStore = removeAndSetLocalStorage
+) {
   switch (action.type) {
     case CREATE_CHARACTER:
       return action.payload;
@@ -18,7 +21,7 @@ export default function(state = {}, action, localStore = removeAndSetLocalStorag
       return action.payload.character;
     case UPDATE_CHAR: {
       const newstate = { ...state };
-      
+
       if (action.payload.CLASS) {
         newstate.CLASS = action.payload.CLASS;
         newstate.armor = equipment[newstate.CLASS].armor[0];
@@ -29,10 +32,10 @@ export default function(state = {}, action, localStore = removeAndSetLocalStorag
         return newstate;
       }
       //character is finalized in creator, create truestats
-      if(action.payload.isNew===false){
-          const charWithTrueStats = trueStats(newstate);
-          localStore(charWithTrueStats, "character")
-          return charWithTrueStats;
+      if (action.payload.isNew === false) {
+        const charWithTrueStats = trueStats(newstate);
+        localStore(charWithTrueStats, "character");
+        return charWithTrueStats;
       }
       //assigns stat during charactercreation
       const keys = Object.keys(action.payload);

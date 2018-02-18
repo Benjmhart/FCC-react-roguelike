@@ -6,7 +6,6 @@ import MessagesReducer from "./reducer_messages";
 import ScreenSizeReducer from "./reducer_screenSize";
 import FogOfWarReducer from "./reducer_fogofwar";
 
-
 const rootReducer = combineReducers({
   gameBoard: GameBoardReducer,
   character: CharacterReducer,
