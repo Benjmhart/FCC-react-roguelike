@@ -1,12 +1,12 @@
-import applyOddsBool from "./applyOddsBool"
-import applyOddsWithinRange from "./applyOddsWithinRange"
-import applyOddsWithinArray from "./applyOddsWithinArray"
+import applyOddsBoolfunc from "./applyOddsBool"
+import applyOddsWithinRangefunc from "./applyOddsWithinRange"
+import applyOddsWithinArrayfunc from "./applyOddsWithinArray"
 import equipment from "../assets/equipment"
 import healthItems from "../assets/healthItems"
 
 
 //takes character, heroCoords, Direction, floor
-export default function(character, [herox, heroy], direction, floor, ) {
+export default function(character, [herox, heroy], direction, floor, applyOddsBool = applyOddsBoolfunc, applyOddsWithinRange = applyOddsWithinRangefunc, applyOddsWithinArray = applyOddsWithinArrayfunc) {
 	//extracts all the enemies and allprocesses their damage
 	//neighbors [west, north, east south]
 	const directionsList = ["West", "North", "East", "South"]
@@ -60,11 +60,10 @@ export default function(character, [herox, heroy], direction, floor, ) {
 				dealtItem.getEquipment = applyOddsBool(20)
 				if(dealtItem.getEquipment){
 					const equipTypes = ["weapon", "armor", "ring", "shoes", "helmet"]
-					const equipChoice = applyOddsWithinArray([equipTypes])
-					console.log(equipChoice)
-					console.log(character[equipChoice])
-					//const equipDrop = equipment[character.CLASS][equipChoice][character[equipChoice].rarity + 1]
-					//dealtItem.equipmentDrop[equipChoice] = equipDrop
+					const equipChoice = applyOddsWithinArray(equipTypes)
+					const equipDrop = equipment[character.CLASS][equipChoice][character[equipChoice].rarity + 1]
+					dealtItem.equipmentDrop = {}
+					dealtItem.equipmentDrop[equipChoice] = equipDrop
 				}
 				else{ 
 					dealtItem.healthDrop = applyOddsWithinArray([healthItems])
@@ -73,7 +72,6 @@ export default function(character, [herox, heroy], direction, floor, ) {
 		}
 		return dealtItem
 	})
-	console.log({ received, dealt })
 	return { received, dealt }
 }
 
