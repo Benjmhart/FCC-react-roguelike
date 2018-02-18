@@ -6,8 +6,8 @@ import enemies from "../../assets/enemies"
 
 
 const combatFloor = [...mapObject3x3.dungeon[1]]
-combatFloor[2][1] = {...enemies[0], contains:"enemy"}
-combatFloor[1][2] = {...enemies[1], contains:"enemy"}
+combatFloor[2][1] = {...enemies[0], contains:"enemy", HP:2}
+combatFloor[1][2] = {...enemies[1], contains:"enemy", HP:2}
 const heroCoords = [2,2]
 const direction = "West"
 const result = processCombat(charWithStats, heroCoords, direction, combatFloor)
