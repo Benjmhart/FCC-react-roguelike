@@ -43,7 +43,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 	} else{neighbors.forEach(neighbor => {if(neighbor.contains==="enemy"){targets.push(neighbor)}})}
 	const dealt = targets.map( target => {
 		
-		const {STR, AGI, WIS, PER, CHA, LUK, atkMin, atkMax, armor} = target.enemyCellObject;
+		const { AGI, WIS, PER, LUK, armor} = target.enemyCellObject;
 		const dealtItem = {}
 		dealtItem.target = {...target}
 		dealtItem.hit = applyOddsBool(AGI * (truePER*trueWIS)+(trueLUK*2))
@@ -70,7 +70,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 					dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop
 				}
 				else{ 
-					dealtItem.healthDrop = applyOddsWithinArray([healthItems])
+					dealtItem.healthDrop = applyOddsWithinArray(healthItems)
 				}
 			}
 		}
@@ -78,10 +78,10 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 	})
 	const responseObject = { received, dealt}
 	//if hero died,  add a death boolean
-	const totalDamage = received.reduce((total, item) => {
+	responseObject.totalDamage = received.reduce((total, item) => {
 		return total + item.damage
 	}, 0)
-	responseObject.death = (character.HP <= totalDamage) ? true : false 
+	responseObject.death = (character.HP <= responseObject.totalDamage) ? true : false 
 	//if one of the targets was a boss and it died, add a win boolean
 	responseObject.win =  dealt.reduce((bool, item) => {
 		if(item.target.enemyCellObject.boss && item.kill){return true}

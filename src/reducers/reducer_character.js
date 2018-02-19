@@ -56,10 +56,47 @@ export default function(
       newstate.AVL = 30 - sum;
       return newstate;
     }
-    case CHAR_MOVE:
+    case CHAR_MOVE: {
+      //clone the state
+      const newState = {...state}
       //update character with combat outcomes
-      localStore(state, "character");
-      return state;
+      
+      if(action.payload.combat){
+        if(action.payload.combatDetails.death || action.payload.combatDetails.win){
+          localStore(null, "character", true);
+          return {}
+        }
+        //change HP by combat.totalDamage
+        newState.HP = state.HP - action.payload.combatDetails.totalDamage;
+        // change EXP by combat.totalEXP
+        newState.EXP = state.EXP + action.payload.combatDetails.totalEXPGain
+        //if statItem Drop,   adjust base stats/HP
+        //if EquipItem drop,  change equipment
+        action.payload.combatDetails.dealt.forEach(target => {
+          if(target.healthDrop){
+            console.log(target.healthDrop)
+            const modKeys = Object.keys(target.healthDrop.mod)
+            modKeys.forEach(key=>{
+              newState[key] = newState[key] + target.healthDrop.mod[key]
+            })
+          }
+          if(target.getEquipment){
+            newState[target.equipDropType] = target.equipmentDrop
+          }
+        })
+        //if LevelUp,  change base stats and heal
+        if(action.payload.combatDetails.LVLmod){
+          const LVLkeys = Object.keys(action.payload.combatDetails.LVLmod)
+          LVLkeys.forEach(key => {
+            newState[key] = newState[key] + action.payload.combatDetails.LVLmod[key];
+          })
+        }
+      
+      }
+      const charWithTrueStats = trueStats(newState)
+      localStore(charWithTrueStats, "character");
+      return charWithTrueStats;
+    }
     default:
       return state;
   }

@@ -4,12 +4,26 @@ CURRENT TASK:
 
 
 CURRENT
-- combat
- - death
- - hp loss
- - enemy death / exp gain
- - item drop (health item, stat item, equipment upgrades)
- - levelling system
+- combat in character reducer/truestats
+  - Damage from combat
+  - healing from items
+  - stats from items
+  - healing from level
+  - equipment from drop
+  - death
+  - Win
+- combat in GameBoard reducer
+ - Kill Enemy - maintain visible and explored props
+ - update enemy HP 
+ - death 
+ - win
+- Combat in message reducer
+ - damage received message
+ - damage dealt message
+ - kills message
+ - items message
+ - level message
+ reducer/state for win/loss and injection to titleScreen Component 
 - hover for info about enemy
 - stairs/floors
 - bossfight/victory

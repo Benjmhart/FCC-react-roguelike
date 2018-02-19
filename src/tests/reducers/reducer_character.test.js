@@ -14,7 +14,9 @@ import {
 } from "../../actions/actionTypes";
 import newCharacter from "../../mockObjects/newCharacter";
 import oldCharacter from "../../mockObjects/oldCharacter";
-
+import charWithStats from "../../mockObjects/charWithStats";
+import { getLVLup, getWin, getDead, getHealthItem, getStatItem, getItemDrop, getNothing, getNoKill } from "../../mockObjects/combatObjects"
+import enemies from "../../assets/enemies"
 
 jest.mock("../../index.js", () => "root");
 const localStorefunc = jest.fn();
@@ -183,9 +185,9 @@ describe("localStorage function", () =>{
     const empty = {};
     const action = {
       type: CHAR_MOVE,
-      
+      payload: {}
     };
-    CharacterReducer(empty, action, localStorefunc)
+    CharacterReducer(oldCharacter, action, localStorefunc)
     expect(localStorefunc).toHaveBeenCalled();
     localStorefunc.mockClear();
   })
@@ -201,6 +203,165 @@ describe("localStorage function", () =>{
     localStorefunc.mockClear();
   })
 })
+
+describe("combat tests", () => {
+  //create actions with getLVLup, getWin, getDead, getHealthItem, getEquipment, getNothing, getNoKill on them
+  const actionWithNoKill = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNoKill,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+    };
+    const charForCombat = {...charWithStats}
+    charForCombat.HP=50
+    charForCombat.HPMax=50
+    
+    const resultWithNoKill = CharacterReducer(charForCombat, actionWithNoKill, localStorefunc);
+  it('reduces HP when attack received', ()=>{
+    expect(resultWithNoKill.HP).toBe(30);
+  })
+  const actionWithEXPGain = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNothing,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithExpGain = CharacterReducer(charForCombat, actionWithEXPGain, localStorefunc);
+  it('changes exp on kill', () => {
+    expect(resultWithExpGain.EXP).toBe(20)
+  })
+  
+  const actionWithHealthItem = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getHealthItem,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithHealthItem = CharacterReducer(charForCombat, actionWithHealthItem, localStorefunc);
+  it("changes HP for a health Item", () => {
+    expect(resultWithHealthItem.HP).toBe(37);
+  })
+  const actionWithStatItem = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getStatItem,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithStatItem = CharacterReducer(charForCombat, actionWithStatItem, localStorefunc);
+  it("changes Stats for a stat Item", () =>{
+    expect(resultWithStatItem.STR).toBe(7)
+  })
+  
+  const actionWithEquipItem = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getItemDrop
+       ,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithEquipItem = CharacterReducer(charForCombat, actionWithEquipItem, localStorefunc);
+  it("changes equipment and stats for an equipment Item", () => {
+    expect(resultWithEquipItem.helmet.name).toBe("glasses")
+  })
+  
+  const actionWithLVLup = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getLVLup,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithLVLup = CharacterReducer(charForCombat, actionWithLVLup, localStorefunc);
+  it("changes stats on a levelup", () => {
+    expect(resultWithLVLup.STR).toBe(7)
+  })
+  it("sets a new LVL on a levelup - truestats job", () => {
+    expect(resultWithLVLup.LVL).toBe(2)
+  })
+  
+  it("sets a new nextLVL on a levelup - truestats job", () => {
+    expect(resultWithLVLup.LVL).toBe(160)
+  })
+  it("resets EXP amount on levelup -truestats?", () => {
+    expect(resultWithLVLup.EXP).toBe(20)
+  })
+  it("resets health on a levelup - this may be truestats job", () => {
+    expect(resultWithLVLup.HP).toEqual(resultWithLVLup.HPMAX)
+  })
+  const actionWithDeath = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getDead,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithDeath = CharacterReducer(charForCombat, actionWithDeath, localStorefunc);
+  const emptyObj = {}
+  it("clears the state on a death", () => {
+    expect(resultWithDeath).toEqual(emptyObj);
+  })
+  
+  const actionWithWin = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getWin,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+  const resultWithWin = CharacterReducer(charForCombat, actionWithWin, localStorefunc);
+  it("clears the state on a win", () =>{
+    expect(resultWithWin).toEqual(emptyObj)
+  })
+  it("trues the stats at the end of any combat", () => {
+    expect (resultWithStatItem.trueSTR).toBe(charForCombat.trueSTR+2)
+  })
+})
+
 /*
 it("passes any changes to the character  into state when passed a MOVE_CHARACTER action");
 */

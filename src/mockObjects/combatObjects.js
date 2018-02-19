@@ -34,7 +34,7 @@ export const getItemDrop = {
        		{ 
        			target: {
        				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
         		dodge: false,
@@ -51,7 +51,9 @@ export const getItemDrop = {
         	} 
         ],
     	death: false,
-    	win: false 
+    	win: false ,
+          totalDamage:20,
+          totalEXPGain: 20, 
 	
 }
 
@@ -80,7 +82,7 @@ export const getHealthItem = {
         		crit: false,
         		minDamage: 0,
         		maxDamage: 0,
-        		damage: 0 
+        		damage: 0
          	
         	} 
          ],
@@ -89,7 +91,7 @@ export const getHealthItem = {
        		{ 
        			target: {
        				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
         		dodge: false,
@@ -101,11 +103,13 @@ export const getHealthItem = {
         		expGain: 20,
         		willDrop: true,
         		getEquipment: false,
-        		healthDrop: {name: "mega sandwich", mod: {HP: 20}}
+        		healthDrop: {name: "mega sandwich", mod: {HP: 7}}
         	} 
         ],
     	death: false,
-    	win: false 
+    	win: false,
+     totalDamage:20,
+     totalEXPGain: 20, 
 	
 }
 
@@ -115,7 +119,7 @@ export const getDead = {
        		{ 
        			origin:	{
        				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: false,
         		dodge: true,
@@ -143,7 +147,7 @@ export const getDead = {
        		{ 
        			target: {
        				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
         		dodge: false,
@@ -154,7 +158,8 @@ export const getDead = {
         	} 
         ],
     	death: true,
-    	win: false 
+    	win: false,
+     totalDamage:200,
 	
 }
       
@@ -193,7 +198,7 @@ export const getWin = {
        		{ 
        			target: {
        				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
         		dodge: false,
@@ -205,15 +210,79 @@ export const getWin = {
         		expGain: 20,
         		willDrop: true,
         		getEquipment: false,
-        		healthDrop: {name: "mega sandwich", mod: {HP: 20}}
+        		healthDrop: {name: "mega sandwich", mod: {HP: 7}}
         	} 
         ],
     	death: false,
-    	win: true 
+    	win: true,
+     totalDamage:20,
+     totalEXPGain: 20,
 	
 }
 
 export const getLVLup = { 
+	received: 
+       [ 
+       		{ 
+       			origin:	{
+       				coords: [1,2],
+       				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0 
+       		},
+       		{
+        	origin:	{
+       				coords: [2,1],
+       				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0 
+         	
+        	} 
+         ],
+    	dealt: 
+       [ 
+       		{ 
+       			target: {
+       				coords: [1,2],
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
+    			},
+        		hit: true,
+        		dodge: false,
+        		crit: true,
+        		minDamage: 7,
+        		maxDamage: 10,
+        		damage: 200,
+        		kill: true,
+        		expGain: 20,
+        		willDrop: true,
+        		getEquipment: true,
+        		equipDropType: "helmet",
+        		equipmentDrop: {name:"glasses", mod:{PER:2}, armor:-1, rarity:1}
+        	} 
+        ],
+    	death: false,
+    	win: false, 
+     totalDamage:20,
+     totalEXPGain: 100,
+    	LVLup:true,
+    	LVLmod: {STR:2}
+	
+}
+
+export const getNothing = {
+	received: 
+       [ 
+       		{ 
        			origin:	{
        				coords: [1,2],
        				enemyCellObject:{...enemies[1]}
@@ -244,7 +313,111 @@ export const getLVLup = {
        		{ 
        			target: {
        				coords: [1,2],
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
+    			},
+        		hit: true,
+        		dodge: false,
+        		crit: true,
+        		minDamage: 7,
+        		maxDamage: 10,
+        		damage: 200,
+        		kill: true,
+        		expGain: 20,
+        		willDrop: false
+        	} 
+        ],
+     totalDamage:20,
+     totalEXPGain: 20,
+    	death: false,
+    	win: false
+	
+}
+
+export const getNoKill = { 
+	received: 
+       [ 
+       		{ 
+       			origin:	{
+       				coords: [1,2],
        				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0 
+       		},
+        	{ 
+         		origin: {
+       				coords: [2,1],
+       				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0 
+         	
+        	} 
+         ],
+    	dealt: 
+       [ 
+       		{ 
+       			target: {
+       				coords: [1,2],
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
+    			},
+        		hit: true,
+        		dodge: false,
+        		crit: true,
+        		minDamage: 7,
+        		maxDamage: 10,
+        		damage: 200,
+        		kill: false
+        	}
+        ],
+        
+        totalDamage:20
+	
+}
+
+export const getStatItem = { 
+	received: 
+       [ 
+       		{ 
+       			origin:	{
+       				coords: [1,2],
+       				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0 
+       		},
+        	{ 
+         		origin: {
+       				coords: [2,1],
+       				enemyCellObject:{...enemies[1]}
+    			},
+        		hit: false,
+        		dodge: true,
+        		crit: false,
+        		minDamage: 0,
+        		maxDamage: 0,
+        		damage: 0
+         	
+        	} 
+         ],
+    	dealt: 
+       [ 
+       		{ 
+       			target: {
+       				coords: [1,2],
+       				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
         		dodge: false,
@@ -255,15 +428,13 @@ export const getLVLup = {
         		kill: true,
         		expGain: 20,
         		willDrop: true,
-        		getEquipment: true,
-        		equipDropType: "helmet",
-        		equipmentDrop: {name:"glasses", mod:{PER:2}, armor:-1, rarity:1}
+        		getEquipment: false,
+        		healthDrop: {name: "potion of might", mod: {STR: 2}}
         	} 
         ],
     	death: false,
-    	win: false, 
-    	totalEXP:100,
-    	LVLup:true;
-    	LVLmod: {STR:2}
+    	win: false,
+     totalDamage:20,
+     totalEXPGain: 20, 
 	
 }
