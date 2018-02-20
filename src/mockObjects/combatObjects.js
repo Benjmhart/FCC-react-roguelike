@@ -346,7 +346,7 @@ export const getNoKill = {
         		crit: false,
         		minDamage: 0,
         		maxDamage: 0,
-        		damage: 0 
+        		damage: 0
        		},
         	{ 
          		origin: {
@@ -358,7 +358,7 @@ export const getNoKill = {
         		crit: false,
         		minDamage: 0,
         		maxDamage: 0,
-        		damage: 0 
+        		damage: 5 
          	
         	} 
          ],

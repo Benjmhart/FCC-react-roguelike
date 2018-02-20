@@ -4,6 +4,8 @@
 import MessagesReducer from "../../reducers/reducer_messages";
 import { UPDATE_CHAR, CHAR_MOVE, LOAD_GAME } from "../../actions/actionTypes";
 import { wall, emptySpace } from "../../assets/mapObjects"
+import { getLVLup, getWin, getDead, getHealthItem, getItemDrop, getNothing, getNoKill } from "../../mockObjects/combatObjects"
+import enemies from "../../assets/enemies"
 
 const empty = [];
 const localStorfunc = jest.fn();
@@ -106,4 +108,135 @@ describe("loadGame functionality", () => {
 	}
 	const premonition = ["1", "2", "you took a nap"]
 	expect(MessagesReducer([], action)).toEqual(premonition);
+})
+describe("combat functionality", () => {
+	
+	//calls will resemble MessagesReducer([], action, localStorfunc)
+	const actionWithDeath = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getDead,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const actionWithWin = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getWin,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const actionWithGetNothing = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNothing,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const actionWithGetNoKill = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNoKill,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+    };
+	const actionWithGetHealthItem = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getHealthItem,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const actionWithGetEquipment = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getItemDrop
+       ,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const actionWithGetLVLup = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getLVLup,
+				success:false,
+				prevHeroCoords: [1,1],
+				newHeroCoords: [1,1],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }
+	const empty = []
+	
+	it("wipes state when passed a death object", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithDeath, localStorfunc)
+		expect(result).toEqual([])
+	})
+	it("wipes state with passed a win object", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithWin, localStorfunc)
+		expect(result).toEqual([])
+	})
+	it("provides a message when you do damage and receive damage (received damage case)", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetNoKill, localStorfunc)
+		expect(result[result.length-2]).toBe('the goblin at [2,1] hit you for 5')
+	})
+	//add case for multiple successful enemy attacks
+	//add case for dodge
+	//add case for enemy miss
+	it("provides a message when you do damage and receive damage (dealt damage case)", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetNoKill, localStorfunc)
+		expect(result[result.length-1]).toBe('you hit the goblin at [2,1] for 8')
+	})
+	//add case for multiple successful hits
+	//add case for enemy dodge
+	//add case for miss
+	it("provides a message when you kill something", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetNothing, localStorfunc)
+		expect(result[result.length-1]).toBe('you killed the goblin at [2,1]')
+	})
+	it("provides a message when you get a health item", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetHealthItem, localStorfunc)
+		expect(result[result.length-1]).toBe('received a mega sandwich')
+	})
+	it("provides a message when you get an equipment item", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetEquipment, localStorfunc)
+		expect(result[result.length-1]).toBe('received a glasses')
+	})
+	it("provides a message when you get a levelup", () => {
+		const result = MessagesReducer(['diabeetus'], actionWithGetLVLup, localStorfunc)
+		expect(result[result.length-1]).toBe('you gained a level! next level at 160 EXP')
+	})
+	
+	
 })

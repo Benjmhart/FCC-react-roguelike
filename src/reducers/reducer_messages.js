@@ -27,6 +27,13 @@ export default function(
           newState.push("You bumped into a wall");
         }
         //combat messages will go here
+        if(pl.combat===true){
+          if(pl.combatDetails.death || pl.combatDetails.win){
+            localStore(null, "messages", true)
+            return []
+          }
+          
+        }
       }
       if (pl.success === true) {
         newState.push(

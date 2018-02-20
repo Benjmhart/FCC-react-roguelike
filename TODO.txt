@@ -4,19 +4,6 @@ CURRENT TASK:
 
 
 CURRENT
-- combat in character reducer/truestats
-  - Damage from combat
-  - healing from items
-  - stats from items
-  - healing from level
-  - equipment from drop
-  - death
-  - Win
-- combat in GameBoard reducer
- - Kill Enemy - maintain visible and explored props
- - update enemy HP 
- - death 
- - win
 - Combat in message reducer
  - damage received message
  - damage dealt message
