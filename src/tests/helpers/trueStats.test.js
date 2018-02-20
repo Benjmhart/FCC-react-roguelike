@@ -1,6 +1,7 @@
 /*global expect*/
 import trueStats from "../../helpers/trueStats"
 import oldCharacter from "../../mockObjects/oldCharacter"
+import { charGainingLevelBeforeTrueStats, charGainingLevelAfterTrueStats } from "../../mockObjects/charGainingLevel"
 
 const youngCharacter = {...oldCharacter}
 youngCharacter.isNew = true;
@@ -21,8 +22,10 @@ describe("initial receive finished character & get stats from equipment", () => 
 	it("updates stats properly based on initial equipment loadout", () => {
 		expect(trueStats(youngCharacter)).toEqual(olderCharacter)
 	})
-	
-	
 })
-
-//describe ("get stats from combat outcomes (exp gain, levelup, combat damage, healing item, stat item, new equipment")
+describe("stat correction following combat", () => {
+	const result = trueStats(charGainingLevelBeforeTrueStats)
+	it("corrects stats for a character gaining a level or receiving new stats from an item or equipment", () => {
+		expect(result).toEqual(charGainingLevelAfterTrueStats);
+	})
+})

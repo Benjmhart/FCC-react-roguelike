@@ -220,7 +220,7 @@ describe("combat tests", () => {
     };
     const charForCombat = {...charWithStats}
     charForCombat.HP=50
-    charForCombat.HPMax=50
+    charForCombat.HPMAX=50
     
     const resultWithNoKill = CharacterReducer(charForCombat, actionWithNoKill, localStorefunc);
   it('reduces HP when attack received', ()=>{
@@ -315,7 +315,7 @@ describe("combat tests", () => {
   })
   
   it("sets a new nextLVL on a levelup - truestats job", () => {
-    expect(resultWithLVLup.LVL).toBe(160)
+    expect(resultWithLVLup.nextLVL).toBe(160)
   })
   it("resets EXP amount on levelup -truestats?", () => {
     expect(resultWithLVLup.EXP).toBe(20)

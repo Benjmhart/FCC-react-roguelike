@@ -29,7 +29,12 @@ export default function(character /*, changeEvent*/) {
   });
   //then calculate HPMAX and set HP equal to HPMAX
   //HPMAX = sum of all truestats *0.5 *level
-
+  
+  if(outputCharacter.EXP > outputCharacter.nextLVL){
+    outputCharacter.EXP = outputCharacter.EXP - outputCharacter.nextLVL;
+    outputCharacter.LVL += 1;
+    outputCharacter.LVLup = true
+  }
   const sum =
     outputCharacter.trueSTR +
     outputCharacter.trueAGI +
@@ -37,11 +42,14 @@ export default function(character /*, changeEvent*/) {
     outputCharacter.truePER +
     outputCharacter.trueCHA +
     outputCharacter.trueLUK;
-  outputCharacter.HPMAX = Math.ceil(sum * 0.5 * outputCharacter.LVL);
-  if (outputCharacter.isNew === true) {
+  if(outputCharacter.isNew === true || outputCharacter.LVLup===true) {
+    
+    outputCharacter.HPMAX = Math.ceil(sum * 0.5 * outputCharacter.LVL);
     outputCharacter.HP = outputCharacter.HPMAX;
     outputCharacter.isNew = false;
   }
+  if(outputCharacter.LVLup){delete outputCharacter.LVLup}
+  if(outputCharacter.HP > outputCharacter.HPMAX){outputCharacter.HP = outputCharacter.HPMAX}
   outputCharacter.nextLVL = nextLVLMultiplier * outputCharacter.LVL;
   return outputCharacter;
 }

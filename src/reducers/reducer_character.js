@@ -74,12 +74,12 @@ export default function(
         //if EquipItem drop,  change equipment
         action.payload.combatDetails.dealt.forEach(target => {
           if(target.healthDrop){
-            console.log(target.healthDrop)
             const modKeys = Object.keys(target.healthDrop.mod)
             modKeys.forEach(key=>{
               newState[key] = newState[key] + target.healthDrop.mod[key]
             })
           }
+          
           if(target.getEquipment){
             newState[target.equipDropType] = target.equipmentDrop
           }
