@@ -366,7 +366,7 @@ export const getNoKill = {
        [ 
        		{ 
        			target: {
-       				coords: [1,2],
+       				coords: [2,1],
        				enemyCellObject:{...enemies[1], contains:"enemy", visible:true, explored:true}
     			},
         		hit: true,
@@ -374,7 +374,7 @@ export const getNoKill = {
         		crit: true,
         		minDamage: 7,
         		maxDamage: 10,
-        		damage: 200,
+        		damage: 8,
         		kill: false
         	}
         ],

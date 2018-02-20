@@ -32,6 +32,10 @@ import mapObject3x3 from "../../mockObjects/mapObject3x3";
 import mapObjectVisible from "../../mockObjects/mapObjectVisible"
 import createFloorReal from "../../helpers/createFloorFromSeed"
 import charWithStats from "../../mockObjects/charWithStats"
+import { getWin, getDead, getNothing, getNoKill } from "../../mockObjects/combatObjects"
+import enemies from "../../assets/enemies"
+
+const cleanMapObjectVisible = {...mapObjectVisible}
 const empty = {};
 const createFloorFromSeed = jest.fn();
 const action = {type: UPDATE_CHAR, payload:{ isNew: false, perception:4 }}
@@ -130,4 +134,90 @@ describe("LoadGame functionality", () => {
 		}
 		expect(GameBoardReducer({}, action)).toEqual(mapObject3x3);
 	})
+})
+
+describe("combat tests", () => {
+	
+	const gameBoardForCombat = {...cleanMapObjectVisible}
+	gameBoardForCombat.currentFloor = 1
+	gameBoardForCombat.dungeon[1][1][2] = {
+		...enemies[1],
+		contains:"enemy",
+		explored:true,
+		visible:true
+	}
+	gameBoardForCombat.dungeon[1][2][1] = {
+		...enemies[1],
+		contains:"enemy",
+		explored:true,
+		visible:true
+	}
+	const actionWithDeath = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getDead,
+				success:false,
+				prevHeroCoords: [2,2],
+				newHeroCoords: [2,2],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }//testing statewipe on death
+	const actionWithWin ={
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getWin,
+				success:false,
+				prevHeroCoords: [2,2],
+				newHeroCoords: [2,2],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }//testing statewipe on win
+	const actionWithGetNothing = {
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNothing,
+				success:false,
+				prevHeroCoords: [2,2],
+				newHeroCoords: [2,2],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+  }//testing a kill
+	const actionWithGetNoKill ={
+      type: CHAR_MOVE,
+      payload: {
+       combat: true,
+       combatDetails: getNoKill,
+				success:false,
+				prevHeroCoords: [2,2],
+				newHeroCoords: [2,2],
+				destinationContents: {...enemies[1], contains:"enemy", visible:true, explored:true},
+				attemptedDirection: "North"
+      }
+    };// testing damage to enemy
+	const empty = {}
+	//calls will resemble GameBoardReducer(mapObject,  action, createFloorReal, localStorfunc)
+	
+	it("wipes state when passed a death object", ()=>{
+		const result = GameBoardReducer(gameBoardForCombat, actionWithDeath, createFloorReal, localStorfunc)
+		expect(result).toEqual(empty)
+	})
+	it("wipes state when passed a win object", ()=>{
+		const result = GameBoardReducer(gameBoardForCombat, actionWithWin, createFloorReal, localStorfunc)
+		expect(result).toEqual(empty)
+	})
+	it("removes one or more enemies when passed objects with kill props on dealt", () => {
+		const result = GameBoardReducer(gameBoardForCombat, actionWithGetNothing, createFloorReal, localStorfunc)
+		expect(result.dungeon[1][1][2].contains).toBe("none")
+	})
+	it("subtracts damage from HP of dealt targets", () => {
+		const result = GameBoardReducer(gameBoardForCombat, actionWithGetNoKill, createFloorReal, localStorfunc)
+		expect(result.dungeon[1][2][1].HP).toBe(12)
+	})
+	
 })
