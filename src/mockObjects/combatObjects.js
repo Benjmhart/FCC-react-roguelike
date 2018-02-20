@@ -353,8 +353,8 @@ export const getNoKill = {
        				coords: [2,1],
        				enemyCellObject:{...enemies[1]}
     			},
-        		hit: false,
-        		dodge: true,
+        		hit: true,
+        		dodge: false,
         		crit: false,
         		minDamage: 0,
         		maxDamage: 0,

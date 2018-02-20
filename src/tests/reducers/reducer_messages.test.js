@@ -209,21 +209,21 @@ describe("combat functionality", () => {
 	})
 	it("provides a message when you do damage and receive damage (received damage case)", () => {
 		const result = MessagesReducer(['diabeetus'], actionWithGetNoKill, localStorfunc)
-		expect(result[result.length-2]).toBe('the goblin at [2,1] hit you for 5')
+		expect(result[result.length-2]).toBe('the Goblin at [2,1] hit you for 5 damage!')
 	})
 	//add case for multiple successful enemy attacks
 	//add case for dodge
 	//add case for enemy miss
 	it("provides a message when you do damage and receive damage (dealt damage case)", () => {
 		const result = MessagesReducer(['diabeetus'], actionWithGetNoKill, localStorfunc)
-		expect(result[result.length-1]).toBe('you hit the goblin at [2,1] for 8')
+		expect(result[result.length-1]).toBe('you hit the Goblin at [2,1] for 8 damage!')
 	})
 	//add case for multiple successful hits
 	//add case for enemy dodge
 	//add case for miss
 	it("provides a message when you kill something", () => {
 		const result = MessagesReducer(['diabeetus'], actionWithGetNothing, localStorfunc)
-		expect(result[result.length-1]).toBe('you killed the goblin at [2,1]')
+		expect(result[result.length-1]).toBe('you killed the Goblin at [1,2]!')
 	})
 	it("provides a message when you get a health item", () => {
 		const result = MessagesReducer(['diabeetus'], actionWithGetHealthItem, localStorfunc)
@@ -235,7 +235,7 @@ describe("combat functionality", () => {
 	})
 	it("provides a message when you get a levelup", () => {
 		const result = MessagesReducer(['diabeetus'], actionWithGetLVLup, localStorfunc)
-		expect(result[result.length-1]).toBe('you gained a level! next level at 160 EXP')
+		expect(result[result.length-1]).toBe('You gained a Level! You are way cooler now than you were a second ago')
 	})
 	
 	

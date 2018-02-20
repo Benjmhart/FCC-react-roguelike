@@ -49,9 +49,7 @@ export default function(
             return {}
           }
           action.payload.combatDetails.dealt.forEach(dealtItem => {
-            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP = 
-            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP - dealtItem.damage
-            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP
+            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP =  newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP - dealtItem.damage
             if(dealtItem.kill){
               newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]] = { contains:"none", visible:true, explored:"true" }
             }

@@ -4,13 +4,8 @@ CURRENT TASK:
 
 
 CURRENT
-- Combat in message reducer
- - damage received message
- - damage dealt message
- - kills message
- - items message
- - level message
  reducer/state for win/loss and injection to titleScreen Component 
+ - bugtesting combat
 - hover for info about enemy
 - stairs/floors
 - bossfight/victory
