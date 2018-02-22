@@ -30,7 +30,7 @@ export default function(character /*, changeEvent*/) {
   //then calculate HPMAX and set HP equal to HPMAX
   //HPMAX = sum of all truestats *0.5 *level
   
-  if(outputCharacter.EXP > outputCharacter.nextLVL){
+  if(outputCharacter.EXP >= outputCharacter.nextLVL){
     outputCharacter.EXP = outputCharacter.EXP - outputCharacter.nextLVL;
     outputCharacter.LVL += 1;
     outputCharacter.LVLup = true
@@ -51,5 +51,10 @@ export default function(character /*, changeEvent*/) {
   if(outputCharacter.LVLup){delete outputCharacter.LVLup}
   if(outputCharacter.HP > outputCharacter.HPMAX){outputCharacter.HP = outputCharacter.HPMAX}
   outputCharacter.nextLVL = nextLVLMultiplier * outputCharacter.LVL;
+  if(isNaN(outputCharacter.HP) || isNaN(outputCharacter.HP / outputCharacter.HPMAX)){
+    console.log('HP NAN event!   next 2 objects logged will be input character and output character in TrueStats')
+    console.log(character)
+    console.log(outputCharacter)
+  }
   return outputCharacter;
 }

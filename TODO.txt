@@ -4,14 +4,17 @@ CURRENT TASK:
 
 
 CURRENT
- reducer/state for win/loss and injection to titleScreen Component 
+
  - bugtesting combat
+ - adjust drop odds - waaaay too high
+  - what happens if the character already has the highest rarity item in a type? - BUG
+  
+ - HP is NaN
 - hover for info about enemy
 - stairs/floors
 - bossfight/victory
 - class abilities
  - dig - can move through dirtwall
- - beserk- damage all nearby enemies with attack
  - flash - do extra damage by charisma
  - slice - ignore armor
  - smite - do massive damage by wisdom

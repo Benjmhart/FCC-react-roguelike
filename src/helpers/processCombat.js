@@ -35,14 +35,12 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		return receivedItem
 	})
 	const targets = []
-	
 	if(character.weapon.ability !== "beserk"){
 		if(floor[destinationCoords[0]][destinationCoords[1]].contains==="enemy"){
 			targets.push({coords: destinationCoords, enemyCellObject:{...(floor[destinationCoords[0]][destinationCoords[1]])}})
 		}
-	} else{neighbors.forEach(neighbor => {if(neighbor.contains==="enemy"){targets.push(neighbor)}})}
+	} else{neighbors.forEach(neighbor => {targets.push(neighbor)})}
 	const dealt = targets.map( target => {
-		
 		const { AGI, WIS, PER, LUK, armor} = target.enemyCellObject;
 		const dealtItem = {}
 		dealtItem.target = {...target}
@@ -65,6 +63,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 				if(dealtItem.getEquipment){
 					const equipTypes = ["weapon", "armor", "ring", "shoes", "helmet"]
 					dealtItem.equipDropType = applyOddsWithinArray(equipTypes)
+					
 					const equipDrop = equipment[character.CLASS][dealtItem.equipDropType][character[dealtItem.equipDropType].rarity + 1]
 					dealtItem.equipmentDrop = {}
 					dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop

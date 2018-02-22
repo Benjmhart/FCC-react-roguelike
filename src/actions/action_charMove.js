@@ -69,10 +69,14 @@ export default function(keycode, floor, heroCoordsArr, character) {
     pl.newHeroCoords = heroCoordsArr;
   }
   //combat occurs
-  if(pl.success===false){
+  if(!pl.success){
     pl.combatDetails = processCombat(character, heroCoordsArr, pl.attemptedDirection, floor)
   }
-  if(pl.combatDetails.received){pl.combat = true}
+  if(pl.combatDetails){
+    
+    
+    if(pl.combatDetails.received){pl.combat = true}
+  }
 
   if (pl.success && pl.attemptedDirection === "West") {
     pl.newHeroCoords = [heroCoordsArr[0], heroCoordsArr[1] - 1];

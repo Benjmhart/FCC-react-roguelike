@@ -81,7 +81,7 @@ export default function(
           }
           
           if(target.getEquipment){
-            newState[target.equipDropType] = target.equipmentDrop
+            newState[target.equipDropType] = target.equipmentDrop[target.equipDropType]
           }
         })
         //if LevelUp,  change base stats and heal

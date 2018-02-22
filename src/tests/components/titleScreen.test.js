@@ -89,3 +89,26 @@ describe("TitleScreen", () => {
     expect(mock2.mock.calls.length).toBe(1);
   });
 });
+
+describe("new functions for game over", () => {
+  it("says game over if you die", () => {
+    const mock1 = jest.fn();
+    const mock2 = jest.fn();
+    const winLoss = {winLoss: {win:false, death:true}}
+    const tree = shallow(
+      <TitleScreen beginCharCreate={mock1} loadGame={mock2} winLoss={winLoss}/>
+    );
+    expect(tree.find("h1").length).toBe(1);
+    expect(tree.find("h1").text()).toBe("Game Over!");
+  })
+  it("says you win if you win", () => {
+    const mock1 = jest.fn();
+    const mock2 = jest.fn();
+    const winLoss = {winLoss: {win:true, death:false}}
+    const tree = shallow(
+      <TitleScreen beginCharCreate={mock1} loadGame={mock2} winLoss={winLoss}/>
+    );
+    expect(tree.find("h1").length).toBe(1);
+    expect(tree.find("h1").text()).toBe("You Win!");
+  })
+})
