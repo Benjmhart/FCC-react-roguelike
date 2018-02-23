@@ -87,10 +87,11 @@ export default function(
               else if(damage > 0 && !kill){newState.push(`you hit the ${name} at [${coordx},${coordy}] for ${damage} damage!`)}
               if(kill){newState.push(`you killed the ${name} at [${coordx},${coordy}]!`)
               }
+              
             
             const drops = []
             pl.combatDetails.dealt.forEach(dealtItem => {
-              if(dealtItem.equipmentDrop){drops.push(dealtItem.equipmentDrop[dealtItem.equipDropType].name)}
+              if(dealtItem.getEquipment && dealtItem.equipmentDrop){drops.push(dealtItem.equipmentDrop[dealtItem.equipDropType].name)}
               if(dealtItem.healthDrop){drops.push(dealtItem.healthDrop.name)}
             })
             const mergedDrops = drops.join(' and a ')

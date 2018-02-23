@@ -264,10 +264,7 @@ export const getLVLup = {
         		damage: 200,
         		kill: true,
         		expGain: 20,
-        		willDrop: true,
-        		getEquipment: true,
-        		equipDropType: "helmet",
-        		equipmentDrop: {name:"glasses", mod:{PER:2}, armor:-1, rarity:1}
+        		willDrop: false,
         	} 
         ],
     	death: false,
