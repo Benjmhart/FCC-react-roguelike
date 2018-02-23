@@ -154,6 +154,14 @@ button {
 .map-item.enemy {
   background-color: chocolate;
   color: red; }
+  .map-item.enemy.enemy .enemy-details {
+    display: none; }
+  .map-item.enemy.enemy:hover .enemy-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block; }
 
 .map-item.enemy.not-visible {
   background-color: saddlebrown; }

@@ -183,6 +183,16 @@ button {
   &.enemy {
     background-color: chocolate;
     color:red;
+  &.enemy .enemy-details{
+    display:none;
+  }
+  &.enemy:hover .enemy-details{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    display:block;
+  }
   }
   &.enemy.not-visible {
     background-color: saddlebrown;

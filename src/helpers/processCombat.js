@@ -57,16 +57,22 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 			dealtItem.expGain = dealtItem.target.enemyCellObject.EXP
 		}
 		if(dealtItem.kill===true){
-			dealtItem.willDrop = applyOddsBool(20 + (trueLUK*2))
+			dealtItem.willDrop = applyOddsBool(70 + (trueLUK))
 			if(dealtItem.willDrop){
 				dealtItem.getEquipment = applyOddsBool(20)
 				if(dealtItem.getEquipment){
+				
 					const equipTypes = ["weapon", "armor", "ring", "shoes", "helmet"]
 					dealtItem.equipDropType = applyOddsWithinArray(equipTypes)
-					
-					const equipDrop = equipment[character.CLASS][dealtItem.equipDropType][character[dealtItem.equipDropType].rarity + 1]
-					dealtItem.equipmentDrop = {}
-					dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop
+					if(character[[dealtItem.equipDropType].rarity+1]===equipment[character.CLASS][dealtItem.equipDropType].length){
+						dealtItem.willDrop=false;
+						dealtItem.getEquipment=false
+						
+					}else{
+						const equipDrop = equipment[character.CLASS][dealtItem.equipDropType][character[dealtItem.equipDropType].rarity + 1]
+						dealtItem.equipmentDrop = {}
+						dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop
+					}
 				}
 				else{ 
 					dealtItem.healthDrop = applyOddsWithinArray(healthItems)

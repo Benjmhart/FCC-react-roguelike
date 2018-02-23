@@ -6,11 +6,8 @@ CURRENT TASK:
 CURRENT
 
  - bugtesting combat
- - adjust drop odds - waaaay too high
-  - what happens if the character already has the highest rarity item in a type? - BUG
-  
  - HP is NaN
-- hover for info about enemy
+ - lower drop rate in processcombat once NAN issue is resolved
 - stairs/floors
 - bossfight/victory
 - class abilities
