@@ -180,6 +180,10 @@ button {
   &.dirtWall.not-visible{
     background-color: peru;
   }
+  
+  &.stairs {
+    background-color: chocolate;
+  }
   &.enemy {
     background-color: chocolate;
     color:red;

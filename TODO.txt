@@ -7,9 +7,16 @@ CURRENT
 
  - bugtesting combat
  - HP is NaN
- - lower drop rate in processcombat once NAN issue is resolved
 - stairs/floors
-- bossfight/victory
+ - make asset and find a way for mapgeneration to include it at the last step in a way that is accessable to any hero(randomwalk)
+ - styling & glyph in mapItem
+ - process movement into stairs in CHAR_MOVE action creator
+ - process movement into stairs and floor generation in gameboard reducer
+ - process movement into stairs in messages reducer
+ - create an ending floor & create boss - enemy selection & max floors?
+ - boss injection with randomwalk
+
+- bossfight/victory - is the win condition already built into the char-move action creator?
 - class abilities
  - dig - can move through dirtwall
  - flash - do extra damage by charisma

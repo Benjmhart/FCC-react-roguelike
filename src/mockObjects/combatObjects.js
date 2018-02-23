@@ -47,7 +47,7 @@ export const getItemDrop = {
         		willDrop: true,
         		getEquipment: true,
         		equipDropType: "helmet",
-        		equipmentDrop: {name:"glasses", mod:{PER:2}, armor:-1, rarity:1}
+        		equipmentDrop: {helmet: {name:"glasses", mod:{PER:2}, armor:-1, rarity:1}}
         	} 
         ],
     	death: false,
@@ -336,18 +336,7 @@ export const getNothing = {
 export const getNoKill = { 
 	received: 
        [ 
-       		{ 
-       			origin:	{
-       				coords: [1,2],
-       				enemyCellObject:{...enemies[1]}
-    			},
-        		hit: false,
-        		dodge: true,
-        		crit: false,
-        		minDamage: 0,
-        		maxDamage: 0,
-        		damage: 0
-       		},
+       		
         	{ 
          		origin: {
        				coords: [2,1],
@@ -371,7 +360,7 @@ export const getNoKill = {
     			},
         		hit: true,
         		dodge: false,
-        		crit: true,
+        		crit: false,
         		minDamage: 7,
         		maxDamage: 10,
         		damage: 8,

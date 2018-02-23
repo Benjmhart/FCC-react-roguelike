@@ -151,6 +151,9 @@ button {
 .map-item.dirtWall.not-visible {
   background-color: peru; }
 
+.map-item.stairs {
+  background-color: chocolate; }
+
 .map-item.enemy {
   background-color: chocolate;
   color: red; }

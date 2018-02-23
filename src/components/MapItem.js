@@ -51,6 +51,7 @@ const MapItem = ({ disbool, contents, fogofwar }) => {
   if (cellContents === "enemy" && contents.name === "Dragon") {
     fontAwesome.glyph = "🐲";
   } //glyph case for stairs //glyph case for enemies
+  if(contents.contains === "stairs"){fontAwesome.glyph = '⬇️'}
   const notVis =
     fogofwar === true &&
     contents.visible === false &&

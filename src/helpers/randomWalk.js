@@ -1,8 +1,9 @@
-import { emptySpace } from "../assets/mapObjects";
+import { emptySpace, stairs } from "../assets/mapObjects";
 
 function randomWalk(floor, seed, [Xstart, Ystart], direction) {
   if (seed.length < 1) {
-    //place stairs at Xstart, Ystart UNLESS they are =startingpoint 50, 50
+    if(Xstart===50 && Ystart===50){floor[50][51]={...stairs}}
+    else{floor[Xstart][Ystart]={...stairs}}
     return floor;
   }
   const destOptions = [

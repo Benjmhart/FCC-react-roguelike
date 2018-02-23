@@ -52,7 +52,7 @@ export default function(
               if(!receivedArr[0].hit) {newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but missed!`)}
               if(receivedArr[0].dodge) {newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but you dodged!`)}
               if(receivedArr[0].crit===true && receivedArr[0].damage > 0) {newState.push(`the ${name} at   [${coordx},${coordy}] Critically hit you for ${damage} damage!`)}
-              else if(receivedArr[0].damage > 0) {newState.push(`the ${name} at   [${coordx},${coordy}] hit you for ${damage} damage!`)}
+              else if(receivedArr[0].damage > 0) {newState.push(`the ${name} at [${coordx},${coordy}] hit you for ${damage} damage!`)}
             }
           }
           if(pl.combatDetails.dealt.length > 0){
@@ -83,8 +83,8 @@ export default function(
               const [ coordx, coordy ]  = pl.combatDetails.dealt[0].target.coords
               if(!hit){newState.push(`you swung at the ${name} at [${coordx},${coordy}], but missed!`)}
               if(dodge){newState.push(`you swung at the ${name} at [${coordx},${coordy}], but it dodged!`)}
-              if(crit && damage > 0 && !kill){newState.push(`you critically hit the ${name} at [${coordx},${coordy}] for   ${damage} damage!`)}
-              else if(damage > 0 && !kill){newState.push(`you hit the ${name} at [${coordx},${coordy}] for   ${damage} damage!`)}
+              if(crit && damage > 0 && !kill){newState.push(`you critically hit the ${name} at [${coordx},${coordy}] for ${damage} damage!`)}
+              else if(damage > 0 && !kill){newState.push(`you hit the ${name} at [${coordx},${coordy}] for ${damage} damage!`)}
               if(kill){newState.push(`you killed the ${name} at [${coordx},${coordy}]!`)
               }
             
