@@ -30,7 +30,7 @@ import spawnEnemies from "./spawnEnemies";
 
 export const floorSize = 100;
 export const startingPoint = 50; //hero will start at x=startingpoint, y=startingpoint
-
+export const maxfloor = 6
 /*
 procedural generation strategy:
 Once the initial empty level is generated it needs to start up a recursive function which takes an array(map) a second array of numbers (seed) and the current index pair x and y
@@ -72,8 +72,12 @@ const createFloorFromSeed = floornum => {
   //call roomGen
   const floorWithRooms = roomGen(emptyFloor, seed);
   //call randomwalk
+  const isLastFloor = (floornum >= maxfloor) ? true : false
+  console.log('generating floor')
+  console.log(floornum)
+  console.log(isLastFloor)
   const s = Math.floor(emptyFloor.length / 2);
-  const floorWithHallways = randomWalk(floorWithRooms, seed2, [s, s]);
+  const floorWithHallways = randomWalk(floorWithRooms, seed2, [s, s], undefined, isLastFloor);
   const enemyAmount = Math.floor(Math.random() * 30) + 20;
   const floorWithEnemies = spawnEnemies(
     floorWithHallways,

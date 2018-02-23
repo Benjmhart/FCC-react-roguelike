@@ -25,7 +25,8 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		const receivedItem = {}
 		receivedItem.origin = {...neighbor};
 		receivedItem.hit = applyOddsBool(AGI * (PER*WIS)+(LUK*2))
-		receivedItem.dodge = applyOddsBool(trueAGI + truePER +trueWIS + trueLUK*2)
+		const dodgerate = (trueAGI + truePER +trueWIS + trueLUK*2) > 60 ? 60 : (trueAGI + truePER +trueWIS + trueLUK*2)
+		receivedItem.dodge = applyOddsBool(dodgerate)
 		receivedItem.crit = applyOddsBool(CHA + LUK)
 		receivedItem.minDamage = (!receivedItem.dodge && receivedItem.hit) ? Math.ceil(atkMin + (0.8*STR) + (0.4*AGI)) : 0
 		receivedItem.maxDamage = (!receivedItem.dodge && receivedItem.hit) ? Math.ceil(atkMax + (0.8*STR) + (0.4*AGI)) : 0
@@ -45,7 +46,8 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		const dealtItem = {}
 		dealtItem.target = {...target}
 		dealtItem.hit = applyOddsBool(AGI * (truePER*trueWIS)+(trueLUK*2))
-		dealtItem.dodge = applyOddsBool(AGI + PER + WIS + LUK*2)
+		const dodgerate = (AGI + PER + WIS + LUK*2)>30 ? 30 : (AGI + PER + WIS + LUK*2)
+		dealtItem.dodge = applyOddsBool(dodgerate)
 		dealtItem.crit = applyOddsBool(trueCHA + trueLUK)
 		dealtItem.minDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMin + (0.8*trueSTR) + (0.4*trueAGI)) : 0
 		dealtItem.maxDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMax + (0.8*trueSTR) + (0.4*trueAGI)) : 0
@@ -69,9 +71,14 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 						dealtItem.getEquipment=false
 						
 					}else{
+						console.log('drop occuring')
 						const equipDrop = equipment[character.CLASS][dealtItem.equipDropType][character[dealtItem.equipDropType].rarity + 1]
 						dealtItem.equipmentDrop = {}
 						dealtItem.equipmentDrop[dealtItem.equipDropType] = equipDrop
+						console.log(equipDrop)
+						if(!equipDrop){
+						dealtItem.willDrop=false;
+						dealtItem.getEquipment=false}
 					}
 				}
 				else{ 

@@ -59,6 +59,19 @@ export default function(
         return newState;
       }
       //handle stairs here - NEVER move character directly onto stairs (potentially overwrite stairs)
+      if(action.payload.destinationContents.contains==="stairs"){
+        const newState = {...state}
+        newState.currentFloor ++
+        const newFloor = createFloor(newState.currentFloor)
+        newState.dungeon.push(newFloor)
+        const newStateWithVisible = checkVis(
+          startingpoint,
+          newState,
+          action.payload.character.truePER
+        );
+        localStor(newStateWithVisible, "gameBoard");
+        return newStateWithVisible;
+      }
       const newCoords = action.payload.newHeroCoords;
       const oldCoords = action.payload.prevHeroCoords;
       const newState = { ...state };

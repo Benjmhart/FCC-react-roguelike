@@ -1,9 +1,19 @@
 import { emptySpace, stairs } from "../assets/mapObjects";
+import enemies from "../assets/enemies"
 
-function randomWalk(floor, seed, [Xstart, Ystart], direction) {
-  if (seed.length < 1) {
+function randomWalk(floor, seed, [Xstart, Ystart], direction, isLastFloor) {
+  if (seed.length < 1 && isLastFloor===false) {
+    console.log('generating stairs')
     if(Xstart===50 && Ystart===50){floor[50][51]={...stairs}}
     else{floor[Xstart][Ystart]={...stairs}}
+    return floor;
+  }
+  if (seed.length < 1 && isLastFloor===true) {
+    console.log('generating boss')
+    const boss = { ...enemies[enemies.length-1] }
+    boss.boss = true
+    if(Xstart===50 && Ystart===50){floor[50][51]={...boss}}
+    else{floor[Xstart][Ystart]={...boss}}
     return floor;
   }
   const destOptions = [
@@ -18,13 +28,13 @@ function randomWalk(floor, seed, [Xstart, Ystart], direction) {
   //path for the end of one walk
   if (floor[destX][destY].contains === "wall" || seed[0] <= 5) {
     seed.shift();
-    return randomWalk(floor, seed, [Xstart, Ystart]);
+    return randomWalk(floor, seed, [Xstart, Ystart], undefined, isLastFloor);
   }
   //path to advance a step
 
   floor[destX][destY] = { ...emptySpace };
   seed[0] -= 5;
-  return randomWalk(floor, seed, [destX, destY], newDirection);
+  return randomWalk(floor, seed, [destX, destY], newDirection, isLastFloor);
 }
 
 export default randomWalk;

@@ -91,7 +91,14 @@ export default function(
             
             const drops = []
             pl.combatDetails.dealt.forEach(dealtItem => {
-              if(dealtItem.getEquipment && dealtItem.equipmentDrop){drops.push(dealtItem.equipmentDrop[dealtItem.equipDropType].name)}
+              if(dealtItem.equipmentDrop){
+                console.log('recording equipment drop')
+                console.log(dealtItem.equipDropType)
+                console.log(dealtItem.equipmentDrop)
+              }
+              if(dealtItem.getEquipment && dealtItem.equipmentDrop){drops.push(dealtItem.equipmentDrop[dealtItem.equipDropType].name)
+                
+              }
               if(dealtItem.healthDrop){drops.push(dealtItem.healthDrop.name)}
             })
             const mergedDrops = drops.join(' and a ')
@@ -105,7 +112,10 @@ export default function(
         }        
         
       }
-      if (pl.success === true) {
+      if (pl.success) {
+        if(pl.destinationContents==="stairs"){
+          newState.push('you went down some stairs!')
+        }
         newState.push(
           `You walked ${pl.attemptedDirection} [${pl.newHeroCoords[0]},${
             pl.newHeroCoords[1]

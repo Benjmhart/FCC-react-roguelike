@@ -16,6 +16,7 @@ export default function(character /*, changeEvent*/) {
   //then go through each piece of equipment if there is a mod, apply it to the relevant truestat
   const equipmentTypes = ["armor", "weapon", "shoes", "helmet", "ring"];
   equipmentTypes.forEach(type => {
+    if(!outputCharacter[type]){console.log('missing item event!'); console.log(outputCharacter)}
     if (outputCharacter[type].mod) {
       const mods = Object.keys(outputCharacter[type].mod);
       mods.forEach(modStat => {
