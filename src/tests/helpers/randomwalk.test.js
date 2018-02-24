@@ -10,7 +10,7 @@ const dirtFloor = mapObject3x3.dungeon[1].map(row => row.map(cell => {
 }));
 const seed = generateSeed(10)
 describe("basic safety options for randomwalk", () => {
-    const resultFloor = randomWalk(dirtFloor, seed, [2,2])
+    const resultFloor = randomWalk(dirtFloor, seed, [2,2], undefined, false)
     it("does not destroy walls", () => {
         const walls = resultFloor.reduce((total, row) => {
             const rowtotal = row.reduce((subtotal,cell) =>{

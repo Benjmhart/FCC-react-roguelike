@@ -25,7 +25,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		const receivedItem = {}
 		receivedItem.origin = {...neighbor};
 		receivedItem.hit = applyOddsBool(AGI * (PER*WIS)+(LUK*2))
-		const dodgerate = (trueAGI + truePER +trueWIS + trueLUK*2) > 60 ? 60 : (trueAGI + truePER +trueWIS + trueLUK*2)
+		const dodgerate = (trueAGI + truePER +trueWIS + trueLUK*2) > 30 ? 30 : (trueAGI + truePER +trueWIS + trueLUK*2)
 		receivedItem.dodge = applyOddsBool(dodgerate)
 		receivedItem.crit = applyOddsBool(CHA + LUK)
 		receivedItem.minDamage = (!receivedItem.dodge && receivedItem.hit) ? Math.ceil(atkMin + (0.8*STR) + (0.4*AGI)) : 0
@@ -46,7 +46,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		const dealtItem = {}
 		dealtItem.target = {...target}
 		dealtItem.hit = applyOddsBool(AGI * (truePER*trueWIS)+(trueLUK*2))
-		const dodgerate = (AGI + PER + WIS + LUK*2)>30 ? 30 : (AGI + PER + WIS + LUK*2)
+		const dodgerate = (AGI + PER + WIS + LUK*2) > 30 ? 30 : (AGI + PER + WIS + LUK*2)
 		dealtItem.dodge = applyOddsBool(dodgerate)
 		dealtItem.crit = applyOddsBool(trueCHA + trueLUK)
 		dealtItem.minDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMin + (0.8*trueSTR) + (0.4*trueAGI)) : 0
@@ -59,7 +59,7 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 			dealtItem.expGain = dealtItem.target.enemyCellObject.EXP
 		}
 		if(dealtItem.kill===true){
-			dealtItem.willDrop = applyOddsBool(70 + (trueLUK))
+			dealtItem.willDrop = applyOddsBool(2 + (trueLUK))
 			if(dealtItem.willDrop){
 				dealtItem.getEquipment = applyOddsBool(20)
 				if(dealtItem.getEquipment){
