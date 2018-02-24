@@ -117,8 +117,11 @@ export default function(
         
       }
       if (pl.success) {
-        if(pl.destinationContents==="stairs"){
-          newState.push('you went down some stairs!')
+        if(pl.destinationContents.contains==="stairs"){
+          newState.push('You went down some stairs!')
+        }
+        if(pl.destinationContents.contains==="dirtWall"){
+          newState.push("You dug through the dirt wall!")
         }
         newState.push(
           `You walked ${pl.attemptedDirection} [${pl.newHeroCoords[0]},${
