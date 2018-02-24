@@ -82,9 +82,13 @@ export default function(
                 newState.push(merge)
               }else{newState.push(message)}
             }
-              const {damage, hit, dodge, kill, crit} = pl.combatDetails.dealt[0];
+
+              const {damage, hit, dodge, kill, crit, flash, smite, slice} = pl.combatDetails.dealt[0];
               const name = pl.combatDetails.dealt[0].target.enemyCellObject.name
               const [ coordx, coordy ]  = pl.combatDetails.dealt[0].target.coords
+              if(flash){newState.push(`your flash went off and made the ${name} mildly uncomfortable`)}
+              if(slice){newState.push(`you sliced through the ${name}'s' defenses`)}
+              if(smite){newState.push(`you used superpowers to smite the ${name}`)}
               if(!hit){newState.push(`you swung at the ${name} at [${coordx},${coordy}], but missed!`)}
               if(dodge){newState.push(`you swung at the ${name} at [${coordx},${coordy}], but it dodged!`)}
               if(crit && damage > 0 && !kill){newState.push(`you critically hit the ${name} at [${coordx},${coordy}] for ${damage} damage!`)}

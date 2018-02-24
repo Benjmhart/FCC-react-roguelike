@@ -52,6 +52,18 @@ export default function(character, [herox, heroy], direction, floor, applyOddsBo
 		dealtItem.minDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMin + (0.8*trueSTR) + (0.4*trueAGI)) : 0
 		dealtItem.maxDamage = (!dealtItem.dodge && dealtItem.hit) ? Math.ceil(weapon.attackMax + (0.8*trueSTR) + (0.4*trueAGI)) : 0
 		dealtItem.damage = applyOddsWithinRange(dealtItem.minDamage, dealtItem.maxDamage) - armor;
+		if(character.weapon.ability === 'slice'){
+			dealtItem.slice = true
+			dealtItem.damage += armor
+		}
+		if(character.weapon.ability === 'flash'){
+			dealtItem.flash = true
+			dealtItem.damage += trueCHA
+		}
+		if(character.weapon.ability === 'smite'){
+			dealtItem.smite = true
+			dealtItem.damage += trueWIS*3
+		}
 		
 		if(dealtItem.crit){dealtItem.damage *= 2}
 		if(dealtItem.target.enemyCellObject.HP <= dealtItem.damage){
