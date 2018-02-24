@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const StatDisplay = ({ stat, trueStat, label }) => {
-  const statText = (stat !== -1) ? `(${stat})` : "";
+  const statText = stat !== -1 ? `(${stat})` : "";
   return (
     <p className="stat-display">
       {label}: {trueStat}

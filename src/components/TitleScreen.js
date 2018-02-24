@@ -5,12 +5,17 @@ import PropTypes from "prop-types";
 import beginCharCreate from "../actions/action_beginCharCreate";
 import loadGame from "../actions/action_loadGame";
 
-export const TitleScreen = ({ savedGame, beginCharCreate, loadGame, winLoss }) => {
-  const {win, death} = winLoss.winLoss
+export const TitleScreen = ({
+  savedGame,
+  beginCharCreate,
+  loadGame,
+  winLoss
+}) => {
+  const { win, death } = winLoss.winLoss;
   const disabledBool = !savedGame.character ? true : false;
-  const basicText = "Dungeon Game"
-  const endingText = (win) ? "You Win!" :  "Game Over!"
-  const actualtext = (!win &&!death) ? basicText : endingText
+  const basicText = "Dungeon Game";
+  const endingText = win ? "You Win!" : "Game Over!";
+  const actualtext = !win && !death ? basicText : endingText;
 
   return (
     <div className="title-screen">
@@ -34,7 +39,7 @@ TitleScreen.defaultProps = {
   winLoss: {
     winLoss: {
       win: false,
-      death:false
+      death: false
     }
   }
 };

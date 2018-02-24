@@ -5,7 +5,7 @@ import SavedGameReducer from "./reducer_savedGame";
 import MessagesReducer from "./reducer_messages";
 import ScreenSizeReducer from "./reducer_screenSize";
 import FogOfWarReducer from "./reducer_fogofwar";
-import WinLossReducer from "./reducer_winLoss"
+import WinLossReducer from "./reducer_winLoss";
 
 const rootReducer = combineReducers({
   gameBoard: GameBoardReducer,

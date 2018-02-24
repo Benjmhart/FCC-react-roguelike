@@ -51,7 +51,9 @@ const MapItem = ({ disbool, contents, fogofwar }) => {
   if (cellContents === "enemy" && contents.name === "Dragon") {
     fontAwesome.glyph = "🐲";
   } //glyph case for stairs //glyph case for enemies
-  if(contents.contains === "stairs"){fontAwesome.glyph = '⬇️'}
+  if (contents.contains === "stairs") {
+    fontAwesome.glyph = "⬇️";
+  }
   const notVis =
     fogofwar === true &&
     contents.visible === false &&
@@ -71,17 +73,20 @@ const MapItem = ({ disbool, contents, fogofwar }) => {
   if (fogofwar && notVis) {
     classnames.push(notVis);
   }
-  const enemyDetails = ( cellContents==="enemy") ? (
-    <div className="enemy-details"> 
-      <p> Enemy:{contents.name}</p>
-      <p> HP:{contents.HP}</p>
-    </div>) : ''
-    
-    const style = {
-      cursor: 'default'
-    }
+  const enemyDetails =
+    cellContents === "enemy" ? (
+      <div className="enemy-details">
+        <p> Enemy:{contents.name}</p>
+        <p> HP:{contents.HP}</p>
+      </div>
+    ) : (
+      ""
+    );
+  const style = {
+    cursor: "default"
+  };
   return (
-    <div className={`map-item ${classnames.join(" ")}`} style={style} >
+    <div className={`map-item ${classnames.join(" ")}`} style={style}>
       <p>{fontAwesome.glyph}</p>
       {enemyDetails}
     </div>

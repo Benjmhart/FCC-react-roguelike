@@ -43,27 +43,41 @@ export default function(
           newState.dungeon[newState.currentFloor],
           action.payload.prevHeroCoords
         );
-        if(action.payload.combat){
-          if(action.payload.combatDetails.death || action.payload.combatDetails.win){
-            localStor(null, "gameBoard", true)
-            return {}
+        if (action.payload.combat) {
+          if (
+            action.payload.combatDetails.death ||
+            action.payload.combatDetails.win
+          ) {
+            localStor(null, "gameBoard", true);
+            return {};
           }
           action.payload.combatDetails.dealt.forEach(dealtItem => {
-            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP =  newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]].HP - dealtItem.damage
-            if(dealtItem.kill){
-              newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][dealtItem.target.coords[1]] = { contains:"none", visible:true, explored:"true" }
+            newState.dungeon[newState.currentFloor][dealtItem.target.coords[0]][
+              dealtItem.target.coords[1]
+            ].HP =
+              newState.dungeon[newState.currentFloor][
+                dealtItem.target.coords[0]
+              ][dealtItem.target.coords[1]].HP - dealtItem.damage;
+            if (dealtItem.kill) {
+              newState.dungeon[newState.currentFloor][
+                dealtItem.target.coords[0]
+              ][dealtItem.target.coords[1]] = {
+                contains: "none",
+                visible: true,
+                explored: "true"
+              };
             }
-          })
+          });
         }
         localStor(newState, "gameBoard");
         return newState;
       }
       //handle stairs here - NEVER move character directly onto stairs (potentially overwrite stairs)
-      if(action.payload.destinationContents.contains==="stairs"){
-        const newState = {...state}
-        newState.currentFloor ++
-        const newFloor = createFloor(newState.currentFloor)
-        newState.dungeon.push(newFloor)
+      if (action.payload.destinationContents.contains === "stairs") {
+        const newState = { ...state };
+        newState.currentFloor++;
+        const newFloor = createFloor(newState.currentFloor);
+        newState.dungeon.push(newFloor);
         const newStateWithVisible = checkVis(
           startingpoint,
           newState,

@@ -90,7 +90,7 @@ button {
     flex-direction: column;
     width: 50vw; }
   .hud-component .mid-hud-container {
-    width: 20vw;
+    width: 35vw;
     padding: 1vw;
     font-size: 10px; }
     .hud-component .mid-hud-container p {
@@ -175,9 +175,11 @@ button {
   margin: 0px;
   text-align: center; }
 
-@media (max-width: 760px) {
+@media (max-width: 790px) {
   .character-creator {
-    font-size: 0.8em; } }
+    font-size: 0.8em; }
+  .mid-hud-container {
+    display: none; } }
 
 @media (max-width: 650px) {
   .title-screen {
@@ -187,6 +189,30 @@ button {
     .title-screen button {
       padding: 8px 16px;
       font-size: 17px; } }
+
+@media (max-width: 540px) {
+  .stat-display-container {
+    display: none; }
+  .hud-component .msg-container p.msg-item {
+    font-size: 8px; }
+  .display-bars-container .fogbtn {
+    display: none; }
+  .display-bar p.display-bar-text {
+    display: none; }
+  .hud-component {
+    flex-direction: column; }
+  .display-bar {
+    display: block; }
+  .display-bar div.bar-full {
+    margin: 0px;
+    width: 97vw;
+    height: 3px !important;
+    border-radius: 0px; }
+  .display-bar .bar-actual {
+    height: 3px !important;
+    border-radius: 0px; }
+  .hud-component .msg-container {
+    width: 80%; } }
 
 @media (max-width: 455px) {
   .character-creator {

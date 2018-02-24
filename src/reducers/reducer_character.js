@@ -58,42 +58,46 @@ export default function(
     }
     case CHAR_MOVE: {
       //clone the state
-      const newState = {...state}
+      const newState = { ...state };
       //update character with combat outcomes
-      
-      if(action.payload.combat){
-        if(action.payload.combatDetails.death || action.payload.combatDetails.win){
+
+      if (action.payload.combat) {
+        if (
+          action.payload.combatDetails.death ||
+          action.payload.combatDetails.win
+        ) {
           localStore(null, "character", true);
-          return {}
+          return {};
         }
         //change HP by combat.totalDamage
         newState.HP = state.HP - action.payload.combatDetails.totalDamage;
         // change EXP by combat.totalEXP
-        newState.EXP = state.EXP + action.payload.combatDetails.totalEXPGain
+        newState.EXP = state.EXP + action.payload.combatDetails.totalEXPGain;
         //if statItem Drop,   adjust base stats/HP
         //if EquipItem drop,  change equipment
         action.payload.combatDetails.dealt.forEach(target => {
-          if(target.healthDrop){
-            const modKeys = Object.keys(target.healthDrop.mod)
-            modKeys.forEach(key=>{
-              newState[key] = newState[key] + target.healthDrop.mod[key]
-            })
+          if (target.healthDrop) {
+            const modKeys = Object.keys(target.healthDrop.mod);
+            modKeys.forEach(key => {
+              newState[key] = newState[key] + target.healthDrop.mod[key];
+            });
           }
-          
-          if(target.getEquipment){
-            newState[target.equipDropType] = target.equipmentDrop[target.equipDropType]
+
+          if (target.getEquipment) {
+            newState[target.equipDropType] =
+              target.equipmentDrop[target.equipDropType];
           }
-        })
+        });
         //if LevelUp,  change base stats and heal
-        if(action.payload.combatDetails.LVLmod){
-          const LVLkeys = Object.keys(action.payload.combatDetails.LVLmod)
+        if (action.payload.combatDetails.LVLmod) {
+          const LVLkeys = Object.keys(action.payload.combatDetails.LVLmod);
           LVLkeys.forEach(key => {
-            newState[key] = newState[key] + action.payload.combatDetails.LVLmod[key];
-          })
+            newState[key] =
+              newState[key] + action.payload.combatDetails.LVLmod[key];
+          });
         }
-      
       }
-      const charWithTrueStats = trueStats(newState)
+      const charWithTrueStats = trueStats(newState);
       localStore(charWithTrueStats, "character");
       return charWithTrueStats;
     }

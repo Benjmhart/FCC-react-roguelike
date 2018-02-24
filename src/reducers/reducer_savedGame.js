@@ -5,10 +5,13 @@ export default function(state = {}, action) {
     case PRE_LOAD:
       return action.payload;
     case CHAR_MOVE:
-      if(action.payload){
-        if(action.payload.combatDetails){
-          if(action.payload.combatDetails.win || action.payload.combatDetails.death){
-            return {}
+      if (action.payload) {
+        if (action.payload.combatDetails) {
+          if (
+            action.payload.combatDetails.win ||
+            action.payload.combatDetails.death
+          ) {
+            return {};
           }
         }
       }

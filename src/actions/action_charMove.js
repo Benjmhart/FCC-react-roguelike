@@ -1,7 +1,7 @@
 //does all the action for any move attempt including combat or hitting a wall,  also carries an array of messages
 //does all the action for any move attempt including combat or hitting a wall,  also carries an array of messages
 import { CHAR_MOVE } from "./actionTypes";
-import processCombat from "../helpers/processCombat"
+import processCombat from "../helpers/processCombat";
 
 export default function(keycode, floor, heroCoordsArr, character) {
   if (
@@ -50,11 +50,14 @@ export default function(keycode, floor, heroCoordsArr, character) {
     pl.combat = false;
     pl.combatDetails = {};
   }
-  if (pl.destinationContents.contains === "dirtWall" && character.weapon.ability !=="dig") {
+  if (
+    pl.destinationContents.contains === "dirtWall" &&
+    character.weapon.ability !== "dig"
+  ) {
     pl.success = false;
     pl.combat = false;
     pl.combatDetails = {};
-  } else if (pl.destinationContents.contains === "dirtWall"){
+  } else if (pl.destinationContents.contains === "dirtWall") {
     pl.success = true;
     pl.combat = false;
     pl.combatDetails = {};
@@ -73,13 +76,18 @@ export default function(keycode, floor, heroCoordsArr, character) {
     pl.newHeroCoords = heroCoordsArr;
   }
   //combat occurs
-  if(!pl.success){
-    pl.combatDetails = processCombat(character, heroCoordsArr, pl.attemptedDirection, floor)
+  if (!pl.success) {
+    pl.combatDetails = processCombat(
+      character,
+      heroCoordsArr,
+      pl.attemptedDirection,
+      floor
+    );
   }
-  if(pl.combatDetails){
-    
-    
-    if(pl.combatDetails.received){pl.combat = true}
+  if (pl.combatDetails) {
+    if (pl.combatDetails.received) {
+      pl.combat = true;
+    }
   }
 
   if (pl.success && pl.attemptedDirection === "West") {

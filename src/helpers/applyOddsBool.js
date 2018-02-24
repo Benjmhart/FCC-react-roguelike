@@ -2,8 +2,8 @@
 //of probability
 
 const applyOddsBool = num => {
-  const randomResult = Math.round(Math.random() * 100)
-  const resultbool = randomResult <= num ? true :false;
+  const randomResult = Math.round(Math.random() * 100);
+  const resultbool = randomResult <= num ? true : false;
 
   return resultbool;
 };
