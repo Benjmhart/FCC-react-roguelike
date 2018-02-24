@@ -22,8 +22,8 @@ function randomWalk(floor, seed, [Xstart, Ystart], direction, isLastFloor) {
     [Xstart, Ystart - 1],
     [Xstart, Ystart + 1]
   ];
-  const newDirection = direction ? direction : seed[0] % 4;
-  const destination = destOptions[newDirection];
+  const newDirection = direction ? direction : (seed[0] % 4) + 1;
+  const destination = destOptions[newDirection - 1];
   const [destX, destY] = destination;
   //path for the end of one walk
   if (floor[destX][destY].contains === "wall" || seed[0] <= 5) {
