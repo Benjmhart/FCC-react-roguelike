@@ -50,8 +50,12 @@ export default function(keycode, floor, heroCoordsArr, character) {
     pl.combat = false;
     pl.combatDetails = {};
   }
-  if (pl.destinationContents.contains === "dirtWall") {
+  if (pl.destinationContents.contains === "dirtWall" || character.weapon.ability !=="dig") {
     pl.success = false;
+    pl.combat = false;
+    pl.combatDetails = {};
+  } else if (pl.destinationContents.contains === "dirtWall"){
+    pl.success = true;
     pl.combat = false;
     pl.combatDetails = {};
   }

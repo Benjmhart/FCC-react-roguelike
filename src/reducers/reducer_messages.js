@@ -49,8 +49,12 @@ export default function(
               const name = receivedArr[0].origin.enemyCellObject.name
               const [ coordx, coordy ] = receivedArr[0].origin.coords
               const damage = receivedArr[0].damage
-              if(!receivedArr[0].hit) {newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but missed!`)}
-              if(receivedArr[0].dodge) {newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but you dodged!`)}
+              if(!receivedArr[0].hit) {
+                newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but missed!`)
+                
+              } else {
+                if(receivedArr[0].dodge) {newState.push(`the ${name} at [${coordx}  ,${coordy}] swung, but you dodged!`)}
+              }
               if(receivedArr[0].crit===true && receivedArr[0].damage > 0) {newState.push(`the ${name} at   [${coordx},${coordy}] Critically hit you for ${damage} damage!`)}
               else if(receivedArr[0].damage > 0) {newState.push(`the ${name} at [${coordx},${coordy}] hit you for ${damage} damage!`)}
             }

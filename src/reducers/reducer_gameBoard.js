@@ -72,6 +72,7 @@ export default function(
         localStor(newStateWithVisible, "gameBoard");
         return newStateWithVisible;
       }
+      console.log(action)
       const newCoords = action.payload.newHeroCoords;
       const oldCoords = action.payload.prevHeroCoords;
       const newState = { ...state };
