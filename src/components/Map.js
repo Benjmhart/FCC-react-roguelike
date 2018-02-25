@@ -40,18 +40,35 @@ export const Map = ({
     gridTemplateRows: `repeat(${xlength}, minmax( 10px, 1fr))`,
     gridTemplateColumns: `repeat(${ylength}, minmax(10px, 1fr))`
   };
-
+  
   return (
-    <div
-      className="map-component"
-      style={style}
-      tabIndex="0"
-      role="grid"
-      onKeyDown={e => {
-        charMove(e.nativeEvent.keyCode, floor, heroCoordsArr, character);
-      }}
-    >
-      {renderItem(viewArr, floor, fogofwar)}
+    <div>
+      <div className="control-div" 
+        tabIndex="0"
+        role="grid"
+        onKeyDown={e => {
+          charMove(e.nativeEvent.keyCode, floor, heroCoordsArr, character);
+        }}>
+          <div className="left" onClick = {() => {
+          console.log('clicking left')
+          charMove(37, floor, heroCoordsArr, character);
+        }}/>
+          <div className="right" onClick = {() => {
+          charMove(39, floor, heroCoordsArr, character);
+        }}/>
+          <div className="up" onClick = {() => {
+          charMove(38, floor, heroCoordsArr, character);
+        }}/>
+          <div className="down" onClick = {() => {
+          charMove(40, floor, heroCoordsArr, character);
+        }}/>
+        </div>
+      <div
+        className="map-component"
+        style={style}
+      >
+        {renderItem(viewArr, floor, fogofwar)}
+      </div>
     </div>
   );
 };

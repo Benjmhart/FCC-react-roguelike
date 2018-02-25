@@ -5,32 +5,12 @@ CURRENT TASK:
 
 CURRENT
 
- - bugtesting combat
- - character is WAY too good at dodging - change dodge formula
-- stairs/floors
- - create an ending floor & create boss - enemy selection & max floors?
- - boss injection with randomwalk
- - dodge or miss message one or the other, not both
-- class abilities
- - dig - can move through dirtwall
- - flash - do extra damage by charisma
- - slice - ignore armor
- - smite - do massive damage by wisdom
-- HUD responsiveness (hide stats and equipment, make bars thinner & longer across the top
-        - below 780 px wide
-- touch/click transparent DIVs / move keypress events to gameview or APP component  
-- master variables file (rates/sizes/odds etc)
-- linting and cleanup
+- touch/click transparent DIVs / move keypress events to gameview or APP component
 ---FINAL DELIVERY
 
-(thing to chew on,  how will I prevent movement of several enemies into the same place on 
-the same turn,   or an enemy and a character who are two spaces apart)
+
 
 LOW PRIORITY TASKS
--address issue with Prettier/eslint crashing on app.test.js?
--add snapshot testing for components, objects, etc.   get test coverage.
-
-- why are our rooms so rectangular and so often on the bottom part of the map?
 
 -inventory management system with drag and drop
 -make a reusable component for the stats in CharacterCreator/ componentize all of character creator

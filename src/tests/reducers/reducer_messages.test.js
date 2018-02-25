@@ -49,7 +49,8 @@ describe("basic actions for Default, UPDATE_CHAR and CHAR_MOVE (no combat or abi
 			payload: {
 				success: true,
 				attemptedDirection: "North",
-				newHeroCoords: [1,2]
+				newHeroCoords: [1,2],
+				destinationContents: {contains: "none"}
 			}
 		}
 		
@@ -64,7 +65,8 @@ describe("basic actions for Default, UPDATE_CHAR and CHAR_MOVE (no combat or abi
 			payload: {
 				success: true,
 				attemptedDirection: "North",
-				newHeroCoords: [1,2]
+				newHeroCoords: [1,2],
+				destinationContents: {contains: "none"}
 			}
 		}
 		
@@ -85,7 +87,8 @@ describe("local storage functionality", () => {
 			payload: {
 				success: true,
 				attemptedDirection: "North",
-				newHeroCoords: [1,2]
+				newHeroCoords: [1,2],
+				destinationContents: {contains: "none"}
 			}
 		}
 	const newState = [

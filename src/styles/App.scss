@@ -41,7 +41,37 @@ button {
   }
   
 }
-
+.control-div{
+  position: absolute;
+  height:100vh;
+  width:100vw;
+}
+.left{
+  position: absolute;
+  height: 60vh;
+  width: 25vw;
+  top: 10%;
+}
+.right{
+  position: absolute;
+  height: 60vh;
+  width: 25vw;
+  right: 0%;
+  top: 10%;
+}
+.up{
+  position: absolute;
+  height: 20vh;
+  width: 60vw;
+  left: 20%;
+}
+.down{
+  position:absolute;
+  height: 30vh;
+  width: 60vw;
+  left: 20%;
+  bottom: 0%;
+}
 .character-creator {
   color: white;
   background-color: black;
